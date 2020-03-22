@@ -1,0 +1,32 @@
+vente:
+    resource: "@VenteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+depot:
+    resource: "@DepotBundle/Resources/config/routing.yml"
+    prefix:   /
+
+employe:
+    resource: "@EmployeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+achat:
+    resource: "@AchatBundle/Resources/config/routing.yml"
+    prefix:   /
+
+livraison:
+    resource: "@LivraisonBundle/Resources/config/routing.yml"
+    prefix:   /
+
+vehicule:
+    resource: "@VehiculeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+service_apres_vente:
+    resource: "@ServiceApresVenteBundle/Resources/config/routing.yml"
+    prefix:   /
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

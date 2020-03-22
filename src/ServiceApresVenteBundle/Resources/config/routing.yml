@@ -1,0 +1,3 @@
+service_apres_vente_homepage:
+    path:     /chadi
+    defaults: { _controller: ServiceApresVenteBundle:Default:index }

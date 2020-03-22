@@ -1,0 +1,3 @@
+vehicule_homepage:
+    path:     /vehicule
+    defaults: { _controller: VehiculeBundle:Default:index }
