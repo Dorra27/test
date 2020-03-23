@@ -28,6 +28,39 @@ class RecFeedCat
      */
     private $nom;
 
+    /**
+     * @return int
+     */
+    public function getIdCat()
+    {
+        return $this->idCat;
+    }
+
+    /**
+     * @param int $idCat
+     */
+    public function setIdCat($idCat)
+    {
+        $this->idCat = $idCat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param string $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
+
+
 
 }
 

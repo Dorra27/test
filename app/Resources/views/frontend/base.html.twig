@@ -110,9 +110,17 @@
                                             <li><a href="forgetpassword.html">Forget Password</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="blog.html" class="parent"  >Blog</a></li>
+{#                                    <li><a href="blog.html" class="parent"  >Blog</a></li>#}
                                     <li><a href="about-us.html" >About us</a></li>
                                     <li><a href="contact.html" >Contact Us</a> </li>
+
+                                    <li><a href="#" class="active parent">Service Aprés Ventes</a>
+                                        <ul>
+                                            <li><a href="{{ path('display_categorie') }}" >Feedback</a></li>
+
+                                        </ul>
+                                    </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -195,6 +203,12 @@
 
 {% endblock %}
 
+
+{%  block content %}
+
+
+
+{% endblock %}
 
 {% block footer %}
     <div class="footer-top-cms">

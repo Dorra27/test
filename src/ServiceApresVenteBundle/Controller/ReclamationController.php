@@ -4,10 +4,13 @@ namespace ServiceApresVenteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class ReclamationController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('@ServiceApresVente/Default/index.html.twig');
+        return $this->render('ServiceApresVenteBundle:Default:index.html.twig');
     }
+
+
+
 }

@@ -63,6 +63,120 @@ class Feedback
      */
     private $idCat;
 
+    /**
+     * @return int
+     */
+    public function getIdFeed()
+    {
+        return $this->idFeed;
+    }
+
+    /**
+     * @param int $idFeed
+     */
+    public function setIdFeed($idFeed)
+    {
+        $this->idFeed = $idFeed;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param int $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdCommande()
+    {
+        return $this->idCommande;
+    }
+
+    /**
+     * @param int $idCommande
+     */
+    public function setIdCommande($idCommande)
+    {
+        $this->idCommande = $idCommande;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdCat()
+    {
+        return $this->idCat;
+    }
+
+    /**
+     * @param int $idCat
+     */
+    public function setIdCat($idCat)
+    {
+        $this->idCat = $idCat;
+    }
+
+
+
 
 }
 
