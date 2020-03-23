@@ -1,0 +1,74 @@
+{%  extends 'frontend/base.html.twig' %}
+
+{% block content %}
+    <body class="contact">
+    <div class="breadcrumb parallax">
+        <h1>Les Catégories</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div>
+
+        </div>
+        <div id="tab-living" class="tab-content">
+
+            <div class="box">
+
+                <div id="latest-slidertab" class="row owl-carousel product-slider owl-theme" style="opacity: 1; display: block;">
+                    {% for categories in categories %}
+
+                    <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 3060px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);"><div class="owl-item" style="width: 255px;"><div class="item">
+
+                                    <div class="product-thumb">
+
+                                        <div class="image product-imageblock"> <a href="product.html"> <img src="{{ asset('image/feedbacks/prod.jpg') }}" alt="iPod Classic" title="iPod Classic" class="img-responsive">
+                                                <img src="{{ asset('image/feedbacks/prod.jpg') }}" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
+                                            <ul class="button-group">
+                                                <li>
+                                                    <h4 class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">
+                                                            {{categories.nom}}</a></h4>
+
+                                                </li>
+
+                                                <li>
+                                                    <button type="button" class="addtocart-btn" title="Add to Cart"> Add to Cart </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div></div><div class="owl-item" style="width: 255px;"><div class="item">
+
+                                </div></div></div></div>
+                    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+                    <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev">prev</div><div class="owl-next">next</div></div></div></div>
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+    </body>
+
+{% endblock %}

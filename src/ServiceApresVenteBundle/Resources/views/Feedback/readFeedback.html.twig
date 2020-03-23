@@ -1,0 +1,41 @@
+
+{#{% extends 'frontend/base.html.twig' %}#}
+{#{% block tssou %}#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <img src="{{ asset('unnamed.jpg') }}" id="imgLogo" width="350px">
+
+        <link href=" " rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<center>
+    <h1>List des feedback</h1>
+    <table border="1">
+        <tr><th>Id</th><th>Titre</th><th>Description</th><th>Action</th></tr>
+        <tr>
+            {% for feedback in feedbacks %}
+        <tr>
+            <td> {{ feedback.id }}</td>
+            <td> {{ feedback.description }}</td>
+{#            <td> {{ feedback.rating |rating }}</td>#}
+            <td>
+                <a href="{{ path('update_feedback',{'id':feedback.idFeed}) }}">Modifier</a>
+            </td><td>
+            <a href="{{ path('delete_feedback',{'id':feedback.idFeed}) }}">Supprimer</a>
+            </td>
+
+
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+
+
+</body>
+</html>
+{#{% endblock %}#}
