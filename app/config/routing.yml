@@ -6,9 +6,9 @@ depot:
     resource: "@DepotBundle/Resources/config/routing.yml"
     prefix:   /
 
-employe:
-    resource: "@EmployeBundle/Resources/config/routing.yml"
-    prefix:   /
+employee:
+    resource: '@EmployeBundle/Controller/'
+    type: annotation
 
 achat:
     resource: "@AchatBundle/Resources/config/routing.yml"
