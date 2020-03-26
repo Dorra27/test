@@ -3,12 +3,14 @@
 namespace ServiceApresVenteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Feedback
  *
  * @ORM\Table(name="feedback")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ServiceApresVenteBundle\Repository\FeedbackRepository")
  */
 class Feedback
 {
@@ -21,10 +23,11 @@ class Feedback
      */
     private $idFeed;
 
+
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=90, nullable=false)
+     * @ORM\Column(name="description", type="string", length=400, nullable=false)
      */
     private $description;
 
@@ -38,9 +41,25 @@ class Feedback
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=true)
      */
     private $id;
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatefeedback()
+    {
+        return $this->datefeedback;
+    }
+
+    /**
+     * @param \DateTime $datefeedback
+     */
+    public function setDatefeedback($datefeedback)
+    {
+        $this->datefeedback = $datefeedback;
+    }
 
     /**
      * @var string
@@ -50,18 +69,30 @@ class Feedback
     private $image;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id_commande", type="integer", nullable=false)
+     * @ORM\Column(name="id_commande", type="string", length=100, nullable=true)
      */
     private $idCommande;
 
     /**
-     * @var integer
+     * @var \DateTime
      *
-     * @ORM\Column(name="id_cat", type="integer", nullable=false)
+     * @ORM\Column(name="dateannonce", type="date")
      */
-    private $idCat;
+    private $datefeedback;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="RecFeedCat")
+     * @ORM\JoinColumn(name="cat",referencedColumnName="id_cat")
+     */
+    private $idc;
+
+    public function __toString()
+    {
+        return $this->idc;
+    }
 
     /**
      * @return int
@@ -144,7 +175,7 @@ class Feedback
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getIdCommande()
     {
@@ -152,7 +183,7 @@ class Feedback
     }
 
     /**
-     * @param int $idCommande
+     * @param string $idCommande
      */
     public function setIdCommande($idCommande)
     {
@@ -160,22 +191,20 @@ class Feedback
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getIdCat()
+    public function getIdc()
     {
-        return $this->idCat;
+        return $this->idc;
     }
 
     /**
-     * @param int $idCat
+     * @param mixed $idc
      */
-    public function setIdCat($idCat)
+    public function setIdc($idc)
     {
-        $this->idCat = $idCat;
+        $this->idc = $idc;
     }
-
-
 
 
 }

@@ -7,7 +7,7 @@ read_feedback:
     defaults: { _controller: ServiceApresVenteBundle:Feedback:readFeedback }
 
 add_feedback:
-    path:    /create
+    path:    /create/{id_cat}
     defaults: {_controller: ServiceApresVenteBundle:Feedback:createFeedback}
 
 update_feedback:

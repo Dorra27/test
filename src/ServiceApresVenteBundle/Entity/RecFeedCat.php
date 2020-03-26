@@ -19,7 +19,30 @@ class RecFeedCat
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idCat;
+    private $id_cat;
+
+    /**
+     * @return int
+     */
+    public function getIdCat()
+    {
+        return $this->id_cat;
+    }
+
+    /**
+     * @param int $id_cat
+     */
+    public function setIdCat($id_cat)
+    {
+        $this->id_cat = $id_cat;
+    }
+
+    public function __toString()
+
+    {
+        return (string)$this->id_cat;
+    }
+
 
     /**
      * @var string
@@ -28,21 +51,7 @@ class RecFeedCat
      */
     private $nom;
 
-    /**
-     * @return int
-     */
-    public function getIdCat()
-    {
-        return $this->idCat;
-    }
 
-    /**
-     * @param int $idCat
-     */
-    public function setIdCat($idCat)
-    {
-        $this->idCat = $idCat;
-    }
 
     /**
      * @return string

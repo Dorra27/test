@@ -5,6 +5,7 @@ namespace ServiceApresVenteBundle\Controller;
 use ServiceApresVenteBundle\Entity\Feedback;
 use ServiceApresVenteBundle\Form\FeedbackType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
 class FeedbackController extends Controller
@@ -21,10 +22,25 @@ class FeedbackController extends Controller
         $feedback = new Feedback();
         $form = $this->createForm(FeedbackType::class, $feedback);
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['image']->getData();
+            $filename = md5(uniqid()) . '.' . $uploadedFile->guessExtension();
+            $uploadedFile->move($this->getParameter('kernel.project_dir').'/web/uploads/feedback_image',$filename);
+
+
+            $feedback->setImage($filename);
+            $feedback->setDatefeedback(new \DateTime('now'));
+
+
             $em->persist($feedback);
             $em->flush();
+
+            $this->addFlash('info', 'Création avec succés !');
+
+
             return $this->redirectToRoute("read_feedback");
         }
         return $this->render("@ServiceApresVente/Feedback/createFeedback.html.twig", array("form" => $form->createView()));
@@ -34,8 +50,14 @@ class FeedbackController extends Controller
     {
         $feedback = $this->getDoctrine()->getManager()->getRepository(Feedback::class)->find($id);
         $form = $this->createForm(FeedbackType::class, $feedback);
+
         $form->handleRequest($request);
         if ($form->isValid()) {
+            $file = $feedback->getImage();
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move($this->getParameter('kernel.project_dir').'/web/uploads/feedback_image',$filename);
+            $feedback->setImage($filename);
+            $feedback->setDatefeedback(new \DateTime('now'));
             $em=$this->getDoctrine()->getManager();
             $em->persist($feedback);
             $em->flush();
@@ -74,6 +96,21 @@ class FeedbackController extends Controller
 //    }
 
 
+    public function ShowdetailedanAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $an = $em->getRepository(Feedback::class)->find($id);
+
+
+        return $this->render('@Annonce/Default/showDetaillOne.html.twig', array(
+            'description' => $an->getDescription(),
+            'note' => $an->getNote(),
+            'id', $an->getId(),
+            'idCommande' => $an,
+
+            'image' => $an->getImage(), 'id_feed' => $id
+        ));
+    }
 
 
 

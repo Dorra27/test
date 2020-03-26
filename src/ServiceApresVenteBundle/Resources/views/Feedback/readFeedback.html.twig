@@ -1,41 +1,268 @@
 
-{#{% extends 'frontend/base.html.twig' %}#}
-{#{% block tssou %}#}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <img src="{{ asset('unnamed.jpg') }}" id="imgLogo" width="350px">
+{% extends 'frontend/base.html.twig' %}
+{% block content %}
 
-        <link href=" " rel="stylesheet" type="text/css" />
 
-</head>
-<body>
-<center>
-    <h1>List des feedback</h1>
-    <table border="1">
-        <tr><th>Id</th><th>Titre</th><th>Description</th><th>Action</th></tr>
-        <tr>
-            {% for feedback in feedbacks %}
-        <tr>
-            <td> {{ feedback.idFeed }}</td>
-            <td> {{ feedback.description }}</td>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="breadcrumb parallax" style=" background: linear-gradient(35deg, #1EAE98, #D8B5FF);">
+        <h1 style="color: #0b0b0b;
+        text-align:center;font-family:'Baskerville Old Face';font-weight:900;font-size:4em;color:#fff;text-shadow:0em 0.05em 0 rgba(0,0,0,0.25)}
+" class="control-label" >Listes des Feedbacks
+
+        </h1>
+        <ul>
+            {#            <li><a href="index.html">Home</a></li>#}
+            {#            <li><a href="contact.html">Contact Us</a></li>#}
+        </ul>
+    </div>
+    {%  for message in app.flashes('info') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="container">
+        <div class="row">
+            <div class="content col-sm-9">
+                {%  for feedbacks in feedbacks %}
+
+                <div class="blog1 blog">
+                    <div class="blog-image"> <a href="#" class="blog-imagelink">
+                            <img src="{{ asset('uploads/feedback_image/' ~ feedbacks.image) }}" alt="">
+
+
+                           {{ feedbacks.datefeedback |date  }} <i class="fa fa-share-square-o"></i></a>
+
+
+                        </a> <span class="blog-hover"></span> </div>
+                    <div class="blog-content"> <span class="blog-date"></span>
+                        <h2>Sujet de feedback concernat: {{ feedbacks.idc }}</h2>
+                        <h2 class="blog-name"><a href="single-blog.html">{{ feedbacks.description }}</a> </h2>
+{#                            <span class="blog-author">utilisateur numero <a href="#">{{ feedbacks.id}}</a> </span> <span class="blog-comment">3 comments</span>#}
+                        <a href="{{ path('update_feedback', {'id':feedbacks.idFeed}) }}" class="blog-readmore">
+
+
+                            Modifier
+                        </a>
+                    </div>
+                    <div class="blog-desc">.</div>
+
+
+                </div>
+            {% endfor %}
+
+            </div>
+            <!-- end blog-home -->
+{#            <div class="col-sm-3 hidden-xs column-right" id="column-right">#}
+{#                <div class="Categories right-sidebar-widget">#}
+{#                    <div class="columnblock-title">Categories</div>#}
+{#                    <div class="category_block">#}
+{#                        <ul class="box-category">#}
+{#                            <li><a href="#">Video Post Format</a></li>#}
+{#                            <li><a href="#">Quote Post Format</a></li>#}
+{#                            <li><a href="#">Gallery Post Format</a></li>#}
+{#                            <li><a href="#">Link Post Format</a></li>#}
+{#                            <li><a href="#">Address Book</a></li>#}
+{#                            <li><a href="#">Wish Post Format</a></li>#}
+{#                            <li><a href="#">Order Post Format</a></li>#}
+{#                            <li><a href="#">Uncategorized Post Format</a></li>#}
+{#                            <li><a href="#">Post Format</a></li>#}
+{#                            <li><a href="#">Transactions Post Format</a></li>#}
+{#                            <li><a href="#">Returns Post Format</a></li>#}
+{#                            <li><a href="#">Post Format</a></li>#}
+{#                            <li><a href="#">Recurring Post Format</a></li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="Categories right-sidebar-widget">#}
+{#                    <div class="columnblock-title">Tag</div>#}
+{#                    <ul class="tagcloud">#}
+{#                        <li><a href="#">Gallery</a></li>#}
+{#                        <li><a href="#">Grid</a></li>#}
+{#                        <li><a href="#">Large</a></li>#}
+{#                        <li><a href="#">Slider</a></li>#}
+{#                        <li><a href="#">Personal</a></li>#}
+{#                        <li><a href="#">Youtube</a></li>#}
+{#                        <li><a href="#">Trending</a></li>#}
+{#                        <li><a href="#">Quote</a></li>#}
+{#                        <li><a href="#">Simple</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="recentpost right-sidebar-widget">#}
+{#                    <div class="columnblock-title">Recent Posts</div>#}
+{#                    <div class="category_block">#}
+{#                        <ul class="box-category">#}
+{#                            <li><a href="#">Video Post Format</a></li>#}
+{#                            <li><a href="#">Gallery Post Format</a></li>#}
+{#                            <li><a href="#">Link Post Format</a></li>#}
+{#                            <li><a href="#">Wish Post Format</a></li>#}
+{#                            <li><a href="#">Uncategorized Post Format</a></li>#}
+{#                            <li><a href="#">Transactions Post Format</a></li>#}
+{#                            <li><a href="#">Post Format</a></li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="latestblog right-sidebar-widget">#}
+{#                    <div class="columnblock-title">Latest Blog</div>#}
+{#                    <div class="blog_block">#}
+{#                        <ul class="list-unstyled blog-wrapper owl-carousel owl-theme" id="latestblog" style="opacity: 1; display: block;">#}
+{#                            <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 2100px; left: 0px; display: block; transition: all 800ms ease 0s; transform: translate3d(-840px, 0px, 0px);"><div class="owl-item" style="width: 210px;"><li class="item blog-slider-item">#}
+{#                                            <div class="blog1 blog">#}
+{#                                                <div class="blog-image"> <a href="#" class="blog-imagelink"><img src="image/blog/blog_1.jpg" alt="#"></a> <span class="blog-hover"></span> <span class="blog-readmore-outer"><a href="#" class="blog-readmore">Read More</a></span> </div>#}
+{#                                                <div class="blog-content">#}
+{#                                                    <span class="blog-date">02/05/2016</span>#}
+
+
+{#                                                    <h2 class="blog-name"><a href="single-blog.html">Explore collections that look great and feel incredible, whatever ...</a></h2>#}
+
+{#                                                    <div class="blog-desc"></div>#}
+{#                                                    <span class="blog-author">By <a href="#">funchuk wangadu</a> </span><span class="blog-comment">3Comments</span> <a href="#" class="blog-readmore">Read More</a> </div>#}
+{#                                            </div>#}
+{#                                        </li></div><div class="owl-item" style="width: 210px;"><li class="item blog-slider-item">#}
+{#                                            <div class="blog2 blog">#}
+{#                                                <div class="blog-image"> <a href="#" class="blog-imagelink"><img src="image/blog/blog_2.jpg" alt="#"></a> <span class="blog-hover"></span> <span class="blog-readmore-outer"><a href="#" class="blog-readmore">Read More</a></span> </div>#}
+{#                                                <div class="blog-content">#}
+{#                                                    <span class="blog-date">02/05/2016</span>#}
+
+
+{#                                                    <h2 class="blog-name"><a href="single-blog.html">Explore collections that look great and feel incredible, whatever ...</a></h2>#}
+
+{#                                                    <div class="blog-desc"></div>#}
+{#                                                    <span class="blog-author">By <a href="#">funchuk wangadu</a> </span><span class="blog-comment">3Comments</span> <a href="#" class="blog-readmore">Read More</a> </div>#}
+{#                                            </div>#}
+{#                                        </li></div><div class="owl-item" style="width: 210px;"><li class="item blog-slider-item">#}
+{#                                            <div class="blog3 blog">#}
+{#                                                <div class="blog-image"> <a href="#" class="blog-imagelink"><img src="image/blog/blog_3.jpg" alt="#"></a> <span class="blog-hover"></span> <span class="blog-readmore-outer"><a href="#" class="blog-readmore">Read More</a></span> </div>#}
+{#                                                <div class="blog-content">#}
+{#                                                    <span class="blog-date">02/05/2016</span>#}
+
+
+{#                                                    <h2 class="blog-name"><a href="single-blog.html">Explore collections that look great and feel incredible, whatever ...</a></h2>#}
+
+{#                                                    <div class="blog-desc"></div>#}
+{#                                                    <span class="blog-author">By <a href="#">funchuk wangadu</a> </span><span class="blog-comment">3Comments</span> <a href="#" class="blog-readmore">Read More</a> </div>#}
+{#                                            </div>#}
+{#                                        </li></div><div class="owl-item" style="width: 210px;"><li class="item blog-slider-item">#}
+{#                                            <div class="blog4 blog">#}
+{#                                                <div class="blog-image"> <a href="#" class="blog-imagelink"><img src="image/blog/blog_4.jpg" alt="#"></a> <span class="blog-hover"></span> <span class="blog-readmore-outer"><a href="#" class="blog-readmore">Read More</a></span> </div>#}
+{#                                                <div class="blog-content">#}
+{#                                                    <span class="blog-date">02/05/2016</span>#}
+
+
+{#                                                    <h2 class="blog-name"><a href="single-blog.html">Explore collections that look great and feel incredible, whatever ...</a></h2>#}
+
+{#                                                    <div class="blog-desc"></div>#}
+{#                                                    <span class="blog-author">By <a href="#">funchuk wangadu</a> </span><span class="blog-comment">3Comments</span> <a href="#" class="blog-readmore">Read More</a> </div>#}
+{#                                            </div>#}
+{#                                        </li></div><div class="owl-item" style="width: 210px;"><li class="item blog-slider-item">#}
+{#                                            <div class="blog5 blog">#}
+{#                                                <div class="blog-image"> <a href="#" class="blog-imagelink"><img src="image/blog/blog_5.jpg" alt="#"></a> <span class="blog-hover"></span> <span class="blog-readmore-outer"><a href="#" class="blog-readmore">Read More</a></span> </div>#}
+{#                                                <div class="blog-content">#}
+{#                                                    <span class="blog-date">02/05/2016</span>#}
+
+
+{#                                                    <h2 class="blog-name"><a href="single-blog.html">Explore collections that look great and feel incredible, whatever ...</a></h2>#}
+
+{#                                                    <div class="blog-desc"></div>#}
+{#                                                    <span class="blog-author">By <a href="#">funchuk wangadu</a> </span><span class="blog-comment">3Comments</span> <a href="#" class="blog-readmore">Read More</a> </div>#}
+{#                                            </div>#}
+{#                                        </li></div></div></div>#}
+
+
+
+
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#    <img src="{{ asset('unnamed.jpg') }}" id="imgLogo" width="350px">#}
+
+{#        <link href=" " rel="stylesheet" type="text/css" />#}
+
+{#</head>#}
+{#<body>#}
+{#<center>#}
+{#    <h1>List des feedback</h1>#}
+{#    <table border="1">#}
+{#        <tr><th>Id</th><th>Titre</th><th>Description</th><th>Categories</th><th>Action</th></tr>#}
+{#        <tr>#}
+{#            {% for feedback in feedbacks %}#}
+{#        <tr>#}
+{#            <td> {{ feedback.idFeed }}</td>#}
+{#            <td> {{ feedback.description }}</td>#}
+{#            <td>{{ feedback.idc.nom }}</td>#}
 {#            <td> {{ feedback.rating |rating }}</td>#}
-            <td>
-                <a href="{{ path('update_feedback',{'id':feedback.idFeed}) }}">Modifier</a>
-            </td><td>
-            <a href="{{ path('delete_feedback',{'id':feedback.idFeed}) }}">Supprimer</a>
-            </td>
+{#            <td>#}
+{#                <a href="{{ path('update_feedback',{'id':feedback.idFeed}) }}">Modifier</a>#}
+{#            </td><td>#}
+{#            <a href="{{ path('delete_feedback',{'id':feedback.idFeed}) }}">Supprimer</a>#}
+{#            </td>#}
 
 
-        </tr>
-        {% endfor %}
-    </table>
-</center>
+{#        </tr>#}
+{#        {% endfor %}#}
+{#    </table>#}
+{#</center>#}
 
 
-</body>
-</html>
+{#</body>#}
+{#</html>#}
 {#{% endblock %}#}

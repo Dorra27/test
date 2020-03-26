@@ -1,0 +1,11 @@
+
+{%  extends 'frontend/base.html.twig' %}
+
+
+{% block content %}
+
+<figure>
+    <a href="blog-detail.html">
+        <img src="{{ asset('uploads/annonce/') }}{{ image }} }}" alt=""></a> <a href="{{ path('show_detailed_annonce',{'id':id}) }}" class="environment-post-hover"><i class="fa fa-angle-double-right"></i></a> </figure>
+
+{% endblock %}
