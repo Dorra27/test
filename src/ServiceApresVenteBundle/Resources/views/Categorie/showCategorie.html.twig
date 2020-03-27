@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="breadcrumb parallax" style=" background: linear-gradient(35deg, #1EAE98, #D8B5FF);">
-        <h1 style="color: #0b0b0b" class="control-label">Ajouter Feedback</h1>
+        <h1 style="color: #0b0b0b" class="control-label">Page {{ type }}</h1>
         <ul>
             {#            <li><a href="index.html">Home</a></li>#}
             {#            <li><a href="contact.html">Contact Us</a></li>#}
@@ -23,17 +23,20 @@
 
                     {% for categories in categories %}
                      {% if categories.nom is null  %}
-                        <h1>                        {{ categories.nom }}
+                        <h1>{{ categories.nom }}
                         </h1>
                         {% endif %}
 
 
                         <div class="owl-wrapper-outer">
                             <div class="owl-wrapper" style="width: 3060px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);"><div class="owl-item" style="width: 255px;"><div class="item">
+                                        {% if type == 'feedback' %}
 
-                                    <div class="product-thumb">
+                                        <div class="product-thumb">
 
-                                        <div class="image product-imageblock">   <a href="{{ path('add_feedback', {'id_cat':categories.idCat}) }}"><img src="{{ asset('image/feedbacks/prod.jpg') }}" alt="iPod Classic" title="iPod Classic" class="img-responsive">
+                                        <div class="image product-imageblock">
+                                            <a href="{{ path('add_feedback', {'id_cat':categories.idCat}) }}">
+                                                <img src="{{ asset('image/feedbacks/prod.jpg') }}" alt="iPod Classic" title="iPod Classic" class="img-responsive">
                                                 <img src="{{ asset('image/feedbacks/prod.jpg') }}" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
                                             <ul class="button-group">
                                                 <li>
@@ -45,12 +48,38 @@
                                                 <li>
                                                     <button type="button" class="addtocart-btn" title="Add to Cart">
                                                         <a href="{{ path('add_feedback', {'id_cat':categories.idCat}) }}">
-                                                            Ajouter feedback</a> </button>
+                                                            Aller au {{ type }}</a> </button>
                                                 </li>
                                             </ul>
                                         </div>
 
                                     </div>
+                                        {% endif %}
+
+                                        {% if type == 'reclamation' %}
+                                        <div class="product-thumb">
+
+                                            <div class="image product-imageblock">
+                                                <a href="{{ path('add_reclamation', {'id_cat':categories.idCat}) }}">
+                                                    <img src="{{ asset('image/feedbacks/prod.jpg') }}" alt="iPod Classic" title="iPod Classic" class="img-responsive">
+                                                    <img src="{{ asset('image/feedbacks/prod.jpg') }}" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
+                                                <ul class="button-group">
+                                                    <li>
+                                                        <h4 class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">
+                                                                {{categories.nom}}</a></h4>
+
+                                                    </li>
+
+                                                    <li>
+                                                        <button type="button" class="addtocart-btn" title="Add to Cart">
+                                                            <a href="{{ path('add_feedback', {'id_cat':categories.idCat}) }}">
+                                                                Aller au {{ type }}</a> </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                        {% endif %}
 
 
 

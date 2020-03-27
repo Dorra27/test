@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 class FeedbackController extends Controller
 {
 
+    public function indexAction() {
+        return $this->render('@ServiceApresVente/Default/index.html.twig');
+
+    }
+
     public function readFeedbackAction() {
         $feedbacks=$this->getDoctrine()->getManager()->getRepository(Feedback::class)->findAll();
         return $this->render('@ServiceApresVente/Feedback/readFeedback.html.twig',array("feedbacks"=>$feedbacks));

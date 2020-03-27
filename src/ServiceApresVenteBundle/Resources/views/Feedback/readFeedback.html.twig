@@ -3,7 +3,43 @@
 {% extends 'frontend/base.html.twig' %}
 {% block content %}
 
+<style>
+    .button {
+        text-decoration: none;
+        color: #777;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        padding: 5px 10px;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+    }
 
+     .button:before {
+        background-color: #6253e1;
+        position: absolute;
+        top: 100%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        content: '';
+        z-index: -1;
+        opacity: 0;
+    }
+
+     .button:hover {
+        color: #fff;
+    }
+
+     .button:hover:before {
+        top: 0;
+        opacity: 1;
+    }
+    body {
+        background-color: #f4f4f4;
+        padding: 0 5px;
+    }
+</style>
 
 
 
@@ -50,11 +86,13 @@
                         <h2>Sujet de feedback concernat: {{ feedbacks.idc }}</h2>
                         <h2 class="blog-name"><a href="single-blog.html">{{ feedbacks.description }}</a> </h2>
 {#                            <span class="blog-author">utilisateur numero <a href="#">{{ feedbacks.id}}</a> </span> <span class="blog-comment">3 comments</span>#}
-                        <a href="{{ path('update_feedback', {'id':feedbacks.idFeed}) }}" class="blog-readmore">
+                        <a href="{{ path('update_feedback', {'id':feedbacks.idFeed}) }}" class="button">
 
 
                             Modifier
                         </a>
+
+
                     </div>
                     <div class="blog-desc">.</div>
 

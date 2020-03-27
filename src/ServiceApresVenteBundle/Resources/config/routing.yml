@@ -3,7 +3,7 @@ service_apres_vente_homepage:
     defaults: { _controller: ServiceApresVenteBundle:Default:index }
 
 read_feedback:
-    path:     /read
+    path:     /readFeedback
     defaults: { _controller: ServiceApresVenteBundle:Feedback:readFeedback }
 
 add_feedback:
@@ -18,7 +18,16 @@ delete_feedback:
     path:   /delete/{id}
     defaults: {_controller:ServiceApresVenteBundle:Feedback:deleteFeedback}
 
+read_reclamation:
+    path:     /readReclamation
+    defaults: { _controller: ServiceApresVenteBundle:Reclamation:readReclamation }
+
+add_reclamation:
+    path:    /createReclamation/{id_cat}
+    defaults: {_controller: ServiceApresVenteBundle:Reclamation:createReclamation}
+
 display_categorie:
-    path:   /showCategorie
-    defaults: {_controller:ServiceApresVenteBundle:RecFeedCat:show}
+    path:   /showCategorie/{nom}
+    defaults: {_controller:ServiceApresVenteBundle:RecFeedCat:name}
+
 

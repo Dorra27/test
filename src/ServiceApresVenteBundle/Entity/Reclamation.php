@@ -70,6 +70,136 @@ class Reclamation
      */
     private $idCat;
 
+    /**
+     * @return int
+     */
+    public function getIdRec()
+    {
+        return $this->idRec;
+    }
+
+    /**
+     * @param int $idRec
+     */
+    public function setIdRec($idRec)
+    {
+        $this->idRec = $idRec;
+    }
+
+    /**
+     * @return string
+     */
+    public function getObjet()
+    {
+        return $this->objet;
+    }
+
+    /**
+     * @param string $objet
+     */
+    public function setObjet($objet)
+    {
+        $this->objet = $objet;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * @param int $etat
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdCat()
+    {
+        return $this->idCat;
+    }
+
+    /**
+     * @param int $idCat
+     */
+    public function setIdCat($idCat)
+    {
+        $this->idCat = $idCat;
+    }
+
+
+
 
 }
 
