@@ -19,3 +19,6 @@ vehicules_Admin_affiche1vehicule:
 vehicules_Admin_update:
     path:     /update/{matricule}
     defaults: { _controller: VehiculeBundle:Vehicule:update }
+vehicules_Admin_delete:
+    path:     /delete/{matricule}
+    defaults: { _controller: VehiculeBundle:Vehicule:delete }

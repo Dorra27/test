@@ -22,19 +22,12 @@ class VehiculeController extends Controller
         $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->findAll();
         return $this->render( '@Vehicule/backend/AffichageVehicule.html.twig', array('v'=>$Vehicule));
     }
+    // affichage d'une vehicule par son matricule
     public function afficheVehiculeeAction($matricule)
     {
         $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->find($matricule);
         return($this->render("@Vehicule/backend/detailsVehicule.html.twig",array('v'=>$Vehicule)));
     }
-    public function afficheVehiculeAction ($matricule)
-    {
-        $repository=$this->getDoctrine()->getRepository(Vehicule::class);
-        $Vehicule=$repository->myFindVehiculebymatricule();
-
-        return($this->render("@Vehicule/backend/detailsVehicule.html.twig",array('v'=>$Vehicule)));
-    }
-
     public function ajoutVehiculeAction(Request $request)
     {
         $Vehicule = new Vehicule();
@@ -62,12 +55,21 @@ class VehiculeController extends Controller
         if($form->isSubmitted())
         {
             $em= $this->getDoctrine()->getManager();
+            $Vehicule->UploadProfilePicture();
             $em->flush();
             return $this->redirectToRoute('vehicules_Admin_affiche');
 
         }
         return
-            $this->render("@Vehicule/backend/ajoutvehicule.html.twig",
+            $this->render("@Vehicule/backend/updateVehicule.html.twig",
                 array('f'=> $form->createView()));
+    }
+    public function deleteAction($matricule)
+    {
+        $em = $this->getDoctrine()->getManager();
+       $Vehicule = $em->getRepository(Vehicule::class)->find($matricule);
+        $em-> remove($Vehicule );
+        $em->flush();
+        return $this->redirectToRoute("vehicules_Admin_affiche") ;
     }
 }

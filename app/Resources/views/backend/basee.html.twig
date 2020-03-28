@@ -27,6 +27,7 @@
     {% endblock %}
 
 </head>
+
 <body class="fixed-left">
 {% block header %}
 <!-- Begin page -->
@@ -91,6 +92,7 @@
             </div><!-- end container -->
         </div><!-- end navbar -->
     </div>
+
     <!-- Top Bar End -->
     <!-- ========== Left Sidebar Start ========== -->
     <div class="left side-menu">
@@ -243,49 +245,7 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="content-page">
-        <!-- Start content -->
-        <div class="content">
-            <div class="container-fluid">
 
-
-                <div class="row">
-
-                    <div class="col-xl-12 col-md-offset-0">
-                        <div class="card-box">
-                            <div class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                </div>
-                            </div>
-                            {% block content %}
-                            {% endblock %}
-
-
-                        </div>
-                    </div><!-- end col -->
-
-
-                </div>
-                <!-- end row -->
-
-
-
-
-            </div> <!-- container -->
-
-        </div> <!-- content -->
-    </div>
 
     <!-- Right Sidebar -->
     <div class="side-bar right-bar">
@@ -362,26 +322,19 @@
     <!-- /Right-bar -->
 
 </div>
-    <!-- END wrapper -->
-
-    <!-- ============================================================== -->
-    <!-- End Right content here -->
-    <!-- ============================================================== -->
-
-                {% endblock %}
 
 
-{% block footer %}
+   {% endblock %}
+<div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+        <div class="container-fluid">
 
-
-    <footer class="footer text-right">
-        2016 - 2018 © Adminto. Coderthemes.com
-    </footer>
-
-
-
+{% block content %}
 {% endblock %}
-
+        </div>
+    </div>
+</div>
 {% block javascripts %}
     <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
 
@@ -417,7 +370,16 @@
 
 {% endblock %}
 
+{% block footer %}
 
+
+    <footer class="footer text-right">
+        2016 - 2018 © Adminto. Coderthemes.com
+    </footer>
+
+
+
+{% endblock %}
 
 
 </body>
