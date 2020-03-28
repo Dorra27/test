@@ -22,3 +22,6 @@ vehicules_Admin_update:
 vehicules_Admin_delete:
     path:     /delete/{matricule}
     defaults: { _controller: VehiculeBundle:Vehicule:delete }
+vehicules_Client_location:
+    path:     /afficheC/{matricule}
+    defaults: { _controller: VehiculeBundle:Vehicule:afficheC}

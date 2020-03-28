@@ -12,17 +12,13 @@ class VehiculeController extends Controller
     {
         return $this->render('@Vehicule/frontend/vehicule/indexx.html.twig');
     }
-    public function readAction ()
-    {
-       $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->findAll();
-        return $this->render( '@Vehicule/frontend/read.html.twig', array('v'=>$Vehicule));
-    }
+    // Admin
     public function afficheAction ()
     {
         $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->findAll();
         return $this->render( '@Vehicule/backend/AffichageVehicule.html.twig', array('v'=>$Vehicule));
     }
-    // affichage d'une vehicule par son matricule
+    // affichage d'une vehicule par son matricule pour l'admin
     public function afficheVehiculeeAction($matricule)
     {
         $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->find($matricule);
@@ -71,5 +67,20 @@ class VehiculeController extends Controller
         $em-> remove($Vehicule );
         $em->flush();
         return $this->redirectToRoute("vehicules_Admin_affiche") ;
+    }
+
+
+
+    //client
+    // Affichage de vehicules dont l'etat est disponible
+    public function readAction ()
+    {
+        $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->findBy(array('etat'=>'disponible'));
+        return $this->render( '@Vehicule/frontend/read.html.twig', array('v'=>$Vehicule));
+    }
+    public function afficheCAction($matricule)
+    {
+        $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->find($matricule);
+        return($this->render("@Vehicule/frontend/location.html.twig",array('v'=>$Vehicule)));
     }
 }

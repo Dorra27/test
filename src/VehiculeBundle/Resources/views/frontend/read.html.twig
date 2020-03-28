@@ -1,11 +1,11 @@
-{%  extends 'frontend/base.html.twig' %}
-
+{% extends 'frontend/base.html.twig' %}
 {% block content %}
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{asset('https://www.w3schools.com/w3css/4/w3.css') }}">
-    <link rel="stylesheet" href="{{ asset('https://fonts.googleapis.com/icon?family=Material+Icons') }}">
-    <div  class="breadcrumb parallax">
-
+    <div class="breadcrumb parallax">
+        <h1 class="category-title">Desktops</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="category.html">Electronics</a></li>
+        </ul>
     </div>
     <div class="container">
         <div class="row">
@@ -13,36 +13,36 @@
                 <div class="Categories left-sidebar-widget">
                     <div class="columnblock-title">Top Categories</div>
                     <div class="category_block">
-                        <ul class="box-category treeview">
-                            <li><a href="#" class="activSub">Desktops</a>
-                                <ul>
+                        <ul class="box-category treeview collapsable">
+                            <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="#" class="activSub">Desktops</a>
+                                <ul class="collapsable" style="display: none;">
                                     <li><a href="#">PC</a></li>
-                                    <li><a href="#">MAC</a></li>
+                                    <li class="last"><a href="#">MAC</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#" class="activSub">Laptops &amp; Notebooks</a>
-                                <ul>
+                            <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="#" class="activSub">Laptops &amp; Notebooks</a>
+                                <ul class="collapsable" style="display: none;">
                                     <li><a href="#">Macs</a></li>
-                                    <li><a href="#">Windows</a></li>
+                                    <li class="last"><a href="#">Windows</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#" class="activSub">Components</a>
-                                <ul>
+                            <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="#" class="activSub">Components</a>
+                                <ul class="collapsable" style="display: none;">
                                     <li><a href="#">Mice and Trackballs</a></li>
-                                    <li><a href="#" class="activSub" >Monitors</a>
-                                        <ul>
-                                            <li><a href="#"  >test 1</a></li>
-                                            <li><a href="#"  >test 2</a></li>
+                                    <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="#" class="activSub">Monitors</a>
+                                        <ul class="collapsable" style="display: none;">
+                                            <li><a href="#">test 1</a></li>
+                                            <li class="last"><a href="#">test 2</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Windows</a></li>
+                                    <li class="last"><a href="#">Windows</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">Tablets</a></li>
                             <li><a href="#">Software</a></li>
-                            <li><a href="#">Phones & PDAs</a></li>
+                            <li><a href="#">Phones &amp; PDAs</a></li>
                             <li><a href="#">Cameras</a></li>
-                            <li><a href="#">MP3 Players</a></li>
+                            <li class="last"><a href="#">MP3 Players</a></li>
                         </ul>
                     </div>
                 </div>
@@ -54,13 +54,13 @@
                             <div class="list-group-item">
                                 <div id="filter-group1">
                                     <label class="checkbox">
-                                        <input name="filter[]" type="checkbox" value="1" />
+                                        <input name="filter[]" type="checkbox" value="1">
                                         Black (7)</label>
                                     <label class="checkbox">
-                                        <input name="filter[]" type="checkbox" value="2" />
+                                        <input name="filter[]" type="checkbox" value="2">
                                         Blue (6)</label>
                                     <label class="checkbox">
-                                        <input name="filter[]" type="checkbox" value="3" />
+                                        <input name="filter[]" type="checkbox" value="3">
                                         Red (6)</label>
                                 </div>
                             </div>
@@ -68,10 +68,10 @@
                             <div class="list-group-item">
                                 <div id="filter-group2">
                                     <label class="checkbox">
-                                        <input name="filter[]" type="checkbox" value="4" />
+                                        <input name="filter[]" type="checkbox" value="4">
                                         $100-$300 (6)</label>
                                     <label class="checkbox">
-                                        <input name="filter[]" type="checkbox" value="5" />
+                                        <input name="filter[]" type="checkbox" value="5">
                                         $301-$1000 (6)</label>
                                 </div>
                             </div>
@@ -79,13 +79,13 @@
                             <div class="list-group-item">
                                 <div id="filter-group3">
                                     <label class="checkbox">
-                                        <input name="filter[]" type="checkbox" value="6" />
+                                        <input name="filter[]" type="checkbox" value="6">
                                         Big (3)</label>
                                     <label class="checkbox">
-                                        <input name="filter[]" type="checkbox" value="7" />
+                                        <input name="filter[]" type="checkbox" value="7">
                                         Medium (3)</label>
                                     <label class="checkbox">
-                                        <input name="filter[]" type="checkbox" value="8" />
+                                        <input name="filter[]" type="checkbox" value="8">
                                         Small (1)</label>
                                 </div>
                             </div>
@@ -95,65 +95,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="banner left-sidebar-widget"> <a href="#"><img src="{{ asset('image/banners/LeftBanner.jpg') }}" alt="Left Banner" class="img-responsive" /></a> </div>
-                <div class="special left-sidebar-widget">
-                    <div class="columnblock-title">Special Product</div>
-                    <ul class="row ">
-                        <li class="product-layout">
-                            <div class="product-list col-xs-4">
-                                <div class="product-thumb">
-                                    <div class="image product-imageblock">
-                                        <a href="product.html">
-                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="{{ asset('image/product/Pro-06.jpg') }}">
-                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="{{ asset('image/product/Pro-06-1.jpg') }}">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-8">
-                                <div class="caption product-detail">
-                                    <h4 class="product-name"><a title="Casual Shirt With Ruffle Hem" href="#">Casual Shirt With Ruffle Hem</a></h4>
-                                    <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-old">$272.00</span> </p>
-                                    <div class="addto-cart"><a href="#">Add to Cart</a></div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-layout">
-                            <div class="product-list col-xs-4">
-                                <div class="product-thumb">
-                                    <div class="image product-imageblock"> <a href="product.html">
-                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="{{ asset('image/product/Pro-02.jpg') }}">
-                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="{{ asset('image/product/Pro-02-1.jpg') }}">
-                                        </a> </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-8">
-                                <div class="caption product-detail">
-                                    <h4 class="product-name"><a title="Casual Shirt With Ruffle Hem" href="#">Casual Shirt With Ruffle Hem</a></h4>
-                                    <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-old">$272.00</span> </p>
-                                    <div class="addto-cart"><a href="#">Add to Cart</a></div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="product-layout">
-                            <div class="product-list col-xs-4">
-                                <div class="product-thumb">
-                                    <div class="image product-imageblock"> <a href="product.html">
-                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="{{ asset('image/product/Pro-03.jpg') }}">
-                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="{{ asset('image/product/Pro-03-1.jpg') }}">
-                                        </a> </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-8">
-                                <div class="caption product-detail">
-                                    <h4 class="product-name"><a title="Casual Shirt With Ruffle Hem" href="#">Casual Shirt With Ruffle Hem</a></h4>
-                                    <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-old">$272.00</span> </p>
-                                    <div class="addto-cart"><a href="#">Add to Cart</a></div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
             <div class=" content col-sm-9">
                 <div class="category-page-wrapper">
@@ -185,58 +127,53 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6 list-grid-wrapper"> <a href="#" id="compare-total">Product Compare (0)</a>
+                    <div class="col-md-6 list-grid-wrapper"> <a href="#" id="compare-total"></a>
                         <div class="btn-group btn-list-grid">
-                            <button type="button" id="list-view" class="btn btn-default list" data-toggle="tooltip" title="List"></button>
-                            <button type="button" id="grid-view" class="btn btn-default grid" data-toggle="tooltip" title="Grid"></button>
+                            <button type="button" id="list-view" class="btn btn-default list active" data-toggle="tooltip" title="" data-original-title="List"></button>
+
                         </div>
                     </div>
                 </div>
-                <br />
+                <br>
 
-                {% for i in v %}
-                <div class="grid-list-wrapper">
+
+                {% for i in v  %}
+                    <hr align="center" width="50%" color="midnightblue" size="3">
 
                     <div class="product-layout product-list col-xs-12">
-                        <div class="product-thumb" >
-                            <div class="image product-imageblock"> <a href="#">
-                                    <img src="{{ asset('imgvehiculess/'~i.photo )}}" alt="{{ i.marque }}" title=" {{ i.marque }}" class="img-responsive">
-                                </a>
+                    <div class="product-thumb">
+                        <div class="image product-imageblock" > <a href="{{ path('vehicules_Client_location',{'matricule':i.matricule}) }}">
+                                <img src="{{asset('imgvehiculess/'~i.photo )}}" alt="{{i.marque}}" title="{{i.marque}}" class="img-responsive"width="190px" height="90px">
+                                <img src="{{asset('imgvehiculess/'~i.photo )}}" alt="{{i.marque}}" title="{{i.marque}}" class="img-responsive" width="190px" height="90px">
+                            </a>
 
-                            </div>
-                            <div class="caption product-detail">
+                        </div>
+                        <div class="caption product-detail">
+                          <h1> {{ i.marque | upper }}</h1>
+                            <i class="fa fa-car"> {{ i.type }} </i>
+                            <br/>
+                          <i class="fa fa fa-star">{{ i.puissance }}</i>   <br/>
+                            <i class="fa fa-check">  {{ i.kilometrage }} km</i> <br/>
+                            <i class="fa fa-user-plus">  {{ i.nbPlace }} Places</i> <br/>
+                            {# <i class="fa fa-dollar">  {{ i.prix }} DT</i> <br/>#}
+                            <br/>
 
-                                <div class="" >
-                                    <a href="#" class="title"  align="center"><h2>{{ i.marque }}</h2></a>
-                                </div>
-                               {{ i.puissance }}
+                            <ul class="button-group list-btn">
+                                <li>
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reserver">Reserver
+                                        <i class="fa fa-heart-o"></i></button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Plus de details">Plus de details                                        <i class="fa fa-exchange"></i></button>
+                                </li>
 
-                                {{ i.Kilometrage }}
-                                {{ i.nbPlace }}
-                                {{ i.prix }}
-                                <p></p>
-                                <ul class="button-group list-btn">
-                                    <li>
-                                        <button type="button" class="wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="compare" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare this Product"><i class="fa fa-exchange"></i></button>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="quick-view" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View"><i class="fa fa-eye"></i></button>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="addtocart-btn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart"><i class="fa fa-shopping-bag"></i></button>
-                                    </li>
-                                </ul>
-                            </div>
+                            </ul>
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
-
-
+                {% endfor %}
             </div>
+
             <div class="category-page-wrapper">
                 <div class="result-inner">Showing 1 to 8 of 10 (2 Pages)</div>
                 <div class="pagination-inner">
@@ -250,5 +187,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
