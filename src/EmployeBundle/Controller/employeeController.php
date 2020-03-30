@@ -67,6 +67,7 @@ class employeeController extends Controller
             ])
             ->add('EMAIL', TextType::class,[
                 'attr' => [
+                    'error_bubbling' => true,
                     'placeholder' => 'Entrer Votre Eamil',
 
                 ],
@@ -156,6 +157,7 @@ class employeeController extends Controller
             ->add('USERNAME', TextType::class,[
                 'attr' => [
                     'placeholder' => 'Entrer Votre Nom',
+                    'required'   => false,
 
                 ],
             ])

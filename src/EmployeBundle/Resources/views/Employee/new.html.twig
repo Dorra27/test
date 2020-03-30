@@ -1,5 +1,7 @@
 {%  extends 'backend/base.html.twig' %}
 
+
+
 {#{% block title %}#}
     {#<a href="index.html" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Liste des employés </span> </a>#}
 
@@ -15,7 +17,14 @@
             <!-- Start content -->
             <div class="content">
                 <div class="container-fluid">
-                    {{ form_start(form) }}
+
+
+
+
+
+
+                    {{ form_start(form, {'attr': {'id': 'myform'}}) }}
+                    {{ form_errors(form) }}
 
 
                     <div class="row">
@@ -33,7 +42,8 @@
                         </div>
                         <div class="form-group col col-md-6">
                             <label>Email</label>
-                            {{ form_widget(form.EMAIL, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_widget(form.EMAIL, {'attr': {'class': 'form-control' }}) }}
+
                         </div>
                         <div class="form-group col col-md-6">
                             <label>Prénom</label>
@@ -83,3 +93,28 @@
 
         </div>
     {% endblock %}
+{#{% block javascripts %}#}
+    {#<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>#}
+    {#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>#}
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>#}
+    {#<script>#}
+        {#// just for the demos, avoids form submit#}
+        {#$(document).ready(function () {#}
+
+            {#$( "#myform" ).validate({#}
+                {#rules: {#}
+                    {#"form[CIN]": {#}
+                        {#required: true,#}
+                        {#max: 8,#}
+                        {#min: 8#}
+                    {#}#}
+                {#},#}
+                {#messages: {#}
+                    {#"form[CIN]": "CIN doit etre 8 chiffres",#}
+                {#}#}
+            {#});#}
+
+        {#});#}
+
+    {#</script>#}
+{#{% endblock %}#}

@@ -1,0 +1,73 @@
+
+{%  extends 'backend/base.html.twig' %}
+
+
+{% block subtitle %}
+    <a href="index.html" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Liste des Depots </span> </a>
+
+{% endblock %}
+
+    {% block content %}
+
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box table-responsive">
+                                <button class="btn btn-info">Créér un Depot</button>
+
+                                <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Adresse</th>
+                                        <th>Etat</th>
+                                        <th>Surface</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr>
+                                        <td>Tiger Nixon</td>
+                                        <td>System Architect</td>
+                                        <td>Edinburgh</td>
+
+                                        <td>
+                                            <button class="btn btn-success">Modifier</button>
+                                            <button class="btn btn-info">Afficher</button>
+                                            <button class="btn btn-danger">Supprimer</button>
+                                        </td>
+
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+
+
+
+
+
+
+
+
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+
+            <footer class="footer text-right">
+                2016 - 2018 © Adminto. Coderthemes.com
+            </footer>
+
+        </div>
+    {% endblock %}

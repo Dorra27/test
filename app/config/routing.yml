@@ -3,8 +3,8 @@ vente:
     prefix:   /
 
 depot:
-    resource: "@DepotBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: '@DepotBundle/Controller/'
+    type: annotation
 
 employee:
     resource: '@EmployeBundle/Controller/'

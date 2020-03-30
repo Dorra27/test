@@ -3,6 +3,8 @@
 namespace EmployeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Employe
@@ -24,11 +26,13 @@ class Employe
     /**
      * @var string
      *
-     * @ORM\Column(name="USERNAME", type="string", length=180, nullable=false)
+     * @ORM\Column(name="USERNAME", type="string", length=180)
      */
     private $username;
 
     /**
+     * @Assert\NotBlank
+
      * @var string
      *
      * @ORM\Column(name="PRENOM", type="string", length=20, nullable=false)
@@ -36,13 +40,18 @@ class Employe
     private $prenom;
 
     /**
+     * @Assert\NotBlank
+     *  @Assert\Email(
+     *     message = "Email '{{ value }}' non valider.",
+     *     checkMX = true
+     * )
      * @var string
-     *
      * @ORM\Column(name="EMAIL", type="string", length=180, nullable=false)
      */
     private $email;
 
     /**
+     * @Assert\NotBlank
      * @var string
      *
      * @ORM\Column(name="ADRESSE", type="string", length=1000, nullable=false)
@@ -50,6 +59,7 @@ class Employe
     private $adresse;
 
     /**
+     * @Assert\NotBlank
      * @var \DateTime
      *
      * @ORM\Column(name="DATE_NAISSANCE", type="date", nullable=false)
@@ -57,6 +67,13 @@ class Employe
     private $dateNaissance;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=8,
+     *     max=8,
+     *     minMessage = "CIN {{ limit }} doit etre 8 chiffres",
+     *     maxMessage = "CIN {{ limit }} doit etre 8 chiffres",
+     *)
      * @var string
      *
      * @ORM\Column(name="CIN", type="string", length=8, nullable=false)
@@ -78,6 +95,14 @@ class Employe
     private $mission;
 
     /**
+     * @Assert\NotBlank
+     *  @Assert\Length(
+     *     min=8,
+     *     max=8,
+     *     minMessage = "Telephone {{ limit }} doit etre 8 chiffres",
+     *     maxMessage = "Telephone {{ limit }} doit etre 8 chiffres",
+     *
+     *     )
      * @var integer
      *
      * @ORM\Column(name="telephone", type="integer", nullable=false)
@@ -85,6 +110,7 @@ class Employe
     private $telephone;
 
     /**
+     *
      * @var string
      *
      * @ORM\Column(name="governat", type="string", length=20, nullable=true)
