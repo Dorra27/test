@@ -15,5 +15,13 @@ class DefaultController extends Controller
 
     }
 
+    public function indexAdminAction()
+    {
+        return $this->render('@ServiceApresVente/Admin/createCategorie.html.twig');
+
+
+    }
+
+
 
 }

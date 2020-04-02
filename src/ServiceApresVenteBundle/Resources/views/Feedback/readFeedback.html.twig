@@ -40,6 +40,7 @@
         padding: 0 5px;
     }
 </style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('BundleExterne/css/rating.css') }}" />
 
 
 
@@ -68,13 +69,29 @@
         </div>
     {% endfor %}
 
-    <div class="container">
+<div class="content col-sm-9"  {{ app.session.flashbag.peek('info')|length > 0 ? '' : 'mb-5' }}">
+
+{% if count | number_format ==0 %}
+{%  for message in app.flashes('info') %}
+    <div class="alert alert-info">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{% endif %}
+
+
+<div class="content-page">
+    <!-- Start content -->
+    <div class="content">
         <div class="row">
-            <div class="content col-sm-9">
+            <div class="col-xl-4">
+
+
                 {%  for feedbacks in feedbacks %}
 
-                <div class="blog1 blog">
-                    <div class="blog-image"> <a href="#" class="blog-imagelink">
+                    <div class="text-center card-box">
+                        <a href="#" class="blog-imagelink">
                             <img src="{{ asset('uploads/feedback_image/' ~ feedbacks.image) }}" alt="">
 
 
@@ -241,6 +258,7 @@
 
 
 
+</div>
 
 
 

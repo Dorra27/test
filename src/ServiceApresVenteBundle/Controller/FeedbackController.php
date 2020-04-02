@@ -2,11 +2,20 @@
 
 namespace ServiceApresVenteBundle\Controller;
 
+use blackknight467\StarRatingBundle\Form\RatingType;
+use blackknight467\StarRatingBundle\StarRatingBundle;
 use ServiceApresVenteBundle\Entity\Feedback;
+use ServiceApresVenteBundle\Entity\RecFeedCat;
 use ServiceApresVenteBundle\Form\FeedbackType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use TresorerieBundle\Entity\FactureAchat;
+use TresorerieBundle\Form\RecouvrementClientChequeType;
+use VenteBundle\Entity\Categorie;
 
 class FeedbackController extends Controller
 {
@@ -18,15 +27,23 @@ class FeedbackController extends Controller
 
     public function readFeedbackAction() {
         $feedbacks=$this->getDoctrine()->getManager()->getRepository(Feedback::class)->findAll();
-        return $this->render('@ServiceApresVente/Feedback/readFeedback.html.twig',array("feedbacks"=>$feedbacks));
+        $count = $this->getDoctrine()->getRepository(Feedback::class)->calculerTotalFeedback();
+        if($count==0)
+            $this->addFlash('info', 'Vous n"avez aucun Feedbacks envoyée :) !');
+
+        return $this->render('@ServiceApresVente/Feedback/readFeedback.html.twig',array("feedbacks"=>$feedbacks,"count"=>$count));
     }
 
+
     //--------------------------------------------------------
-    public function createFeedbackAction(Request $request)
+    public function createFeedbackAction(Request $request,RecFeedCat $id)
     {
+        $cat =$this->getDoctrine()->getManager()->getRepository(RecFeedCat::class)->find($id);
+
         $feedback = new Feedback();
         $form = $this->createForm(FeedbackType::class, $feedback);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
@@ -34,10 +51,14 @@ class FeedbackController extends Controller
             $uploadedFile = $form['image']->getData();
             $filename = md5(uniqid()) . '.' . $uploadedFile->guessExtension();
             $uploadedFile->move($this->getParameter('kernel.project_dir').'/web/uploads/feedback_image',$filename);
+            $feedback->setIdc($cat);
+
 
 
             $feedback->setImage($filename);
             $feedback->setDatefeedback(new \DateTime('now'));
+
+
 
 
             $em->persist($feedback);
@@ -53,11 +74,13 @@ class FeedbackController extends Controller
     //--------------------------------------------------------
     public function updateFeedbackAction(Request $request ,$id)
     {
+
         $feedback = $this->getDoctrine()->getManager()->getRepository(Feedback::class)->find($id);
         $form = $this->createForm(FeedbackType::class, $feedback);
 
         $form->handleRequest($request);
         if ($form->isValid()) {
+
             $file = $feedback->getImage();
             $filename = md5(uniqid()) . '.' . $file->guessExtension();
             $file->move($this->getParameter('kernel.project_dir').'/web/uploads/feedback_image',$filename);
@@ -72,14 +95,17 @@ class FeedbackController extends Controller
         }
         return $this->render("@ServiceApresVente/Feedback/updateFeedback.html.twig", array("form" => $form->createView()));
     }
-    public function deleteFeedbackAction($id) {
-        $el=$this->getDoctrine()->getManager();
-        $em=$el->getRepository(Feedback::class)->find($id);
-        $el->remove($em);
-        $el->flush();
 
-        return $this->redirectToRoute('read_feedback');
-    }
+
+
+//    public function deleteFeedbackAction($id) {
+//        $el=$this->getDoctrine()->getManager();
+//        $em=$el->getRepository(Feedback::class)->find($id);
+//        $el->remove($em);
+//        $el->flush();
+//
+//        return $this->redirectToRoute('read_feedback');
+//    }
 
 //
 //
@@ -104,18 +130,30 @@ class FeedbackController extends Controller
     public function ShowdetailedanAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $an = $em->getRepository(Feedback::class)->find($id);
+        $entity = $em->getRepository(Feedback::class)->find($id);
 
 
-        return $this->render('@Annonce/Default/showDetaillOne.html.twig', array(
-            'description' => $an->getDescription(),
-            'note' => $an->getNote(),
-            'id', $an->getId(),
-            'idCommande' => $an,
-
-            'image' => $an->getImage(), 'id_feed' => $id
+             return $this->render('ServiceAprésVenteBundle/Admin/readFeedback.html.twig', array(
+                 'entity'      => $entity,
         ));
     }
+
+    public function listFeedbackAction() {
+        $feedbacks=$this->getDoctrine()->getManager()->getRepository(Feedback::class)->findAll();
+        $count = $this->getDoctrine()->getRepository(Feedback::class)->calculerTotalFeedback();
+        if($count==0)
+            $this->addFlash('info', 'Vous n"avez aucun Feedbacks recu :) !');
+
+
+
+
+        return $this->render('@ServiceApresVente/Admin/readFeedback.html.twig',array("feedbacks"=>$feedbacks,"count"=>$count));
+    }
+
+
+
+
+
 
 
 

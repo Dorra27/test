@@ -3,6 +3,7 @@
 namespace ServiceApresVenteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * RecFeedCat
@@ -20,6 +21,25 @@ class RecFeedCat
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id_cat;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     */
+    private $nom;
+
+
+
+    /**
+     * @var string
+     * @Assert\File(maxSize="500k", mimeTypes={"image/jpeg", "image/jpg", "image/png", "image/GIF"})
+
+     * @ORM\Column(name="image", type="string", length=100, nullable=false)
+     */
+    private $image;
+
+
 
     /**
      * @return int
@@ -44,13 +64,6 @@ class RecFeedCat
     }
 
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
-     */
-    private $nom;
-
 
 
     /**
@@ -67,6 +80,22 @@ class RecFeedCat
     public function setNom($nom)
     {
         $this->nom = $nom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
 

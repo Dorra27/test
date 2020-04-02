@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Reclamation
  *
  * @ORM\Table(name="reclamation")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ServiceApresVenteBundle\Repository\ReclamationRepository")
  */
 class Reclamation
 {
@@ -20,6 +20,17 @@ class Reclamation
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idRec;
+
+
+
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="iduser", referencedColumnName="id")
+     */
+
+    private $user;
 
     /**
      * @var string
@@ -49,12 +60,7 @@ class Reclamation
      */
     private $date;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     */
-    private $id;
+
 
     /**
      * @var string
@@ -64,11 +70,49 @@ class Reclamation
     private $image;
 
     /**
-     * @var integer
      *
-     * @ORM\Column(name="id_cat", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="RecFeedCat")
+     * @ORM\JoinColumn(name="cat",referencedColumnName="id_cat")
      */
-    private $idCat;
+    private $idc;
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdc()
+    {
+        return $this->idc;
+    }
+
+    /**
+     * @param mixed $idc
+     */
+    public function setIdc($idc)
+    {
+        $this->idc = $idc;
+    }
+
+
+    public function __toString()
+    {
+        return $this->idc;
+    }
 
     /**
      * @return int
@@ -180,22 +224,6 @@ class Reclamation
     public function setImage($image)
     {
         $this->image = $image;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdCat()
-    {
-        return $this->idCat;
-    }
-
-    /**
-     * @param int $idCat
-     */
-    public function setIdCat($idCat)
-    {
-        $this->idCat = $idCat;
     }
 
 

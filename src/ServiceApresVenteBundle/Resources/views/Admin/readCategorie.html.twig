@@ -1,0 +1,269 @@
+
+
+{%  extends 'backend/base.html.twig' %}
+
+
+{% block content %}
+
+
+
+
+    <div class="content-page">
+
+        <!-- Start content -->
+        <div class="content">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="card-box table-responsive">
+
+                            <h4 class="m-t-0 header-title">Liste des catégories</h4>
+
+                            <p class="text-muted font-14 m-b-30">
+
+                            </p><div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="datatable_length">
+{#                                            <label>Voir <select name="datatable_length" aria-controls="datatable" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6">#}
+{#                                        <div id="datatable_filter" class="dataTables_filter"><label>:#}
+                                        <ul class="list-unstyled topbar-right-menu float-right mb-0">
+
+
+                                            <li class="hide-phone">
+                                                <form class="app-search">
+                                                    <input type="text" placeholder="Recherche Catégorie..." class="form-control" style="width: 400%;">
+                                                    <br>
+                                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                                </form>
+                                            </li>
+
+                                        </ul>
+{#                                                <input type="search" class="form-control " placeholder="" aria-controls="datatable" style="width: 500px"></label>#}
+                                        </div></div></div><div class="row"><div class="col-sm-12">
+
+
+
+{#                                    <div id="test_container">#}
+
+                                        <table id="datatable" class="table table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
+
+
+
+                                            <thead>
+
+                                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 147px;">Id</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 241px;">Nom</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 241px;">Image</th>
+
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 108px;">
+                                                    Modifier</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 99px;">
+                                                    Supprimer</th>
+                                            </thead>
+
+
+                                            <tbody>
+                                            {{ render(controller('ServiceApresVenteBundle:RecFeedCat:createCategorie')) }}
+                                            <br>
+
+                                            {% for entity in categories %}
+
+
+                                            </tr><tr role="row" class="even">
+                                                                <td class="sorting_1">{{ entity.idCat }}</td>
+
+                                                                <td class="sorting_2">{{ entity.nom }}</td>
+                                                                <td class="sorting_3">
+                                                                    <img class="card-img-top img-fluid"
+                                                                                            src="{{ asset('uploads/catRecFeed_image/' ~ entity.image) }}" alt="Card image cap">
+                                                                </td>
+                                                                <td>
+
+                                                                    {{ render(controller('ServiceApresVenteBundle:RecFeedCat:updateCategorie',{'id':entity.idCat})) }}
+
+
+                                                                </td>
+                                                                <td>
+
+                                                                    <button class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" data-toggle="modal" data-target="#deleteModal{{entity.idCat }}">
+                                                                        Supprimer</button>
+
+                                                                    <div id="deleteModal{{entity.idCat }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h4 class="modal-title" id="myModalLabel">Bienvenue</h4>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                                </div>
+
+                                                                                <div class="modal-body">
+                                                                                    <h4>Suppression Catégorie</h4>
+                                                                                    <hr>
+                                                                                    <p>Voullez vous supprrimer??</p>
+
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Annuler</button>
+                                                                                        <a href="{{ path ('admin_categorie_delete',{'id': entity.idCat}) }}" data-toggle="myModal" class="btn btn-danger waves-effect waves-light"  id="lien" >Supprimer</a>
+
+                                                                                    </div>
+                                                                                </div><!-- /.modal-content -->
+                                                                            </div><!-- /.modal-dialog -->
+                                                                        </div><!-- /.modal -->
+                                                                </td>
+
+
+
+
+
+
+
+
+
+                                            </tr>
+                                            {% endfor %}</tbody>
+
+
+                                        </table>
+                                            <div/>
+
+                                        </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatable_previous"><a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="datatable_next"><a href="#" aria-controls="datatable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+                        </div>
+                    </div>
+                </div> <!-- end row -->
+
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+
+    </div>
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <!-- Custom Modals -->
+
+
+
+
+
+
+            </div>
+        </div><!-- end col -->
+    </div>
+    <!-- Modal -->
+    <div id="custom-modal" class="modal-demo">
+        <button type="button" class="close" onclick="Custombox.close();">
+            <span>&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h4 class="custom-modal-title">Modal title</h4>
+        <div class="custom-modal-text">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+    </div>
+
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+
+
+    //
+
+
+
+    function autoReload() {
+
+
+        setTimeout(function() {
+
+
+            $.ajax({
+
+
+                url: 'http://localhost/ProjetWebSymfony/test/web/app_dev.php/serviceApresVentes/admin/readCategorie',
+
+
+                success: function(data) {
+
+
+                    $("#test_container").load(" #test_container");
+
+
+                }
+
+
+            });
+
+
+
+
+            autoReload();  // refresh the page every 5 seconds
+
+
+        }, 15000);
+
+
+    }
+
+
+
+
+    autoReload();
+
+
+
+</script>
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

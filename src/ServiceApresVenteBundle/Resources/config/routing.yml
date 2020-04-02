@@ -26,8 +26,61 @@ add_reclamation:
     path:    /createReclamation/{id_cat}
     defaults: {_controller: ServiceApresVenteBundle:Reclamation:createReclamation}
 
+update_reclamation:
+    path:    /updateReclamation/{id}
+    defaults: {_controller: ServiceApresVenteBundle:Reclamation:updateReclamation}
+
 display_categorie:
     path:   /showCategorie/{nom}
     defaults: {_controller:ServiceApresVenteBundle:RecFeedCat:name}
+
+
+categorie_show:
+        path:     /{id}/show
+        defaults: { _controller: "ServiceApresVenteBundle:RecFeedCat:show" }
+
+categorie_new:
+        path:     /new
+        defaults: { _controller: "ServiceApresVenteBundle:RecFeedCat:new" }
+
+admin_add_categorie:
+    path:    /admin/createCategorie
+    defaults: {_controller: "ServiceApresVenteBundle:RecFeedCat:createCategorie"}
+    requirements: { _method: post }
+
+
+admin_read_categorie:
+    path:    /admin/readCategorie
+    defaults: {_controller: ServiceApresVenteBundle:RecFeedCat:readCategorie}
+
+admin_update_categorie:
+    path:    /admin/{id}/updateCategorie
+    defaults: {_controller: "ServiceApresVenteBundle:RecFeedCat:updateCategorie"}
+
+admin_categorie_delete:
+    path:    /admin/deleteCategorie/{id}
+    defaults: {_controller: ServiceApresVenteBundle:RecFeedCat:deleteCategorie}
+
+admin_read_feedback:
+    path:    /admin/readFeedback
+    defaults: {_controller: ServiceApresVenteBundle:Feedback:listFeedback}
+
+admin_read_reclamation:
+    path:    /admin/readReclamation
+    defaults: {_controller: ServiceApresVenteBundle:Reclamation:listReclamation}
+
+
+
+admin_dashboard:
+    path:     /back
+    defaults: { _controller: ServiceApresVenteBundle:Default:indexAdmin }
+
+
+#admin:
+#    path:     /
+#    defaults: { _controller: ServiceApresVenteBundle:Default:user }
+
+
+
 
 

@@ -29,9 +29,9 @@ class FeedbackType extends AbstractType
 //            ->add('idCommande')
 //            ->add('datefeedback', DateType::class,array('data_class' => null,'required' => false))
 
-            //            ->add('idc',
+//                        ->add('idc',
 //                EntityType::class,array('class'=>'ServiceApresVenteBundle:Feedback',
-//                'choice_label'=>'idc','multiple'=>true))
+//                'choice_label'=>'idc.nom','multiple'=>true))
 
         ->add('Ajouter',SubmitType::class);
     }/**

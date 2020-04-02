@@ -10,17 +10,40 @@ namespace ServiceApresVenteBundle\Repository;
  */
 class FeedbackRepository extends \Doctrine\ORM\EntityRepository
 {
+    public  function calculerTotalFeedback(){
 
-    public function getCategorie($annonce_id){
-        return $this->getEntityManager()
-            ->createQuery(
-                "SELECT c, u.username
-       FROM AppBundle:Commentaireannonce c
-       JOIN c.user u
-       WHERE c.annonce = :id"
-            )
-            ->setParameter('id', $annonce_id)
-            ->getArrayResult();
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('count(f.description)');
+        $qb->from('ServiceApresVenteBundle:Feedback','f');
+
+        $count = $qb->getQuery()->getSingleScalarResult();
+        return $count;
+
+
     }
+
+//    public function getFeedbackByUser($id_feedback){
+//        return $this->getEntityManager()
+//            ->createQuery(
+//                "SELECT f, u.username
+//       FROM ServicesApresVenteBundle:Feedback
+//       JOIN c.user u
+//       WHERE c.feedback = :id"
+//            )
+//            ->setParameter('id', $id_feedback)
+//            ->getArrayResult();
+//    }
+
+//    public function getFeedbackById() {
+//        $query = $this->getEntityManager()
+//            ->createQuery(
+//            'SELECT p
+//       FROM ServicesApresVenteBundle:Feedback  f'
+//
+//        );
+//
+//        $products = $query->getResult();
+//        return $query;
+//    }
 
 }
