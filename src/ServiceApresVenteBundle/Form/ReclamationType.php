@@ -36,6 +36,7 @@ class ReclamationType extends AbstractType
         ));
     }
 
+
     /**
      * {@inheritdoc}
      */

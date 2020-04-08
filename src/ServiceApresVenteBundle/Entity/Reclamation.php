@@ -3,6 +3,8 @@
 namespace ServiceApresVenteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Reclamation
@@ -36,13 +38,32 @@ class Reclamation
      * @var string
      *
      * @ORM\Column(name="objet", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(message="S'il vous plait inserer objet")
+     *  * @Assert\Length(
+     *     min=5,
+     *     max=12,
+     *     minMessage="l'objet doit etre au minimum  5 caractere",
+     *     maxMessage="l'objet doit etre au minimum  12 caractere"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[A-Za-z]+$/",
+     *     message="que des lettres accepter"
+     * )
+
      */
     private $objet;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=100, nullable=false)
+     * @ORM\Column(name="description", type="string", length=1000, nullable=false)
+     *  * @Assert\NotBlank(message="S'il vous plait inserer description")
+     *  * @Assert\Length(
+     *     min=10,
+     *     max=500,
+     *     minMessage="la description doit etre au minimum  10 caractere",
+     *     maxMessage="la description doit etre au minimum  500 caractere"
+     * )
      */
     private $description;
 
@@ -71,8 +92,8 @@ class Reclamation
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="RecFeedCat")
-     * @ORM\JoinColumn(name="cat",referencedColumnName="id_cat")
+     * @ORM\ManyToOne(targetEntity="RecFeedCat", cascade={"persist"})
+     * @ORM\JoinColumn(name="cat",referencedColumnName="id_cat",nullable=false,onDelete="CASCADE")
      */
     private $idc;
 

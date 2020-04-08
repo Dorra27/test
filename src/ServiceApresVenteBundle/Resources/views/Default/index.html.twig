@@ -9,6 +9,37 @@
      {#css style for just cards #}
 
      <style>
+
+         .clearfix:after {
+             content:"\0020";
+             display:block;
+             height:0;
+             clear:both;
+             visibility:hidden;
+             overflow:hidden;
+         }
+
+         .clearfix {
+             display:block;
+         }
+
+         .iconbb {
+             float: left;
+             margin-left: 2px;
+             margin-right: 2px;
+             margin-top: 10px;
+             margin-bottom: 20px;
+             padding-left: 3%;
+             width: 30%;
+         }
+
+
+         .textbb {
+             margin: 5px;
+             padding-left: 34%;
+             width: auto;
+         }
+
          .snip1519 {
              font-family: 'Roboto', Arial, sans-serif;
              position: relative;
@@ -124,7 +155,8 @@
          <div class="mainbanner">
              <div id="main-banner" class="owl-carousel home-slider">
                  <div class="item"> <a href="#"><img src="{{ asset('assets/images/feedbacks/slide1.jpg') }}" alt="main-banner1" class="img-responsive" /></a> </div>
-                 <div class="item"> <a href="#"><img src="{{ asset('assets/images/feedbacks/slide2.jpg') }}" alt="main-banner1" class="img-responsive" /></a> </div>
+                 <div class="item"> <a href="#"><img src="{{ asset('assets/images/feedbacks/slide3.jpg') }}" alt="main-banner1" class="img-responsive" /></a> </div>
+                 <div class="item"> <a href="#"><img src="{{ asset('assets/images/feedbacks/slide4.jpg') }}" alt="main-banner1" class="img-responsive" /></a> </div>
              </div>
          </div>
 
@@ -166,7 +198,37 @@
              </div>
          </div>
      </div>
+     <hr>
+     <br><br>
 
+    <section style="background-color: #fff;">
+    <div class="body_wrapper" style="padding: 50px;">
+
+    <section class="breadcrumb_area">
+
+
+        <div class="clearfix">
+            <div class="iconbb">
+                <img class="breadcrumb_shap" src="{{ asset('assets/images/feedbacks/service_details.png') }}" alt="">
+            </div>
+
+            <div class="textbb">
+                <h2>ServiceApresVentes :</h2>
+                <p style="text-align: left; font-size: 13px; padding-right: 35px;">
+                    Le service après-vente est un argument commercial pour les ventes de matériels et un levier incontournable de satisfaction et de fidélisation des clients . Pourtant, une grande majorité des PME sous-estiment ce levier de croissance et de rentabilité !
+
+                    Dépendant de la qualité des produits vendus, il n'en demeure pas moins que le SAV est le plus souvent un centre de coûts . On peut certes facturer quelques interventions, faire payer des extensions de garantie, mais ce chiffre d'affaires pèse souvent peu comparé aux dépenses engagées. L'organisation et une gestion rigoureuse sont donc de mise. Les enjeux : rendre les clients satisfaits au meilleur coût.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+</div>
+    </section>
      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
      <script>

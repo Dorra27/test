@@ -59,5 +59,8 @@
     <orderEntry type="library" name="buttons.print" level="application" />
     <orderEntry type="library" name="dataTables.select" level="application" />
     <orderEntry type="library" name="buttons.dataTables" level="application" />
+    <orderEntry type="library" name="jquery-1.11.1" level="application" />
+    <orderEntry type="library" name="material.blue-orange" level="application" />
+    <orderEntry type="library" name="material" level="application" />
   </component>
 </module>

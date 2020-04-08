@@ -8,6 +8,7 @@ use ServiceApresVenteBundle\Entity\Reclamation;
 use ServiceApresVenteBundle\Form\FeedbackType;
 use ServiceApresVenteBundle\Form\ReclamationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -19,14 +20,35 @@ class ReclamationController extends Controller
     }
 
 
+    //----------------------Traiter Etat---------------------------------------
+
+    public function traiterEtatAction(Request $request) {
+        $id = $request->get('idRec');
+
+        $em = $this->getDoctrine()->getManager();
+        $etat = $em
+            ->getRepository(Reclamation::class)
+            ->confirmer($id);
+        $em->flush();
+        return $this->redirectToRoute('admin_read_reclamation');
+    }
+
+
+
     //-----------------------Read Reclamations---------------------------------
     public function readReclamationAction() {
         $reclamations=$this->getDoctrine()->getManager()->getRepository(Reclamation::class)->findAll();
         $count = $this->getDoctrine()->getRepository(Reclamation::class)->calculerTotalReclamation();
+
         if($count==0)
             $this->addFlash('info', 'Vous n"avez aucun Réclamation envoyée :) !');
 
-        return $this->render('@ServiceApresVente/Reclamation/readReclamation.html.twig',array("reclamations"=>$reclamations,"count"=>$count));
+
+
+
+        return $this->render('@ServiceApresVente/Reclamation/readReclamation.html.twig',
+            array("reclamations"=>$reclamations,
+                "count"=>$count));
     }
 
     //-----------------------Create Reclamations---------------------------------
@@ -68,8 +90,14 @@ class ReclamationController extends Controller
         $reclamation = $this->getDoctrine()->getManager()->getRepository(Reclamation::class)->find($id);
         $form = $this->createForm(ReclamationType::class, $reclamation);
 
+//        if($reclamation->getEtat()==1) {
+//            $this->addFlash('info', 'Réclamation etait traiter par admin vous n"avez pas le droit de le modifier :) !');
+//
+//        }
+
         $form->handleRequest($request);
         if ($form->isValid()) {
+
             $file = $reclamation->getImage();
             $filename = md5(uniqid()) . '.' . $file->guessExtension();
             $file->move($this->getParameter('kernel.project_dir').'/web/uploads/reclamation_image',$filename);
@@ -94,10 +122,23 @@ class ReclamationController extends Controller
 
 
 
-        return $this->render('@ServiceApresVente/Admin/readReclamation.html.twig',array("reclamation"=>$reclamations,"count"=>$count));
+        return $this->render('@ServiceApresVente/Admin/readReclamation.html.twig',array("reclamations"=>$reclamations,"count"=>$count));
     }
 
 
+    public function showdetailedAction($id)
+    {
+        $em= $this->getDoctrine()->getManager();
+        $f=$em->getRepository(Reclamation::class)->find($id);
+        return $this->render('@ServiceApresVente/Reclamation/showDetaillOne.html.twig', array(
+            'date'=>$f->getDate(),
+            'image'=>$f->getImage(),
+            'objet'=>$f->getObjet(),
+            'descripion'=>$f->getDescription(),
+            'categorie'=>$f->getIdc(),
+            'id'=>$f->getIdRec()
+        ));
+    }
 
 
 }

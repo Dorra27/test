@@ -10,6 +10,24 @@ namespace ServiceApresVenteBundle\Repository;
  */
 class ReclamationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findallReclamationydate(\DateTime $now){
+
+            $now = new \DateTime();
+
+            $from = new \DateTime($now->format('Y-m-d') . ' 00:00:00');
+            $to = new \DateTime($now->format('Y-m-d').'23.59.59');
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb
+            ->select('e.date')
+            ->from('ServiceApresVenteBundle:Reclamation','e')
+            ->where('e.date BETWEEN :from AND :to')
+            ->setParameter('from',$from)
+            ->setParameter('to',$to);
+
+        $result = $qb->getQuery()->getResult();
+        return $result;
+    }
     public  function calculerTotalReclamation(){
 
         $qb = $this->getEntityManager()->createQueryBuilder();
@@ -18,9 +36,27 @@ class ReclamationRepository extends \Doctrine\ORM\EntityRepository
 
         $count = $qb->getQuery()->getSingleScalarResult();
         return $count;
-
-
     }
+
+    /***
+    */
+public function confirmer()
+{
+
+
+    $qb = $this->_em->createQueryBuilder();
+    $q = $qb->update('ServiceApresVenteBundle:Reclamation', 'r')
+        //update DemandeSponsoring p set p.etat=1 where p.id=$id
+        //
+        ->set('r.etat', '?1')
+        ->setParameter(1, "1")
+        ->getQuery();
+    return $q->getResult();
+    }
+
+
+
+
 
 //    public function getFeedbackByUser($id_feedback){
 //        return $this->getEntityManager()

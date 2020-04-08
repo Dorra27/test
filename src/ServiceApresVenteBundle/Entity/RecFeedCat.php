@@ -16,7 +16,7 @@ class RecFeedCat
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_cat", type="integer")
+     * @ORM\Column(name="id_cat", type="integer",nullable=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */

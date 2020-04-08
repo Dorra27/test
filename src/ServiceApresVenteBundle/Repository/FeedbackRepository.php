@@ -22,6 +22,20 @@ class FeedbackRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+    public function findEntitiesByString($str){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT a
+                FROM ServiceApresVenteBundle:Feedback f
+                WHERE f.datefeedback LIKE :str'
+            )
+            ->setParameter('str', '%'.$str.'%')
+            ->getResult();
+    }
+
+
+
+
 //    public function getFeedbackByUser($id_feedback){
 //        return $this->getEntityManager()
 //            ->createQuery(

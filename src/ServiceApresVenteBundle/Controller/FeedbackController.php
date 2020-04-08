@@ -13,9 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use TresorerieBundle\Entity\FactureAchat;
-use TresorerieBundle\Form\RecouvrementClientChequeType;
-use VenteBundle\Entity\Categorie;
+
 
 class FeedbackController extends Controller
 {
@@ -127,16 +125,7 @@ class FeedbackController extends Controller
 //    }
 
 
-    public function ShowdetailedanAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository(Feedback::class)->find($id);
 
-
-             return $this->render('ServiceAprésVenteBundle/Admin/readFeedback.html.twig', array(
-                 'entity'      => $entity,
-        ));
-    }
 
     public function listFeedbackAction() {
         $feedbacks=$this->getDoctrine()->getManager()->getRepository(Feedback::class)->findAll();
@@ -152,7 +141,38 @@ class FeedbackController extends Controller
 
 
 
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        $feedbacks =  $em->getRepository(Feedback::class)->findEntitiesByString($requestString);
+        if(!$feedbacks) {
+            $result['$feedbacks']['error'] = "Feedback non trouvé :( ";
+        } else {
+            $result['$feedbacks'] = $this->getRealEntities($feedbacks);
+        }
+        return new Response(json_encode($result));
+    }
+    public function getRealEntities($feedbacks){
+        foreach ($feedbacks as $feedbacks){
+            $realEntities[$feedbacks->getIdFeed()] = [$feedbacks->getImage(),$feedbacks->getDateFeedback()];
 
+        }
+        return $realEntities;
+    }
+
+    public function showdetailedAction($id)
+    {
+        $em= $this->getDoctrine()->getManager();
+        $f=$em->getRepository(Feedback::class)->find($id);
+        return $this->render('@ServiceApresVente/Feedback/showDetaillOne.html.twig', array(
+            'date'=>$f->getDateFeedback(),
+            'image'=>$f->getImage(),
+            'descripion'=>$f->getDescription(),
+            'categorie'=>$f->getIdc(),
+            'id'=>$f->getIdFeed()
+        ));
+    }
 
 
 

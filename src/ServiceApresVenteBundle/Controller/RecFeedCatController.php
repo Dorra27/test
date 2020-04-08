@@ -143,7 +143,7 @@ class RecFeedCatController extends Controller
         $entity = $em->getRepository(RecFeedCat::class)->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find produit entity.');
+            throw $this->createNotFoundException('Unable to find category entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);

@@ -69,11 +69,26 @@ admin_read_reclamation:
     path:    /admin/readReclamation
     defaults: {_controller: ServiceApresVenteBundle:Reclamation:listReclamation}
 
+admin_traiter_reclamation:
+    path:    /admin/traiterReclamation/{id}
+    defaults: {_controller: ServiceApresVenteBundle:Reclamation:traiterEtat}
 
+
+ajax_search:
+    path:    /search
+    defaults: {_controller: ServiceApresVenteBundle:Reclamation:listReclamation}
+
+detailed_feed:
+    path:     /detail/{id}
+    defaults: { _controller: ServiceApresVenteBundle:Feedback:showdetailed }
+
+detailed_rec:
+    path:     /detailReclamation/{id}
+    defaults: { _controller: ServiceApresVenteBundle:Reclamation:showdetailed }
 
 admin_dashboard:
     path:     /back
-    defaults: { _controller: ServiceApresVenteBundle:Default:indexAdmin }
+    defaults: { _controller: ServiceApresVenteBundle:Default:getNbrReclamationFeedback }
 
 
 #admin:

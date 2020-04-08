@@ -432,9 +432,11 @@
 
         <center>
             <div class="zero-clipboard">
-                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
                 <h1 style="
                color:#000">Envoyer Votre Réclamation</h1>
+
                 <div class="form-group" style="width: 670px;">
                     {{ form_widget(form.objet,{'attr':{'type':'text','class':' input','name':'objet',
                     }})}}
@@ -446,6 +448,7 @@
 
                     {{ form_widget(form.description,{'attr':{'type':'textarea','class':' input','name':'description',
                     }})}}
+                    {{ form_errors(form) }}
 
                     <span class="highlight"></span>
                     <span class="bar"></span>
@@ -465,6 +468,7 @@
             </div>
 
         </center>
+
 
         {{ form_end(form) }}
     </div>

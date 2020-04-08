@@ -4,6 +4,7 @@
 {% block content %}
 
 <style>
+
     .button {
         text-decoration: none;
         color: #777;
@@ -39,6 +40,27 @@
         background-color: #f4f4f4;
         padding: 0 5px;
     }
+
+    .demo-card-square.mdl-card {
+        width: 320px;
+        height: 320px;
+        float: left;
+        margin: 1rem;
+        position: relative;
+    }
+
+
+
+    .demo-card-square > .mdl-card__title {
+        color: #fff;
+        background: #03a9f4;
+    }
+
+    .demo-card-square > .mdl-card__accent {
+        background: #ff9800;
+    }
+
+
 </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('BundleExterne/css/rating.css') }}" />
 
@@ -46,79 +68,245 @@
 
 
 
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.blue-orange.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
 
 
 
 
-    <div class="breadcrumb parallax" style=" background: linear-gradient(35deg, #1EAE98, #D8B5FF);">
-        <h1 style="color: #0b0b0b;
-        text-align:center;font-family:'Baskerville Old Face';font-weight:900;font-size:4em;color:#fff;text-shadow:0em 0.05em 0 rgba(0,0,0,0.25)}
-" class="control-label" >Listes des Feedbacks
+        <div class="breadcrumb parallax" style=" background: linear-gradient(35deg, #1EAE98, #D8B5FF);">
+            <h1 style="color: #0b0b0b;
+            text-align:center;font-family:'Baskerville Old Face';font-weight:900;font-size:4em;color:#fff;text-shadow:0em 0.05em 0 rgba(0,0,0,0.25)}
+    " class="control-label" >Listes des Feedbacks
 
-        </h1>
-        <ul>
-            {#            <li><a href="index.html">Home</a></li>#}
-            {#            <li><a href="contact.html">Contact Us</a></li>#}
-        </ul>
-    </div>
+            </h1>
+            <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+        {%  for message in app.flashes('info') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    <div class="content col-sm-9"  {{ app.session.flashbag.peek('info')|length > 0 ? '' : 'mb-5' }}">
+
+    {% if count | number_format ==0 %}
     {%  for message in app.flashes('info') %}
-        <div class="alert alert-success">
+        <div class="alert alert-info">
             {{ message }}
         </div>
     {% endfor %}
 
-<div class="content col-sm-9"  {{ app.session.flashbag.peek('info')|length > 0 ? '' : 'mb-5' }}">
-
-{% if count | number_format ==0 %}
-{%  for message in app.flashes('info') %}
-    <div class="alert alert-info">
-        {{ message }}
-    </div>
-{% endfor %}
-
-{% endif %}
+    {% endif %}
 
 
-<div class="content-page">
-    <!-- Start content -->
-    <div class="content">
-        <div class="row">
-            <div class="col-xl-4">
 
 
-                {%  for feedbacks in feedbacks %}
+<div class="album py-5 bg-light">
+    <div class="container">
 
-                    <div class="text-center card-box">
-                        <a href="#" class="blog-imagelink">
-                            <img src="{{ asset('uploads/feedback_image/' ~ feedbacks.image) }}" alt="">
+        <h2>Rechercher Feedback !!</h2>
 
+        <div class="sidebar-search">
 
-                           {{ feedbacks.datefeedback |date  }} <i class="fa fa-share-square-o"></i></a>
+            <div class="input-group custom-search-form">
 
-
-                        </a> <span class="blog-hover"></span> </div>
-                    <div class="blog-content"> <span class="blog-date"></span>
-                        <h2>Sujet de feedback concernat: {{ feedbacks.idc }}</h2>
-                        <h2 class="blog-name"><a href="single-blog.html">{{ feedbacks.description }}</a> </h2>
-{#                            <span class="blog-author">utilisateur numero <a href="#">{{ feedbacks.id}}</a> </span> <span class="blog-comment">3 comments</span>#}
-                        <a href="{{ path('update_feedback', {'id':feedbacks.idFeed}) }}" class="button">
-
-
-                            Modifier
-                        </a>
-
-
-                    </div>
-                    <div class="blog-desc">.</div>
-
-
-                </div>
-            {% endfor %}
-
+                <input type="text" id="search" class="form-control" placeholder="Search here">
             </div>
-            <!-- end blog-home -->
+            <!-- /input-group -->
+        </div>
+        <ul class="nav" id="side-menu">
+            <li>
+                <a href="#"> Entities<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level" id="entitiesNav">
+                </ul>
+            </li>
+        </ul><br><br><br><br>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $("#search").keyup(function() {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNav").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('ajax_search') }}",
+                        data: {
+                            'q' : value
+                        },
+                        dataType: "text",
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value===$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key === 'posts') {
+                                            if (id !== 'error') {
+                                                console.log(value[1]);
+                                                entitySelector.append('<li><b>'+value[1]+'</b><a href="/showDetaillOne/'+id+'">'+'<img src="/uploads/feedback_image/'+value[0]+'" style="width: 50px; height: 50px"/>'+'</a></li>');
+                                            } else {
+                                                entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+
+    {%  for feedbacks in feedbacks %}
+
+
+                            <div class="mdl-card mdl-shadow--4dp demo-card-square">
+
+                                <div class="mdl-card__title mdl-card--expand">
+
+                                    <a href="{{ path('detailed_feed',{'id': feedbacks.idFeed    }) }}">  <img src="{{ asset('uploads/feedback_image/' ~ feedbacks.image) }}" alt="" style="
+                                         width: 100%;
+                                         height: 20vh;
+                                         object-fit: cover;
+                                         ">
+                                    <h2 class="mdl-card__title-text">Card 1</h2>
+                                </div>
+
+                                <div  class="mdl-card__supporting-text">
+                                    <h4><a href="{{ path('detailed_feed',{'id': feedbacks.idFeed}) }}">{{ feedbacks.description }}</a></h4>
+
+                                </div>
+                                <div class="mdl-card__actions mdl-card--border">
+                                    <a href="{{ path('update_feedback', {'id':feedbacks.idFeed}) }}" class="button">
+                                        Modifier</a>
+
+                                        <p>Sujet de feedback concernat: {{ feedbacks.idc }}</p>
+
+                                    <p>   {{ feedbacks.datefeedback |date  }} <i class="fa fa-share-square-o"></i></a>
+                                    </p>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+                {% endfor %}
+
+
+</div>
+
+
+    <script>
+        $(document).ready(function(){
+
+            $(".btn1").click(function(){
+                $("h1").slideUp();
+            });
+
+            $(".btn2").click(function(){
+                $("h1").slideDown();
+            });
+
+            $(".btn3").click(function(){
+                $("h1").slideToggle();
+            });
+
+        });
+    </script>
+
+    <!-- Square card -->
+
+
+{#    <div class="breadcrumb parallax" style=" background: linear-gradient(35deg, #1EAE98, #D8B5FF);">#}
+{#        <h1 style="color: #0b0b0b;#}
+{#        text-align:center;font-family:'Baskerville Old Face';font-weight:900;font-size:4em;color:#fff;text-shadow:0em 0.05em 0 rgba(0,0,0,0.25)}#}
+{#" class="control-label" >Listes des Feedbacks#}
+
+{#        </h1>#}
+{#        <ul>#}
+{#            #}{#            <li><a href="index.html">Home</a></li>#}
+{#            #}{#            <li><a href="contact.html">Contact Us</a></li>#}
+{#        </ul>#}
+{#    </div>#}
+{#    {%  for message in app.flashes('info') %}#}
+{#        <div class="alert alert-success">#}
+{#            {{ message }}#}
+{#        </div>#}
+{#    {% endfor %}#}
+
+{#<div class="content col-sm-9"  {{ app.session.flashbag.peek('info')|length > 0 ? '' : 'mb-5' }}">#}
+
+{#{% if count | number_format ==0 %}#}
+{#{%  for message in app.flashes('info') %}#}
+{#    <div class="alert alert-info">#}
+{#        {{ message }}#}
+{#    </div>#}
+{#{% endfor %}#}
+
+{#{% endif %}#}
+
+
+{#<div class="content-page">#}
+{#    <!-- Start content -->#}
+{#    <div class="content">#}
+{#        <div class="row">#}
+{#            <div class="col-xl-4">#}
+
+
+{#                {%  for feedbacks in feedbacks %}#}
+
+{#                    <div class="text-center card-box">#}
+{#                        <a href="#" class="blog-imagelink">#}
+{#                            <img src="{{ asset('uploads/feedback_image/' ~ feedbacks.image) }}" alt="">#}
+
+
+{#                           {{ feedbacks.datefeedback |date  }} <i class="fa fa-share-square-o"></i></a>#}
+
+
+{#                        </a> <span class="blog-hover"></span> </div>#}
+{#                    <div class="blog-content"> <span class="blog-date"></span>#}
+{#                        <h2>Sujet de feedback concernat: {{ feedbacks.idc }}</h2>#}
+{#                        <h2 class="blog-name"><a href="single-blog.html">{{ feedbacks.description }}</a> </h2>#}
+{#                            <span class="blog-author">utilisateur numero <a href="#">{{ feedbacks.id}}</a> </span> <span class="blog-comment">3 comments</span>#}
+{#                        <a href="{{ path('update_feedback', {'id':feedbacks.idFeed}) }}" class="button">#}
+
+
+{#                            Modifier#}
+{#                        </a>#}
+
+
+{#                    </div>#}
+{#                    <div class="blog-desc">.</div>#}
+
+
+{#                </div>#}
+{#            {% endfor %}#}
+
+{#            </div>#}
+{#            <!-- end blog-home -->#}
 {#            <div class="col-sm-3 hidden-xs column-right" id="column-right">#}
 {#                <div class="Categories right-sidebar-widget">#}
 {#                    <div class="columnblock-title">Categories</div>#}
@@ -241,8 +429,8 @@
 {#                    </div>#}
 {#                </div>#}
 {#            </div>#}
-        </div>
-    </div>
+{#        </div>#}
+{#    </div>#}
 
 
 
@@ -258,14 +446,14 @@
 
 
 
-</div>
+{#</div>#}
 
 
 
 
 
 
-
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
 
 
 
