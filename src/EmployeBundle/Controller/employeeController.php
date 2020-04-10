@@ -3,6 +3,10 @@
 namespace EmployeBundle\Controller;
 
 use EmployeBundle\Entity\Employe;
+use Mukadi\Chart\Builder;
+use Mukadi\Chart\Chart;
+use Mukadi\Chart\Utils\RandomColorFactory;
+use PDO;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -256,5 +260,57 @@ class employeeController extends Controller
 
 
         return $this->redirectToRoute('employee_index');
+    }
+    /**
+     *
+     * @Route("/chart", name="chary_index")
+     * @Method("GET")
+     */
+    public function chart() {
+        $connection = new PDO('mysql:dbname=gestion_entrepot;host=localhost','root','');
+        $builder = new Builder($connection);
+
+//        $builder = $this->get('gestion_entrepot.dql');
+
+        $builder
+            ->query('SELECT COUNT(*) total, COUNT(MISSION) USERNAME, USERNAME FROM employe GROUP BY MISSION')
+            ->addDataset('total','Total',[
+                "backgroundColor" => RandomColorFactory::getRandomRGBAColors(6)
+            ])
+            ->labels('USERNAME')
+
+        ;
+//
+        $chart = $builder->buildChart('my_chart',Chart::PIE);
+        $builder_two = new Builder($connection);
+
+
+        $builder_two
+            ->query('SELECT COUNT(*) total, COUNT(MISSION) MISSION, MISSION FROM employe GROUP BY MISSION')
+            ->addDataset('total','Total',[
+                "backgroundColor" => RandomColorFactory::getRandomRGBAColors(6)
+            ])
+            ->labels('MISSION')
+
+        ;
+//
+        $chart_two = $builder_two->buildChart('my_chart_two',Chart::PIE);
+
+        $builder_three = new Builder($connection);
+        $builder_three
+            ->query('SELECT COUNT(*) total, COUNT(adresse) etat, etat FROM depot GROUP BY adresse')
+            ->addDataset('total','Total',[
+                "backgroundColor" => RandomColorFactory::getRandomRGBAColors(6)
+            ])
+            ->labels('etat')
+
+        ;
+//
+        $chart_three = $builder_three->buildChart('my_chart_three',Chart::PIE);
+        return $this->render('@Employe/employee/chart.html.twig',[
+            "chart" => $chart,
+            "chart_two" => $chart_two,
+            "chart_three" => $chart_three,
+        ]);
     }
 }

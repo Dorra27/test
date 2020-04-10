@@ -6,6 +6,9 @@ use DepotBundle\Entity\Depot;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Depot controller.
@@ -22,9 +25,14 @@ class DepotController extends Controller
      */
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $depots = $em->getRepository('DepotBundle:Depot')->findAll();
 
 
-        return $this->render('@Depot/index.html.twig');
+        return $this->render('@Depot/index.html.twig',array(
+            'depots' => $depots,
+        ));
     }
 
     /**
@@ -34,55 +42,36 @@ class DepotController extends Controller
      */
     public function newAction(Request $request)
     {
-        $employee = new Depot();
+        $depot = new Depot();
 
-        $form = $this->createFormBuilder($employee)
-            ->add('CIN', TextType::class,[
-                'attr' => [
-                    'placeholder' => 'Entrer Votre CV',
+        $form = $this->createFormBuilder($depot)
 
-                ],
-            ])
-            ->add('ADRESSE', TextType::class,[
+            ->add('adresse', TextType::class,[
                 'attr' => [
                     'placeholder' => 'Entrer Votre Adresse',
 
                 ],
             ])
-            ->add('USERNAME', TextType::class,[
+                ->add('surface', TextType::class,[
                 'attr' => [
-                    'placeholder' => 'Entrer Votre Nom',
+                    'placeholder' => 'Entrer Votre Surface',
 
                 ],
             ])
-            ->add('EMAIL', TextType::class,[
+            ->add('prix', TextType::class,[
                 'attr' => [
                     'error_bubbling' => true,
-                    'placeholder' => 'Entrer Votre Eamil',
+                    'placeholder' => 'Entrer Votre Prix',
 
                 ],
             ])
-            ->add('PRENOM', TextType::class,[
-                'attr' => [
-                    'placeholder' => 'Entrer Votre Prénom',
 
-                ],
-            ])
-            ->add('DATENAISSANCE',DateType::class,[
-                'widget' => 'single_text',
-            ])
-            ->add('Telephone', TextType::class,[
-                'attr' => [
-                    'placeholder' => 'Entrer Votre Télephone',
 
-                ],
-            ])
-            ->add('MISSION',ChoiceType::class, [
+            ->add('etat',ChoiceType::class, [
                 'choices'  => [
-                    'Livreur' => 'Livreur',
-                    'Techniciens' => 'Techniciens',
-                    'Ouvrier' => 'Ouvrier',
-                    'Ingénieur' => 'Ingénieur',
+                    'Disponible' => 'dispo',
+                    'Non Disponible' => 'indispo',
+
                 ],
             ])
 //            ->add('dueDate')
@@ -90,21 +79,94 @@ class DepotController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $employee->setRoles('EMPLOYE');
             $em = $this->getDoctrine()->getManager();
 
-            $em->persist($employee);
+            $em->persist($depot);
             $em->flush();
 
-            return $this->redirectToRoute('employee_index');
-            echo 'ok';
+            return $this->redirectToRoute('depot_index');
         }
 
-        return $this->render('@Employe/employee/new.html.twig', array(
-            'employee' => $employee,
+        return $this->render('@Depot/new.html.twig', array(
+            'depot' => $depot,
             'form' => $form->createView(),
         ));
     }
+
+
+    /**
+     *
+     * @Route("/{id}/edit", name="depot_edit")
+     * @Method({"GET", "POST"})
+     */
+
+    public function editAction(Request $request, Depot $depot)
+    {
+//        $deleteForm = $this->createDeleteForm($employee);
+        $editForm = $this->createFormBuilder($depot)
+
+            ->add('adresse', TextType::class,[
+                'attr' => [
+                    'placeholder' => 'Entrer Votre Adresse',
+
+                ],
+            ])
+            ->add('surface', TextType::class,[
+                'attr' => [
+                    'placeholder' => 'Entrer Votre Surface',
+
+                ],
+            ])
+            ->add('prix', TextType::class,[
+                'attr' => [
+                    'error_bubbling' => true,
+                    'placeholder' => 'Entrer Votre Prix',
+
+                ],
+            ])
+
+
+            ->add('etat',ChoiceType::class, [
+                'choices'  => [
+                    'dispo' => 'Disponible',
+                    'indispo' => 'Non disponible',
+
+                ],
+            ])
+//            ->add('dueDate')
+            ->getForm();
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('depot_index');
+        }
+
+        return $this->render('@Depot/edit.html.twig', array(
+            'depot' => $depot,
+            'edit_form' => $editForm->createView(),
+//            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * @Route("/delete/{id}", name="depot_delete", methods={"GET"})
+     */
+    public function delete(Request $request, Depot $depot, $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $depots = $entityManager->getRepository('DepotBundle:Depot')->find($id);
+        $entityManager->remove($depots);
+        $entityManager->flush();
+
+
+
+
+
+        return $this->redirectToRoute('depot_index');
+    }
+
 
 
 }
