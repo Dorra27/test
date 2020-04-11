@@ -2,15 +2,10 @@
 
 {% block content %}
     <!-- Start content -->
-
-
-
-
-
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box table-responsive">
-
+                            <h4 class="m-t-0 header-title">Toutes les vehicules en stock</h4>
                             <table id="selection-datatable" class="table table-bordered">
                                 <thead>
                                 <tr>
@@ -47,6 +42,9 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="main-navigation ">
+                        {{ knp_pagination_render(v) }}
                     </div>
                 </div> <!-- end row -->
 

@@ -8,8 +8,8 @@ security:
     role_hierarchy:
         ROLE_ADMIN:       ROLE_ADMIN
 #        ROLE_SUPER_ADMIN: ROLE_ADMIN
-        Client: ROLE_USER
-        Societe: ROLE_USER
+        ROLE_SOCIETE: ROLE_SOCIETE
+        ROLE_CLIENT: ROLE_CLIENT
 
     providers:
         fos_userbundle:
@@ -31,5 +31,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/affichageClient, role: Client }
-        - { path: ^/affichagSociete, role: Societe }
+        - { path: ^/affichageClient, role: ROLE_CLIENT }
+        - { path: ^/affichagSociete, role: ROLE_SOCIETE }

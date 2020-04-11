@@ -47,21 +47,15 @@
                     <div class="col-sm-5">
                         <div class="thumbnails">
                             <div><a class="thumbnail fancybox" href="#" title="122.00">
-                                    <img src="{{ asset('imgvehiculess/'~v.photo) }}" title="{{v.marque}}" alt="{{v.marque}}"></a></div>
+                                    <img src="{{ asset('imgvehiculess/'~v.photo) }}" title="{{v.marque}}" alt="{{v.marque}}">
+                                </a></div>
                             <div id="product-thumbnail" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
                                 <div class="owl-wrapper-outer">
                                 </div>
-
-
-
-
-
-
                                 <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev">prev</div><div class="owl-next">next</div></div></div></div>
                         </div>
                     </div>
-                    {{ form_start(f) }}
-                    {{ form_widget(f.etat) }}
+
                     <div class="col-sm-7 prodetail">
                         <h1 class="productpage-title" name="matricule">{{ v.marque | upper }} </h1>
                         <ul class="list-unstyled productinfo-details-top">
@@ -87,23 +81,15 @@
                         <p class="product-desc"> Chez Stock for Speed vous trouvez  au plus des avantages offerts,toutes
                             les gammes de voiture de location en tunsie : pour bien transporter vos avec des prix imbattables
                             et un service privilégier ,  avantageuse et étudier , On est moins cher que tout les comparateurs de Prix.</p>
-                        {{ form_start(cf) }}
 
-                        {{ form_widget(cf.etat) }}
 
                         <div id="product">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="Color col-md-6">
-                                        <label>DÉBUT DE LOCATION</label>
-                                       {# <input id="dated" class="datepicker form-control" type="date">#}
-                                        {{ form_widget(cf.dateDebut,{'attr':{'type':'date','class':'datepicker form-control' }} ) }}
 
-                                    </div>
                                     <div class="Color col-md-6">
-                                        <label>FIN DE LOCATION</label>
+                                        <label>Votre contrat se termine en:</label>
                                        {# <input id="datef" class="datepicker form-control" type="date">#}
-                                    {{ form_widget(cf.dateFin ,{'attr':{'type':'date','class':'datepicker form-control' }} ) }}
 
 
                                     </div>
@@ -119,7 +105,6 @@
 
 
                                 <li>
-                                    {{form_widget(cf.Reserver,{'attr':{'class':'btn btn-primary','data-toggle':'tooltip', 'data-placement':'top' }} )}}
                                     {# <i class="fa fa-shopping-bag"></i>#}
                                 </li>
 
@@ -127,8 +112,7 @@
                         </div>
                         </form>
                     </div>
-                    {{ form_end(cf) }}
-                    {{ form_end(f) }}
+
                 </div>
                 <div class="productinfo-tab">
                     <ul class="nav nav-tabs">

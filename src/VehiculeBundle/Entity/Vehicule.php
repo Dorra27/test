@@ -15,9 +15,11 @@ class Vehicule
     /**
      * @var string
      *
-     * @ORM\Column(name="matricule", type="string", length=50)
+     * @ORM\Column(name="matricule", type="string", length=255)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
+     * @Assert\NotBlank(message="Le Champs titre est obligatoire")
+     * @Assert\Length(min=5,max=50)
      */
     private $matricule;
 
@@ -86,6 +88,12 @@ class Vehicule
      * @ORM\Column(name="prix", type="string", length=255, nullable=false)
      */
     private $prix;
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="id_User",
+    referencedColumnName="id")
+     */
+    protected $User;
 
     /**
      * Vehicule constructor.
@@ -275,6 +283,33 @@ class Vehicule
     public function setPrix($prix)
     {
         $this->prix = $prix;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->User;
+    }
+
+    /**
+     * @param mixed $User
+     */
+    public function setUser($User)
+    {
+        $this->User = $User;
+    }
+
+    /**
+     * The __toString method allows a class to decide how it will react when it is converted to a string.
+     *
+     * @return string
+     * @link https://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.tostring
+     */
+    public function __toString()
+    {
+        return $this->matricule;
     }
 
 

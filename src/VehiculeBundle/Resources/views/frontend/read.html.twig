@@ -1,12 +1,47 @@
 {% extends 'frontend/base.html.twig' %}
 {% block content %}
-    <div class="breadcrumb parallax">
-        <h1 class="category-title">Desktops</h1>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="category.html">Electronics</a></li>
-        </ul>
+    <style>
+        .background-slider {
+            background-image: url({{ asset('assets/5ec5e-slider-1.jpg') }});
+            background-size: cover;
+            color: #eee;
+        }
+
+    </style>
+    <div class="">
+        <div id="page-title" class="background-slider">
+            <div class="text-center">
+                <div class="container z-index-2 position-relative">
+                    <div class="padding-tb-100px">
+                        <div class="text-center margin-bottom-30px">
+                            <img src="{{ asset('assets/blog-1.jpg') }}" alt="" width=1700px height=500px>
+                            <h4 >Super Fast and Easy</h4>
+                        </div>
+
+
+                        <script>
+                            var app = document.getElementById('writer');
+                            var typewriter = new Typewriter(app, {
+                                loop: true
+                            });
+                            typewriter.typeString('Bootstrap 4 Toolkit')
+                                .pauseFor(2500)
+                                .deleteAll()
+                                .typeString('Revolution Slider')
+                                .pauseFor(2500)
+                                .deleteAll()
+                                .typeString('Responsive Design')
+                                .start();
+
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
+    <br>
     <div class="container">
         <div class="row">
             <div id="column-left" class="col-sm-3 hidden-xs column-left">
@@ -133,7 +168,9 @@
 
                         </div>
                     </div>
+
                 </div>
+
                 <br>
 
 
@@ -160,8 +197,9 @@
 
                             <ul class="button-group list-btn">
                                 <li>
+                                    <a href="{{ path('vehicules_Client_location',{'matricule':i.matricule}) }}">
                                     <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reserver">Reserver
-                                        <i class="fa fa-heart-o"></i></button>
+                                        <i class="fa fa-heart-o"></i></button></a>
                                 </li>
                                 <li>
                                     <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Plus de details">Plus de details                                        <i class="fa fa-exchange"></i></button>
@@ -175,14 +213,9 @@
             </div>
 
             <div class="category-page-wrapper">
-                <div class="result-inner">Showing 1 to 8 of 10 (2 Pages)</div>
+                <div class="result-inncomposer require knplabs/knp-paginator-bundleer">Showing </div>
                 <div class="pagination-inner">
-                    <ul class="pagination">
-                        <li class="active"><span>1</span></li>
-                        <li><a href="category.html">2</a></li>
-                        <li><a href="category.html">&gt;</a></li>
-                        <li><a href="category.html">&gt;|</a></li>
-                    </ul>
+                    {{ knp_pagination_render(v) }}
                 </div>
             </div>
         </div>
