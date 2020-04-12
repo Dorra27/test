@@ -44,6 +44,8 @@
       <path value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
       <path value="$PROJECT_DIR$/../../../php" />
       <path value="$PROJECT_DIR$/vendor/blackknight467/star-rating-bundle" />
+       <path value="$PROJECT_DIR$/vendor/mukadi/chartjs-builder" />
+      <path value="$PROJECT_DIR$/vendor/mukadi/chartjs-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />
