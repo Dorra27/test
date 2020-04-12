@@ -1,3 +1,21 @@
 vehicule_homepage:
     path:     /vehicule
     defaults: { _controller: VehiculeBundle:Default:index }
+vehicules_homepage:
+    path:     /indexx
+    defaults: { _controller: VehiculeBundle:Vehicule:index}
+vehicules_read:
+    path:     /read
+    defaults: { _controller: VehiculeBundle:Vehicule:read}
+vehicules_ajout:
+    path:     /ajoutVehicule
+    defaults: { _controller: VehiculeBundle:Vehicule:ajoutVehicule}
+vehicules_Admin_affiche:
+    path:     /affiche
+    defaults: { _controller: VehiculeBundle:Vehicule:affiche}
+vehicules_Admin_affiche1vehicule:
+    path:     /afficheVehichule/{matricule}
+    defaults: { _controller: VehiculeBundle:Vehicule:afficheVehiculee}
+vehicules_Admin_update:
+    path:     /update/{matricule}
+    defaults: { _controller: VehiculeBundle:Vehicule:update }

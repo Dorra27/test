@@ -49,6 +49,87 @@ class Commande
      */
     private $total;
 
+    /**
+     * @return int
+     */
+    public function getIdCommande()
+    {
+        return $this->idCommande;
+    }
+
+    /**
+     * @param int $idCommande
+     */
+    public function setIdCommande($idCommande)
+    {
+        $this->idCommande = $idCommande;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdresseDest()
+    {
+        return $this->adresseDest;
+    }
+
+    /**
+     * @param string $adresseDest
+     */
+    public function setAdresseDest($adresseDest)
+    {
+        $this->adresseDest = $adresseDest;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+    /**
+     * @param int $total
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+    }
+
+
 
 }
 

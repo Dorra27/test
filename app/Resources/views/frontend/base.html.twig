@@ -6,7 +6,8 @@
     <meta name="description" content="e-commerce site well design with responsive view." />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>{% block title %} Stock For Speed {% endblock %}</title>
+    <title>
+        {% block title %} Stock For Speed {% endblock %}</title>
     {% block stylesheets %}
 
 
@@ -30,62 +31,13 @@
 
 {% block header %}
     <header>
-        <div class="header-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="top-left pull-left">
-                            <div class="wel-come-msg"> Welcome to our online store! </div>
-                            <div class="language">
-                                <form action="#" method="post" enctype="multipart/form-data" id="language">
-                                    <div class="btn-group">
-                                        <button class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> English <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Arabic</a></li>
-                                            <li><a href="#"> English</a></li>
-                                        </ul>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="currency">
-                                <form action="#" method="post" enctype="multipart/form-data" id="currency">
-                                    <div class="btn-group">
-                                        <button class="btn btn-link dropdown-toggle" data-toggle="dropdown"> <strong>USD</strong> <span class="caret"></span> </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Euro</a></li>
-                                            <li><a href="#">Pound</a></li>
-                                            <li><a href="#">USD</a></li>
-                                        </ul>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="top-right pull-right">
-                            <div id="top-links" class="nav pull-right">
-                                <ul class="list-inline">
-                                    <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span>My Account</span> <span class="caret"></span></a>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="register.html">Register</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#" id="wishlist-total" title="Wish List (0)"><i class="fa fa-heart" aria-hidden="true"></i><span>Wish List</span><span> (0)</span></a></li>
-                                </ul>
-                                <div id="search" class="input-group">
-                                    <input type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
-                                    <span class="input-group-btn">
-                <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
-                </span> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="container">
             <div class="header-inner">
                 <div class="col-sm-3 col-xs-3 header-left">
-                    <div id="logo"> <a href="index.html"><img src="{{ asset('image/s4s.png ') }}" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
+
+                    <div id="logo"> <a href="index.html"><img src="{{ asset('image/s4s.png') }}" title="Stock For Speed" alt="Stock For Speed" class="img-responsive" width=50px height=50px /></a> </div>
+                    <label >Stock For Speed</label>
                 </div>
                 <div class="col-sm-9 col-xs-9 header-right">
                     <nav id="menu" class="navbar">
@@ -95,31 +47,39 @@
                             </div>
                             <div class="navbar-collapse pull-left">
                                 <ul class="main-navigation">
-                                    <li><a href="index.html"   class="parent"  >Home</a> </li>
-                                    <li><a href="category.html"   class="parent"  >Auto</a> </li>
-                                    <li><a href="#" class="active parent">Page</a>
+                                    <li><a href="index.html"   class="parent"  >Accuiel</a> </li>
+                                    {# <li><a href="category.html"   class="parent"  >Auto</a> </li>#}
+                                    <li><a href="#" class="active parent">Nos services</a>
                                         <ul>
-                                            <li><a href="category.html">Category Page</a></li>
-                                            <li><a href="cart.html">Cart Page</a></li>
-                                            <li><a href="checkout.html">Checkout Page</a></li>
-                                            <li><a href="blog.html" >Blog Page</a></li>
-                                            <li><a href="single-blog.html" >Singale Blog Page</a></li>
-                                            <li><a href="register.html">Register Page</a></li>
-                                            <li><a href="contact.html">Contact Page</a></li>
+                                            <li><a href="category.html">Service depots</a></li>
+                                            <li><a href="cart.html">Vendre produit</a></li>
+                                            <li><a href="single-blog.html" >Acheter produit</a></li>
+                                            <li><a href="checkout.html">Service livraison</a></li>
+{#                                            <li><a href="{{ path('vehicules_Client_affiche')}}" >Reserver véhicules</a></li>#}
+
+                                            <li><a href="{{ path('service_apres_vente_homepage')}}">Service aprés vente</a></li>
+                                            {#  <li><a href="contact.html">Contact Page</a></li>
                                             <li><a href="affiliate.html">Affiliate</a></li>
-                                            <li><a href="forgetpassword.html">Forget Password</a></li>
+                                            <li><a href="forgetpassword.html">Forget Password</a></li>#}
                                         </ul>
                                     </li>
-                                    <li><a href="blog.html" class="parent"  >Blog</a></li>
-                                    <li><a href="about-us.html" >About us</a></li>
-                                    <li><a href="contact.html" >Contact Us</a> </li>
+                                    {#  <li><a href="blog.html" class="parent"  >Blog</a></li>#}
+                                    <li><a href="about-us.html" >Mon compte</a>
+                                        <ul>
+                                            <li><a href="category.html">Mes depots</a></li>
+{#                                            <li><a href="{{ path('Vehicules_Client_mesVehicule')}}">Mes véhicules</a></li>#}
+                                        </ul>
+                                    </li>
+
+
+                                    <li><a href="contact.html" >Nous contacter</a> </li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
                     <div id="cart" class="btn-group btn-block">
-                        <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"> <span id="cart-total"><span>Shopping Cart</span><br>
-          3 item(s) - $254.00</span></button>
+                        <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"> <span id="cart-total"><span>vos Achats</span><br>
+          </span></button>
                         <ul class="dropdown-menu pull-right cart-dropdown-menu">
                             <li>
                                 <table class="table table-striped">
@@ -193,9 +153,14 @@
     </header>
 
 
+
 {% endblock %}
 
+{% block content %}
+{% endblock %}
 
+{% block content %}
+{% endblock %}
 {% block footer %}
     <div class="footer-top-cms">
         <div class="row">
