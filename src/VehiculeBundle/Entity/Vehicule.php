@@ -18,7 +18,7 @@ class Vehicule
      * @ORM\Column(name="matricule", type="string", length=255)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @Assert\NotBlank(message="Le Champs titre est obligatoire")
+     * @Assert\NotBlank(message="Le Champs matricule est obligatoire")
      * @Assert\Length(min=5,max=50)
      */
     private $matricule;

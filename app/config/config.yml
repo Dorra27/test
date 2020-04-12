@@ -18,7 +18,7 @@ parameters:
 framework:
     templating:
         engines: ['twig']
-    esi: ~
+    #esi: ~
     translator: ~
     secret: '%secret%'
     router:
@@ -86,6 +86,7 @@ fos_user:
     from_email:
         address: "dorra.saidi1@esprit.tn"
         sender_name: "dorra.saidi1@esprit.tn"
+
 #knp_paginator
 knp_paginator:
     page_range: 5                       # number of links showed in the pagination menu (e.g: you have 10 pages, a page_range of 3, on the 5th page you'll see links to page 4, 5, 6)

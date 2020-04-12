@@ -50,11 +50,13 @@ class VehiculeController extends Controller
         $Vehicule = new Vehicule();
         $form = $this->createForm(VehiculeType::class, $Vehicule);
         $form = $form->handleRequest($request);
+
         if ($form->isSubmitted() and $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $Vehicule->UploadProfilePicture();
             $em->persist($Vehicule);
             $em->flush();
+            $this->addFlash('success', 'something went <a href="/" class="alert-link">well!</a>');
             return $this->redirectToRoute('vehicules_Admin_affiche');
 
         }
@@ -106,7 +108,7 @@ class VehiculeController extends Controller
         $result= $paginator->paginate(
             $Vehicule,
             $request->query->getInt('page',1),
-            $request->query->getInt('limit',5 )
+            $request->query->getInt('limit',3)
 
         );
 
