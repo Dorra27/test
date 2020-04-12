@@ -23,8 +23,9 @@
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css" />
 
 
+        <!-- chadi link url -->
 
-    {% endblock %}
+
 
 </head>
 <body>
@@ -233,6 +234,7 @@
                             </ul>
                         </li>
 
+
                     </ul>
                     <div class="clearfix"></div>
                 </div>
@@ -242,6 +244,7 @@
             </div>
 
         </div>
+
         <!-- Left Sidebar End -->
         <!-- ============================================================== -->
         <!-- Start right Content here -->
@@ -316,6 +319,7 @@
                         </a>
                     </li>
 
+
                 </ul>
             </div>
         </div>
@@ -330,16 +334,19 @@
 
 {% endblock %}
 
-
 {% block content %}
 {% endblock %}
 
 
 
 
+{% block content %}
+
+{% endblock %}
 
 
-
+{% block content %}
+{% endblock %}
 
 {% block footer %}
 
@@ -383,6 +390,18 @@
     <!-- App js -->
     <script src="{{ asset('assets/js/jquery.core.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.app.js') }}"></script>
+
+
+
+
+
+    <!-- Modal-Effect -->
+    <script src="{{ asset('assets/plugins/custombox/dist/custombox.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/custombox/dist/legacy.min.js') }}"></script>
+
+    <!-- Datable js -->
+
+</script>
 
 
 {% endblock %}

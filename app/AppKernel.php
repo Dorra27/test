@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new ServiceApresVenteBundle\ServiceApresVenteBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
             new VehiculeBundle\VehiculeBundle(),
             new LivraisonBundle\LivraisonBundle(),
             new AchatBundle\AchatBundle(),

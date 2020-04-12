@@ -14,7 +14,9 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+
     images_directory: '%kernel.root_dir%/../web/image'
+
 
 framework:
     templating:
@@ -28,6 +30,7 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
+
     #serializer: { enable_annotations: true }
     default_locale: '%locale%'
     trusted_hosts: ~
@@ -85,6 +88,7 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
+
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
     registration:
@@ -119,3 +123,4 @@ endroid_qr_code:
     label_font_size: 20
     label_alignment: left # left, center or right
     label_margin: { b: 20 }
+
