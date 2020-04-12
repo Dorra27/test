@@ -7,7 +7,7 @@ read_feedback:
     defaults: { _controller: ServiceApresVenteBundle:Feedback:readFeedback }
 
 add_feedback:
-    path:    /create/{id_cat}
+    path:    /createFeedback
     defaults: {_controller: ServiceApresVenteBundle:Feedback:createFeedback}
 
 update_feedback:
@@ -29,6 +29,15 @@ add_reclamation:
 update_reclamation:
     path:    /updateReclamation/{id}
     defaults: {_controller: ServiceApresVenteBundle:Reclamation:updateReclamation}
+
+read_produit_commande:
+    path:    /readProduitCommande/{nom}
+    defaults: {_controller: ServiceApresVenteBundle:Reclamation:reclmaerProduit}
+
+read_livreur:
+    path:    /readLivreur/{nom}
+    defaults: {_controller: ServiceApresVenteBundle:Feedback:listLivreur}
+
 
 display_categorie:
     path:   /showCategorie/{nom}
@@ -76,7 +85,7 @@ admin_traiter_reclamation:
 
 ajax_search:
     path:    /search
-    defaults: {_controller: ServiceApresVenteBundle:Reclamation:listReclamation}
+    defaults: {_controller: ServiceApresVenteBundle:Reclamation:search}
 
 detailed_feed:
     path:     /detail/{id}

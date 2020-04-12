@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use VenteBundle\Entity\Categorie;
+use VenteBundle\Entity\LigneCommande;
 
 class RecFeedCatController extends Controller
 {
@@ -170,14 +171,11 @@ class RecFeedCatController extends Controller
     }
 
 
-    public function deleteCategorieAction(Request $request) {
-            $id = $request->get('id');
-            $em = $this->getDoctrine()->getManager();
-            $categories = $em
-                ->getRepository(RecFeedCat::class)
-                ->find($id);
-            $em->remove($categories);
-            $em->flush();
+    public function deleteCategorieAction($id) {
+        $em=$this->getDoctrine()->getManager();
+        $i= $em->getRepository(RecFeedCat::class)->find($id);
+        $em->remove($i);
+        $em->flush();
             return $this->redirectToRoute('admin_read_categorie');
         }
 

@@ -4,6 +4,7 @@ namespace ServiceApresVenteBundle\Controller;
 
 use blackknight467\StarRatingBundle\Form\RatingType;
 use blackknight467\StarRatingBundle\StarRatingBundle;
+use FOS\UserBundle\Model\User;
 use ServiceApresVenteBundle\Entity\Feedback;
 use ServiceApresVenteBundle\Entity\RecFeedCat;
 use ServiceApresVenteBundle\Form\FeedbackType;
@@ -34,9 +35,8 @@ class FeedbackController extends Controller
 
 
     //--------------------------------------------------------
-    public function createFeedbackAction(Request $request,RecFeedCat $id)
+    public function createFeedbackAction(Request $request)
     {
-        $cat =$this->getDoctrine()->getManager()->getRepository(RecFeedCat::class)->find($id);
 
         $feedback = new Feedback();
         $form = $this->createForm(FeedbackType::class, $feedback);
@@ -49,7 +49,7 @@ class FeedbackController extends Controller
             $uploadedFile = $form['image']->getData();
             $filename = md5(uniqid()) . '.' . $uploadedFile->guessExtension();
             $uploadedFile->move($this->getParameter('kernel.project_dir').'/web/uploads/feedback_image',$filename);
-            $feedback->setIdc($cat);
+           // $feedback->setIdc($cat);
 
 
 
@@ -172,6 +172,18 @@ class FeedbackController extends Controller
             'categorie'=>$f->getIdc(),
             'id'=>$f->getIdFeed()
         ));
+    }
+
+
+    public function listLivreurAction() {
+        $em= $this->getDoctrine()->getManager();
+
+       // $liv=$em->getRepository(Feedback::class)->find($id);
+
+
+        $livreur=$this->getDoctrine()->getManager()->getRepository(Feedback::class)->findOneById();
+        //var_dump($livreur);
+        return $this->render('@ServiceApresVente/Feedback/FeedbackLivreur.html.twig',array("livreur"=>$livreur));
     }
 
 

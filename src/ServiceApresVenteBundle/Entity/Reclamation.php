@@ -23,6 +23,15 @@ class Reclamation
      */
     private $idRec;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AchatBundle\Entity\ProduitCommande")
+     * @ORM\JoinColumns(
+     *      @ORM\JoinColumn(name="idpc", referencedColumnName="id"),
+     *      @ORM\JoinColumn(name="pc", referencedColumnName="id_commande",name="pc")
+     *)
+     */
+    private $produitCommande;
+
 
 
 
@@ -41,15 +50,10 @@ class Reclamation
      * @Assert\NotBlank(message="S'il vous plait inserer objet")
      *  * @Assert\Length(
      *     min=5,
-     *     max=12,
+     *     max=90,
      *     minMessage="l'objet doit etre au minimum  5 caractere",
-     *     maxMessage="l'objet doit etre au minimum  12 caractere"
+     *     maxMessage="l'objet doit etre au minimum  90 caractere"
      * )
-     * @Assert\Regex(
-     *     pattern="/^[A-Za-z]+$/",
-     *     message="que des lettres accepter"
-     * )
-
      */
     private $objet;
 
@@ -74,12 +78,36 @@ class Reclamation
      */
     private $etat;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", nullable=false)
+     */
+    private $type;
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date", nullable=false)
      */
     private $date;
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 
 
 
@@ -91,9 +119,25 @@ class Reclamation
     private $image;
 
     /**
+     * @return mixed
+     */
+    public function getIdc()
+    {
+        return $this->idc;
+    }
+
+    /**
+     * @param mixed $idc
+     */
+    public function setIdc($idc)
+    {
+        $this->idc = $idc;
+    }
+
+    /**
      *
-     * @ORM\ManyToOne(targetEntity="RecFeedCat", cascade={"persist"})
-     * @ORM\JoinColumn(name="cat",referencedColumnName="id_cat",nullable=false,onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="RecFeedCat")
+     * @ORM\JoinColumn(name="reclamation" ,referencedColumnName="id_cat" ,nullable=true, onDelete="CASCADE")
      */
     private $idc;
 
@@ -116,24 +160,37 @@ class Reclamation
     /**
      * @return mixed
      */
-    public function getIdc()
+    public function getProduitCommande()
     {
-        return $this->idc;
+        return $this->produitCommande;
     }
 
     /**
-     * @param mixed $idc
+     * @param mixed $produitCommande
      */
-    public function setIdc($idc)
+    public function setProduitCommande($produitCommande)
     {
-        $this->idc = $idc;
+        $this->produitCommande = $produitCommande;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReclamationCat()
+    {
+        return $this->reclamationCat;
+    }
+
+    /**
+     * @param mixed $reclamationCat
+     */
+    public function setReclamationCat($reclamationCat)
+    {
+        $this->reclamationCat = $reclamationCat;
     }
 
 
-    public function __toString()
-    {
-        return $this->idc;
-    }
+
 
     /**
      * @return int
@@ -251,4 +308,3 @@ class Reclamation
 
 
 }
-

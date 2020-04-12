@@ -26,12 +26,20 @@ class DefaultController extends Controller
         $date = new  \DateTime();
         $date=$this->getDoctrine()->getManager()->getRepository(Reclamation::class)->findallReclamationydate($date);
 
-
+        $total = $nbrFeed +$nbrRec;
+        $nbrFeedParRapportRec = ($nbrFeed / $total)*100;
+        $nbrRecParRapportFeed = ($nbrRec / $total)*100;
 
         return $this->render('@ServiceApresVente/Admin/index.html.twig',array('nbFeed'=>$nbrFeed,
-            'nbRec'=>$nbrRec,'date'=>$date));
+            'nbRec'=>$nbrRec,'date'=>$date,"nbrFeedParRapportRec"=>$nbrFeedParRapportRec,
+                "nbrRecParRapportFeed"=>$nbrRecParRapportFeed));
 
     }
+
+
+
+
+
 //    public function AjouterCommandeAction(Request $request)
 //    {
 //        $em = $this->getDoctrine()->getManager();

@@ -40,19 +40,38 @@ class ReclamationRepository extends \Doctrine\ORM\EntityRepository
 
     /***
     */
-public function confirmer()
+public function confirmer($id)
 {
 
 
     $qb = $this->_em->createQueryBuilder();
+
     $q = $qb->update('ServiceApresVenteBundle:Reclamation', 'r')
         //update DemandeSponsoring p set p.etat=1 where p.id=$id
         //
         ->set('r.etat', '?1')
+        ->where('r.idRec = ?2')
         ->setParameter(1, "1")
+        ->setParameter(2, $id)
         ->getQuery();
     return $q->getResult();
     }
+
+
+
+
+    public function findEntitiesByString($str){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT e
+                FROM ServiceApresVenteBundle:Reclamation e
+                WHERE e.objet LIKE :str'
+            )
+            ->setParameter('str', '%'.$str.'%')
+            ->getResult();
+    }
+
+
 
 
 

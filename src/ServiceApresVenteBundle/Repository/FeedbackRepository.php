@@ -33,6 +33,16 @@ class FeedbackRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    public function findOneById()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('u.roles,u.email,u.photo');
+        $qb->from('AppBundle:User','u')
+        ->andWhere('u.roles IN (:role)')
+            ->setParameter('role', 'a:1:{i:0;s:12:"ROLE_Livreur";}');
+        $liv = $qb->getQuery()->getScalarResult();
+        return $liv;
+    }
 
 
 

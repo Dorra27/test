@@ -16,19 +16,21 @@ class ReclamationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('objet')
-                ->add('description', TextareaType::class, [
+        $builder
+//            ->add('type')
+        ->add('objet')
+            ->add('description', TextareaType::class, [
                 'attr' => ['class' => 'tinymce','rows'=>'10']])
             //->add('etat')
             //->add('date')
-          //  ->add('id')
+            //  ->add('id')
             ->add('image', FileType::class, array('data_class' => null,'required' => false))
             //->add('idCat');
-        ->add('Ajouter',SubmitType::class);
+            ->add('Ajouter',SubmitType::class);
 
     }/**
-     * {@inheritdoc}
-     */
+ * {@inheritdoc}
+ */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

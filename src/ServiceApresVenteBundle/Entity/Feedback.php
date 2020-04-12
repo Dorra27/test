@@ -27,7 +27,7 @@ class Feedback
 
     /**
      * @var string
-    * @Assert\NotBlank(message="le champs Description est obligatoire")
+     * @Assert\NotBlank(message="le champs Description est obligatoire")
      * @ORM\Column(name="description", type="string", length=400, nullable=false)
      */
     private $description;
@@ -65,7 +65,6 @@ class Feedback
     /**
      * @var string
      * @Assert\File(maxSize="500k", mimeTypes={"image/jpeg", "image/jpg", "image/png", "image/GIF"})
-
      * @ORM\Column(name="image", type="string", length=100, nullable=false)
      */
     private $image;
@@ -212,4 +211,3 @@ class Feedback
 
 
 }
-
