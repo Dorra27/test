@@ -24,7 +24,7 @@ vehicule:
 
 service_apres_vente:
     resource: "@ServiceApresVenteBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /serviceApresVentes
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
