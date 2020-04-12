@@ -16,7 +16,7 @@ achat:
 
 livraison:
     resource: "@LivraisonBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /livraison
 
 vehicule:
     resource: "@VehiculeBundle/Resources/config/routing.yml"
@@ -26,7 +26,7 @@ service_apres_vente:
     resource: "@ServiceApresVenteBundle/Resources/config/routing.yml"
     prefix:   /serviceApresVentes
 app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+    resource: '@AppBundle/Resources/config/routing.yml'
+    prefix:   /
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
