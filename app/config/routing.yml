@@ -20,7 +20,7 @@ livraison:
 
 vehicule:
     resource: "@VehiculeBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /VehiculeBundle
 
 service_apres_vente:
     resource: "@ServiceApresVenteBundle/Resources/config/routing.yml"
