@@ -79,12 +79,6 @@ class Reclamation
     private $etat;
 
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", nullable=false)
-     */
-    private $type;
 
     /**
      * @var \DateTime
@@ -93,21 +87,6 @@ class Reclamation
      */
     private $date;
 
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
 
 
 
@@ -137,7 +116,7 @@ class Reclamation
     /**
      *
      * @ORM\ManyToOne(targetEntity="RecFeedCat")
-     * @ORM\JoinColumn(name="reclamation" ,referencedColumnName="id_cat" ,nullable=true, onDelete="CASCADE")
+     * @ORM\JoinColumn(name="cat" ,referencedColumnName="id_cat" ,nullable=true, onDelete="CASCADE")
      */
     private $idc;
 

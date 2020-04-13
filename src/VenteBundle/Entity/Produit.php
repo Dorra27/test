@@ -3,14 +3,11 @@
 namespace VenteBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Mgilet\NotificationBundle\Annotation\Notifiable;
-use Mgilet\NotificationBundle\NotifiableInterface;
 /**
  * Produit
  *
  * @ORM\Table(name="produit")
  * @ORM\Entity(repositoryClass="VenteBundle\Repository\ProduitRepository")
- * @Notifiable(name="Produit")
  */
 class Produit
 {
@@ -98,11 +95,11 @@ class Produit
 
 
 
-     /**
-      *
-      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-      * @ORM\JoinColumn(name="idUser",
-     referencedColumnName="id")
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="idUser",
+    referencedColumnName="id")
      */
     private $idUser;
 
@@ -286,8 +283,7 @@ class Produit
     public function __toString()
     {
         return (String)$this->idcat;
-   }
+    }
 
 
 }
-
