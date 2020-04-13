@@ -10,6 +10,8 @@ security:
 #        ROLE_SUPER_ADMIN: ROLE_ADMIN
         ROLE_CLIENT:      ROLE_CLIENT
 #        Societe:
+        ROLE_SOCIETE: ROLE_SOCIETE
+        ROLE_CLIENT: ROLE_CLIENT
 
     providers:
         fos_userbundle:
@@ -34,3 +36,4 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
 
+      

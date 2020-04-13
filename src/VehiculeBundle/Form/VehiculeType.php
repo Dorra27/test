@@ -48,7 +48,9 @@ class VehiculeType extends AbstractType
                 ])
             ->add('couleur', ColorType::class)
 
-        ->add('Ajouter', SubmitType::class)
+        ->add('Ajouter', SubmitType::class,
+      ['attr'=>['formnovalidate'=>'formnovalidate']]
+            )
 
       ;
     }/**

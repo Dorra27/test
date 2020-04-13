@@ -5,9 +5,9 @@ namespace VehiculeBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 class VehiculeRepository extends EntityRepository
 {
-    public function myFindVehiculebymatricule()
+    public function updateetat($matricule)
     {
-        $ql=$this->getEntityManager()->createQuery("select v from VehiculeBundle:Vehicule v where v.matricule='155tun1444' ");
+        $ql=$this->getEntityManager()->createQuery("update VehiculeBundle\Entity\Vehicule v SET v.etat='indiso' where v.matricule='124TUN124' ");
         return $query= $ql->getResult();
     }
 
