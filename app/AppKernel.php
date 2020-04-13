@@ -31,6 +31,9 @@ class AppKernel extends Kernel
             new VenteBundle\VenteBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Endroid\QrCode\Bundle\QrCodeBundle\EndroidQrCodeBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new FOS\CommentBundle\FOSCommentBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
 
 
         ];

@@ -79,10 +79,36 @@ sensio_framework_extra:
     router:
         annotations: false
 # app/config/config.yml
+
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-        address: "dorra.saidi1@esprit.tn"
-        sender_name: "dorra.saidi1@esprit.tn"
+        address: dorra.saidi1@esprit.tn
+        sender_name: dorra saidi
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+    resetting:
+        email:
+            from_email:
+                address:        dorra.saidi1@esprit.tn
+                sender_name:    dorra saidi
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+        options:    []
+    image:
+        enabled:    true
+        binary:      "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+        options:    []
+    temporary_folder: "%kernel.cache_dir%/snappy"
+fos_comment:
+    db_driver: orm
+    class:
+        model:
+            comment: AppBundle\Entity\Comment
+            thread: AppBundle\Entity\Thread
+
