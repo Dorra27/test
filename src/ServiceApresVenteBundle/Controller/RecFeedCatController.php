@@ -119,7 +119,6 @@ class RecFeedCatController extends Controller
         'action' => $this->generateUrl('admin_update_categorie', array('id' => $entity->getIdCat())),
         'method' => 'PUT',
     ));
-
     $form->add('submit', SubmitType::class, array('label' => 'Edit Categorie'));
 
     return $form;

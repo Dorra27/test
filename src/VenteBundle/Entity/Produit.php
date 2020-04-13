@@ -3,14 +3,12 @@
 namespace VenteBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Mgilet\NotificationBundle\Annotation\Notifiable;
-use Mgilet\NotificationBundle\NotifiableInterface;
+
 /**
  * Produit
  *
  * @ORM\Table(name="produit")
  * @ORM\Entity(repositoryClass="VenteBundle\Repository\ProduitRepository")
- * @Notifiable(name="Produit")
  */
 class Produit
 {
