@@ -1,6 +1,6 @@
 vente:
     resource: "@VenteBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /Vente
 
 depot:
     resource: "@DepotBundle/Resources/config/routing.yml"
