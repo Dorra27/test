@@ -21,9 +21,7 @@
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css" />
-
-
-        <!-- chadi link url -->
+ {% endblock %}
 
 
 
@@ -126,6 +124,7 @@
                     <ul>
                         <li class="text-muted menu-title">Navigation</li>
 
+
                         <li>
                             <a href="index.html" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
                         </li>
@@ -202,6 +201,7 @@
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-google-pages"></i><span> Pages </span> <span class="menu-arrow"></span></a>
                             <ul class="list-unstyled">
+
                                 <li><a href="page-starter.html">Starter Page</a></li>
                                 <li><a href="page-login.html">Login</a></li>
                                 <li><a href="page-register.html">Register</a></li>
@@ -210,6 +210,9 @@
                                 <li><a href="page-confirm-mail.html">Confirm Mail</a></li>
                                 <li><a href="page-404.html">Error 404</a></li>
                                 <li><a href="page-500.html">Error 500</a></li>
+
+                         
+
                             </ul>
                         </li>
 
@@ -233,6 +236,7 @@
                                 <li><a href="extras-comingsoon.html">Coming soon</a></li>
                             </ul>
                         </li>
+
 
 
                     </ul>
@@ -341,12 +345,14 @@
 
 
 {% block content %}
-
 {% endblock %}
 
 
-{% block content %}
-{% endblock %}
+
+
+
+
+
 
 {% block footer %}
 
@@ -390,18 +396,6 @@
     <!-- App js -->
     <script src="{{ asset('assets/js/jquery.core.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.app.js') }}"></script>
-
-
-
-
-
-    <!-- Modal-Effect -->
-    <script src="{{ asset('assets/plugins/custombox/dist/custombox.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/custombox/dist/legacy.min.js') }}"></script>
-
-    <!-- Datable js -->
-
-</script>
 
 
 {% endblock %}

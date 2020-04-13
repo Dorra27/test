@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
 
 
-    <title>{% block title %} Stock For Speed {% endblock %}</title>
     {% block stylesheets %}
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
@@ -16,6 +13,8 @@
 
         <link href="{{ asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet" /><!-- Custom box css -->
         <link href="{{ asset('assets/plugins/custombox/dist/custombox.min.css') }}" rel="stylesheet">
+        <!--calendar css-->
+        <link href="{{ asset('assets/plugins/fullcalendar/css/fullcalendar.min.css') }}" rel="stylesheet" />
 
         <!-- App css -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -25,8 +24,11 @@
 
 
     {% endblock %}
+    <title>{% block title %} Stock For Speed {% endblock %}</title>
+
 
 </head>
+
 <body class="fixed-left">
 {% block header %}
 <!-- Begin page -->
@@ -52,45 +54,15 @@
                         </button>
                     </li>
                     <li class="list-inline-item">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title"></h4>
                     </li>
                 </ul>
 
-                <nav class="navbar-custom">
 
-                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
-
-                        <li>
-                            <!-- Notification -->
-                            <div class="notification-box">
-                                <ul class="list-inline mb-0">
-                                    <li>
-                                        <a href="javascript:void(0);" class="right-bar-toggle">
-                                            <i class="mdi mdi-bell-outline noti-icon"></i>
-                                        </a>
-                                        <div class="noti-dot">
-                                            <span class="dot"></span>
-                                            <span class="pulse"></span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- End Notification bar -->
-                        </li>
-
-                        <li class="hide-phone">
-                            <form class="app-search">
-                                <input type="text" placeholder="Search..."
-                                       class="form-control">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </li>
-
-                    </ul>
-                </nav>
             </div><!-- end container -->
         </div><!-- end navbar -->
     </div>
+
     <!-- Top Bar End -->
     <!-- ========== Left Sidebar Start ========== -->
     <div class="left side-menu">
@@ -126,13 +98,26 @@
                     <li>
                         <a href="index.html" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
-
+                    <li class="has_sub">
+                        <a href="#" class="waves-effect"><i class="mdi mdi-car-pickup"></i></span><span> Gestion véhicules </span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ path('vehicules_ajout')}}">Ajouter véhicule</a></li>
+                            <li><a href="{{ path('vehicules_Admin_affiche')}}">Toutes les véhicules</a></li>
+                            <li><a href="{{ path('vehicules_Admin_vehiculesmaintenues')}}">Les véhicules maintenues</a></li>
+                            <li><a href="{{ path('vehicules_Admin_contarts')}}">Les véhicules louées</a></li>
+                            {#  <li><a href="#">Recover Password</a></li>
+                              <li><a href="#">Lock Screen</a></li>
+                              <li><a href="#">Confirm Mail</a></li>
+                              <li><a href="#">Error 404</a></li>
+                              <li><a href="#">Error 500</a></li>#}
+                        </ul>
+                    </li>
                     <li>
-                        <a href="typography.html" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Typography </span> </a>
+                        <a href="typography.html" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Gestion employé </span> </a>
                     </li>
 
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> User Interface </span> <span class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> Gestion stock </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
                             <li><a href="ui-buttons.html">Buttons</a></li>
                             <li><a href="ui-cards.html">Cards</a></li>
@@ -153,7 +138,7 @@
                     </li>
 
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-texture"></i><span class="badge badge-warning pull-right">7</span><span> Forms </span> </a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-texture"></i><span class="badge badge-warning pull-right">7</span><span> Gestion dépots </span> </a>
                         <ul class="list-unstyled">
                             <li><a href="form-elements.html">General Elements</a></li>
                             <li><a href="form-advanced.html">Advanced Form</a></li>
@@ -166,7 +151,7 @@
                     </li>
 
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-view-list"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-view-list"></i> <span> Gestion livraison </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
                             <li><a href="tables-basic.html">Basic Tables</a></li>
                             <li><a href="tables-datatable.html">Data Table</a></li>
@@ -177,7 +162,7 @@
                     </li>
 
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-donut-variant"></i><span> Charts </span> <span class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-donut-variant"></i><span> Gestion produits </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
                             <li><a href="chart-flot.html">Flot Chart</a></li>
                             <li><a href="chart-morris.html">Morris Chart</a></li>
@@ -188,47 +173,14 @@
                     </li>
 
                     <li>
-                        <a href="calendar.html" class="waves-effect"><i class="mdi mdi-calendar"></i><span> Calendar </span></a>
+                        <a href="calendar.html" class="waves-effect"><i class="mdi mdi-calendar"></i><span> Feed back </span></a>
                     </li>
 
-                    <li>
-                        <a href="inbox.html" class="waves-effect"><i class="mdi mdi-email"></i><span class="badge badge-purple pull-right">New</span><span> Mail </span></a>
-                    </li>
 
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-google-pages"></i><span> Pages </span> <span class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="page-starter.html">Starter Page</a></li>
-                            <li><a href="page-login.html">Login</a></li>
-                            <li><a href="page-register.html">Register</a></li>
-                            <li><a href="page-recoverpw.html">Recover Password</a></li>
-                            <li><a href="page-lock-screen.html">Lock Screen</a></li>
-                            <li><a href="page-confirm-mail.html">Confirm Mail</a></li>
-                            <li><a href="page-404.html">Error 404</a></li>
-                            <li><a href="page-500.html">Error 500</a></li>
-                        </ul>
-                    </li>
 
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-layers"></i><span>Extra Pages </span> <span class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="extras-projects.html">Projects</a></li>
-                            <li><a href="extras-tour.html">Tour</a></li>
-                            <li><a href="extras-taskboard.html">Taskboard</a></li>
-                            <li><a href="extras-taskdetail.html">Task Detail</a></li>
-                            <li><a href="extras-profile.html">Profile</a></li>
-                            <li><a href="extras-maps.html">Maps</a></li>
-                            <li><a href="extras-contact.html">Contact list</a></li>
-                            <li><a href="extras-pricing.html">Pricing</a></li>
-                            <li><a href="extras-timeline.html">Timeline</a></li>
-                            <li><a href="extras-invoice.html">Invoice</a></li>
-                            <li><a href="extras-faq.html">FAQ</a></li>
-                            <li><a href="extras-gallery.html">Gallery</a></li>
-                            <li><a href="extras-email-template.html">Email template</a></li>
-                            <li><a href="extras-maintenance.html">Maintenance</a></li>
-                            <li><a href="extras-comingsoon.html">Coming soon</a></li>
-                        </ul>
-                    </li>
+
+
+
 
                 </ul>
                 <div class="clearfix"></div>
@@ -238,54 +190,13 @@
 
         </div>
 
+
     </div>
     <!-- Left Sidebar End -->
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="content-page">
-        <!-- Start content -->
-        <div class="content">
-            <div class="container-fluid">
 
-
-                <div class="row">
-
-                    <div class="col-xl-12 col-md-offset-0">
-                        <div class="card-box">
-                            <div class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="mdi mdi-dots-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                </div>
-                            </div>
-                            {% block content %}
-                            {% endblock %}
-
-
-                        </div>
-                    </div><!-- end col -->
-
-
-                </div>
-                <!-- end row -->
-
-
-
-
-            </div> <!-- container -->
-
-        </div> <!-- content -->
-    </div>
 
     <!-- Right Sidebar -->
     <div class="side-bar right-bar">
@@ -362,26 +273,19 @@
     <!-- /Right-bar -->
 
 </div>
-    <!-- END wrapper -->
-
-    <!-- ============================================================== -->
-    <!-- End Right content here -->
-    <!-- ============================================================== -->
-
-                {% endblock %}
 
 
-{% block footer %}
+   {% endblock %}
+<div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+        <div class="container-fluid">
 
-
-    <footer class="footer text-right">
-        2016 - 2018 © Adminto. Coderthemes.com
-    </footer>
-
-
-
+{% block content %}
 {% endblock %}
-
+        </div>
+    </div>
+</div>
 {% block javascripts %}
     <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
 
@@ -413,11 +317,26 @@
     <!-- App js -->
     <script src="{{ asset('assets/js/jquery.core.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.app.js') }}"></script>
+    <!-- Jquery-Ui -->
+    <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <!-- SCRIPTS -->
+    <script src="{{ asset('assets/plugins/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fullcalendar/js/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('assets/pages/jquery.fullcalendar.js') }}"></script>
 
 
 {% endblock %}
 
+{% block footer %}
 
+
+    <footer class="footer text-right">
+        2016 - 2018 © Adminto. Coderthemes.com
+    </footer>
+
+
+
+{% endblock %}
 
 
 </body>

@@ -22,16 +22,16 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new ServiceApresVenteBundle\ServiceApresVenteBundle(),
-            new blackknight467\StarRatingBundle\StarRatingBundle(),
+           new blackknight467\StarRatingBundle\StarRatingBundle(),
             new VehiculeBundle\VehiculeBundle(),
             new LivraisonBundle\LivraisonBundle(),
             new AchatBundle\AchatBundle(),
             new EmployeBundle\EmployeBundle(),
             new DepotBundle\DepotBundle(),
             new VenteBundle\VenteBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Endroid\QrCode\Bundle\QrCodeBundle\EndroidQrCodeBundle(),
-
 
         ];
 
@@ -74,4 +74,5 @@ class AppKernel extends Kernel
         });
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
     }
+
 }
