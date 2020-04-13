@@ -1,4 +1,4 @@
 services:
-#    employe.example:
-#        class: EmployeBundle\Example
+#    livraison.example:
+#        class: LivraisonBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]

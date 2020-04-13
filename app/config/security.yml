@@ -13,7 +13,7 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
     firewalls:
         main:
@@ -22,6 +22,8 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                always_use_default_target_path: false
+                default_target_path: /home
 
             logout:       true
             anonymous:    true
@@ -31,5 +33,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/affichageClient, role: ROLE_CLIENT }
-        - { path: ^/affichagSociete, role: ROLE_SOCIETE }
+
+      

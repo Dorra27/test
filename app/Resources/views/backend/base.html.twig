@@ -21,10 +21,9 @@
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css" />
+ {% endblock %}
 
 
-
-    {% endblock %}
 
 </head>
 <body>
@@ -125,19 +124,21 @@
                     <ul>
                         <li class="text-muted menu-title">Navigation</li>
 
+
                         <li>
                             <a href="index.html" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
                         </li>
 
                         <li>
-                            <a href="typography.html" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Typography </span> </a>
+                            <a href="{{ path('livraison_afficherAdmin') }}" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Livraison </span> </a>
+
                         </li>
 
                         <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> User Interface </span> <span class="menu-arrow"></span></a>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> Point de Collecte </span> <span class="menu-arrow"></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="ui-buttons.html">Buttons</a></li>
-                                <li><a href="ui-cards.html">Cards</a></li>
+                                <li><a href="{{ path('PointCollecte_add') }}">Ajouter Point de collecte</a></li>
+                                <li><a href="{{ path('PointCollecte_affichage') }}">Afficher Point de Colecte</a></li>
                                 <li><a href="ui-draggable-cards.html">Draggable Cards</a></li>
                                 <li><a href="ui-checkbox-radio.html">Checkboxs-Radios</a></li>
                                 <li><a href="ui-material-icons.html">Material Design Icons</a></li>
@@ -200,6 +201,7 @@
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-google-pages"></i><span> Pages </span> <span class="menu-arrow"></span></a>
                             <ul class="list-unstyled">
+
                                 <li><a href="page-starter.html">Starter Page</a></li>
                                 <li><a href="page-login.html">Login</a></li>
                                 <li><a href="page-register.html">Register</a></li>
@@ -208,6 +210,9 @@
                                 <li><a href="page-confirm-mail.html">Confirm Mail</a></li>
                                 <li><a href="page-404.html">Error 404</a></li>
                                 <li><a href="page-500.html">Error 500</a></li>
+
+                         
+
                             </ul>
                         </li>
 
@@ -232,6 +237,8 @@
                             </ul>
                         </li>
 
+
+
                     </ul>
                     <div class="clearfix"></div>
                 </div>
@@ -241,6 +248,7 @@
             </div>
 
         </div>
+
         <!-- Left Sidebar End -->
         <!-- ============================================================== -->
         <!-- Start right Content here -->
@@ -315,6 +323,7 @@
                         </a>
                     </li>
 
+
                 </ul>
             </div>
         </div>
@@ -328,6 +337,11 @@
     <!-- ============================================================== -->
 
 {% endblock %}
+
+{% block content %}
+{% endblock %}
+
+
 
 
 {% block content %}

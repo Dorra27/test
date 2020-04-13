@@ -1,6 +1,13 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="color:#f30808;" />
+
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
@@ -14,6 +21,7 @@
             <item index="6" class="java.lang.String" itemvalue="zing-grid" />
             <item index="7" class="java.lang.String" itemvalue="zg-colgroup" />
             <item index="8" class="java.lang.String" itemvalue="zg-column" />
+
           </list>
         </value>
       </option>
