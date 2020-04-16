@@ -7,10 +7,18 @@ use Doctrine\ORM\EntityRepository;
 
 class ProduitRepository extends EntityRepository
 {
-    public function  myfindbyid()
-    { $Query=$this->getEntityManager()->
-    createQuery("select p from VenteBundle:Produit p ")
-        ->getResult();
+    public function findProduitByUser($id)
+    {
+
+
+        $qb = $this->createQueryBuilder('l');
+        $qb->where('l.idUser=:id')
+
+
+            ->setParameter('id', $id);
+
+
+        return $qb->getQuery()->getResult();
 
     }
 

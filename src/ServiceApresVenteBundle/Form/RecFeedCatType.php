@@ -18,7 +18,7 @@ class RecFeedCatType extends AbstractType
     {
         $builder->add('nom')
         ->add('image', FileType::class, array('data_class' => null,'required' => false))
-        ->add('Ajouter',SubmitType::class);
+        ->add('Valider',SubmitType::class);
 
 
     }/**

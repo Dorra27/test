@@ -177,6 +177,41 @@
 
         /*}*/
 
+        .btn_three {
+            font: 500 14px "Poppins", sans-serif;
+            color: #fff;
+            background: #7444fd;
+            border-radius: 3px;
+            padding: 15px 30px;
+            border: 1px solid #7444fd;
+            margin-top: 50px;
+            -webkit-transition: all 0.3s linear;
+            -o-transition: all 0.3s linear;
+            transition: all 0.3s linear;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn_three:hover {
+            color: #7444fd;
+            background: transparent;
+        }
+
+        .agency_banner_btn {
+            font: 500 14px "Poppins", sans-serif;
+            color: #fff;
+            background: #5e2ced;
+            -webkit-box-shadow: 0px 20px 30px 0px rgba(12, 0, 46, 0.1);
+            box-shadow: 0px 20px 30px 0px rgba(12, 0, 46, 0.1);
+            border-radius: 3px;
+            padding: 16px 38px;
+            border: 1px solid #5e2ced;
+            -webkit-transition: all 0.2s linear;
+            -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+            cursor: pointer;
+        }
+
 
 
 
@@ -446,18 +481,17 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('BundleExterne/css/rating.css') }}" />
 
-    <div class="breadcrumb parallax" style=" background: linear-gradient(35deg, #1EAE98, #D8B5FF);">
+    <div class="breadcrumb parallax" style=  " background: #5e2ced;
+     background-position:  center center; background-repeat: no-repeat; background-size: cover;">
+
+
         <h1 style="color: #0b0b0b;
-        text-align:center;font-family:'Baskerville Old Face';font-weight:900;font-size:4em;color:#fff;text-shadow:0em 0.05em 0 rgba(0,0,0,0.25)}
-" class="control-label" >Ajouter Feedback Page
+            text-align:center;font-family:'Baskerville Old Face';font-weight:900;font-size:4em;color:#fff;text-shadow:0em 0.05em 0 rgba(0,0,0,0.25)}
+    " class="control-label" >Envoyer un Feedback
 
         </h1>
-        <ul>
-{#            <li><a href="index.html">Home</a></li>#}
-{#            <li><a href="contact.html">Contact Us</a></li>#}
-        </ul>
     </div>
-        <div class="container">
+    <div class="container">
 
         <center>
             <div class="zero-clipboard">
@@ -485,7 +519,7 @@
                         <span>Inserer L'image</span>
                         {{ form_widget(form.image,{'attr':{'type':'file','class':'uploadlogo'}}) }}</div></center>
                 <div class="form-group">
-                    <center><div> {{ form_widget(form.Ajouter,{'attr':{'type':'submit','class':'btn-hover color-7'}}) }}</div></center>
+                    <center><div> {{ form_widget(form.Ajouter,{'attr':{'type':'submit','class':'btn_three'}}) }}</div></center>
                 </div>
             </div>
 

@@ -169,34 +169,34 @@ class Depot
     /**
      * @return \DateTime
      */
-    public function getDatedebut()
-    {
-        return $this->datedebut;
-    }
-
-    /**
-     * @param \DateTime $datedebut
-     */
-    public function setDatedebut($datedebut)
-    {
-        $this->datedebut = $datedebut;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDatefin()
-    {
-        return $this->datefin;
-    }
-
-    /**
-     * @param \DateTime $datefin
-     */
-    public function setDatefin($datefin)
-    {
-        $this->datefin = $datefin;
-    }
+//    public function getDatedebut()
+//    {
+//        return $this->datedebut;
+//    }
+//
+//    /**
+//     * @param \DateTime $datedebut
+//     */
+//    public function setDatedebut($datedebut)
+//    {
+//        $this->datedebut = $datedebut;
+//    }
+//
+//    /**
+//     * @return \DateTime
+//     */
+//    public function getDatefin()
+//    {
+//        return $this->datefin;
+//    }
+//
+//    /**
+//     * @param \DateTime $datefin
+//     */
+//    public function setDatefin($datefin)
+//    {
+//        $this->datefin = $datefin;
+//    }
 
 
 

@@ -15,7 +15,7 @@ class SecurityController extends Controller
         // replace this example code with whatever you need
         $authChecker = $this->container->get('security.authorization_checker');
         if ($authChecker->isGranted('ROLE_ADMIN')) {
-            return $this->render('@App/Admin/AccuilAdmin.html.twig');
+            return $this->redirectToRoute('chart_index');
         } else {
             return $this->render('@App/Client/Accueil.html.twig');
 

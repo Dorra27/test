@@ -75,7 +75,7 @@ class VehiculeController extends Controller
             $em = $this->getDoctrine()->getManager();
             $Vehicule->UploadProfilePicture();
             $em->flush();
-         //   $this->addFlash('info', 'update avec succce !');
+            //   $this->addFlash('info', 'update avec succce !');
             return $this->redirectToRoute('vehicules_Admin_affiche');
 
         }
@@ -163,7 +163,7 @@ class VehiculeController extends Controller
         $user=$this->getUser()->getId();
         $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->find($matricule);
         $Vehiculeuser = $this->getDoctrine()->getRepository(VehiculeUser::class);
-       $d=$Vehiculeuser->getDateFinLocation($user);
+        $d=$Vehiculeuser->getDateFinLocation($user);
         return $this->render('@Vehicule/frontend/Mavehicule.html.twig',
             array('v'=>$Vehicule) );
     }

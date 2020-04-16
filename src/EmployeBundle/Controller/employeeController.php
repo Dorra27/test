@@ -53,7 +53,7 @@ class employeeController extends Controller
         $form = $this->createFormBuilder($employee)
             ->add('CIN', TextType::class,[
                 'attr' => [
-                    'placeholder' => 'Entrer Votre CV',
+                    'placeholder' => 'Entrer Votre cin',
 
                 ],
             ])
@@ -72,7 +72,7 @@ class employeeController extends Controller
             ->add('EMAIL', TextType::class,[
                 'attr' => [
                     'error_bubbling' => true,
-                    'placeholder' => 'Entrer Votre Eamil',
+                    'placeholder' => 'Entrer Votre Email',
 
                 ],
             ])
@@ -111,7 +111,6 @@ class employeeController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('employee_index');
-            echo 'ok';
         }
 
         return $this->render('@Employe/employee/new.html.twig', array(
@@ -148,7 +147,7 @@ class employeeController extends Controller
         $editForm = $this->createFormBuilder($employee)
             ->add('CIN', TextType::class,[
                 'attr' => [
-                    'placeholder' => 'Entrer Votre CV',
+                    'placeholder' => 'Entrer Votre CIN',
 
                 ],
             ])
@@ -188,9 +187,10 @@ class employeeController extends Controller
             ])
             ->add('MISSION',ChoiceType::class, [
                 'choices'  => [
-                    'Maybe' => null,
-                    'Yes' => true,
-                    'No' => false,
+                    'Livreur' => 'Livreur',
+                    'Techniciens' => 'Techniciens',
+                    'Ouvrier' => 'Ouvrier',
+                    'Ingénieur' => 'Ingénieur',
                 ],
             ])
 //            ->add('dueDate')
@@ -263,7 +263,7 @@ class employeeController extends Controller
     }
     /**
      *
-     * @Route("/chart", name="chary_index")
+     * @Route("/chart", name="chart_index")
      * @Method("GET")
      */
     public function chart() {
@@ -273,11 +273,11 @@ class employeeController extends Controller
 //        $builder = $this->get('gestion_entrepot.dql');
 
         $builder
-            ->query('SELECT COUNT(*) total, COUNT(MISSION) USERNAME, USERNAME FROM employe GROUP BY MISSION')
+            ->query('SELECT 100. * count(*) / sum(count(*)) over () total, MISSION, USERNAME  FROM employe GROUP BY MISSION')
             ->addDataset('total','Total',[
                 "backgroundColor" => RandomColorFactory::getRandomRGBAColors(6)
             ])
-            ->labels('USERNAME')
+            ->labels('MISSION')
 
         ;
 //
@@ -286,7 +286,7 @@ class employeeController extends Controller
 
 
         $builder_two
-            ->query('SELECT COUNT(*) total, COUNT(MISSION) MISSION, MISSION FROM employe GROUP BY MISSION')
+            ->query('SELECT 100. * count(*) / sum(count(*)) over () total,  MISSION, MISSION FROM employe GROUP BY MISSION')
             ->addDataset('total','Total',[
                 "backgroundColor" => RandomColorFactory::getRandomRGBAColors(6)
             ])
@@ -298,11 +298,11 @@ class employeeController extends Controller
 
         $builder_three = new Builder($connection);
         $builder_three
-            ->query('SELECT COUNT(*) total, COUNT(adresse) etat, etat FROM depot GROUP BY adresse')
+            ->query('SELECT 100. * count(*) / sum(count(*)) over () total, (etat) adresse, adresse FROM depot GROUP BY etat')
             ->addDataset('total','Total',[
                 "backgroundColor" => RandomColorFactory::getRandomRGBAColors(6)
             ])
-            ->labels('etat')
+            ->labels('adresse')
 
         ;
 //

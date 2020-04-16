@@ -123,7 +123,7 @@ class Vehicule
         return null===$this->photo ? null : $this->getUploadDir.'/' .$this->photo;
     }
     protected function getUploadRootDir(){
-        return __DIR__.'/../../../../../ProjetSymfony/test/web/'.$this->getUploadDir();
+        return __DIR__.'/../../../../test/web/'.$this->getUploadDir();
     }
     protected function getUploadDir(){
         return 'imgvehiculess';

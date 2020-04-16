@@ -18,6 +18,10 @@ delete_feedback:
     path:   /delete/{id}
     defaults: {_controller:ServiceApresVenteBundle:Feedback:deleteFeedback}
 
+envoyer_reclamation:
+    path:    /envoyerReclamation
+    defaults: {_controller: ServiceApresVenteBundle:Reclamation:envoyerReclamation}
+
 read_reclamation:
     path:     /readReclamation
     defaults: { _controller: ServiceApresVenteBundle:Reclamation:readReclamation }
@@ -98,6 +102,7 @@ detailed_rec:
 admin_dashboard:
     path:     /back
     defaults: { _controller: ServiceApresVenteBundle:Default:getNbrReclamationFeedback }
+
 
 
 #admin:

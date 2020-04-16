@@ -4,6 +4,7 @@ namespace ServiceApresVenteBundle\Controller;
 
 use AchatBundle\Entity\Commande;
 use AchatBundle\Entity\ProduitCommande;
+use http\Client\Curl\User;
 use ServiceApresVenteBundle\Entity\RecFeedCat;
 use ServiceApresVenteBundle\Entity\Reclamation;
 use ServiceApresVenteBundle\Form\FeedbackType;
@@ -25,9 +26,10 @@ class ReclamationController extends Controller
     //Reclamer produit commandé
 
     public function reclmaerProduitAction() {
+        $user=$this->getUser();
         $quan=$this->getDoctrine()->getRepository(Commande::class)->findAll();
         $reclamation = $this->getDoctrine()->getManager()->getRepository(Reclamation::class)->findAll();
-        return $this->render('@ServiceApresVente/ProduitCommande/ReadProduitCommande.html.twig',array('quantite'=>$quan,'reclamation'=>$reclamation));
+        return $this->render('@ServiceApresVente/ProduitCommande/ReadProduitCommande.html.twig',array('user'=>$user,'quantite'=>$quan,'reclamation'=>$reclamation));
 
     }
 
@@ -44,7 +46,9 @@ class ReclamationController extends Controller
             ->getRepository(Reclamation::class)
             ->confirmer($id);
         $em->flush();
-        return $this->redirectToRoute('admin_read_reclamation');
+//        return $this->redirectToRoute('admin_read_reclamation');
+        return $this->render('@ServiceApresVente/Admin/TraiterReclamation.html.twig',array('etat'=>$etat,'id'=>$id));
+
 
     }
 
@@ -52,11 +56,19 @@ class ReclamationController extends Controller
     //-----------------------Read Reclamations---------------------------------
     public function readReclamationAction()
     {
+
         $reclamations = $this->getDoctrine()->getManager()->getRepository(Reclamation::class)->findAll();
+        $user= $this->getUser()->getId();
+
+        $reclamationsetat = $this->getDoctrine()->getManager()->getRepository(Reclamation::class)  ->confirmer($user);
+
         $count = $this->getDoctrine()->getRepository(Reclamation::class)->calculerTotalReclamation();
 
         if ($count == 0)
             $this->addFlash('info', 'Vous n"avez aucun Réclamation envoyée :) !');
+        if($reclamationsetat==1)
+            $this->addFlash('info', 'Nous avons traiter votre réclamation vous avez satisifer si oui clicker sur button cloturé :) !');
+
 
 
         return $this->render('@ServiceApresVente/Reclamation/readReclamation.html.twig',
@@ -67,6 +79,12 @@ class ReclamationController extends Controller
     //-----------------------Create Reclamations---------------------------------
     public function createReclamationAction(Request $request, RecFeedCat $id)
     {
+        $currentUserName= $this->getUser()->getUsername();
+        $currentUserEmail= $this->getUser()->getEmail();
+        $idd=$request->get('id');
+        //$currentUserNaissance= $this->getUser()->getDateNaissance();
+        $currentUser= $this->getUser();
+
         $id = $this->getDoctrine()->getManager()->getRepository(RecFeedCat::class)->find($id);
         $reclamations = new Reclamation();
         $form = $this->createForm(ReclamationType::class, $reclamations);
@@ -85,17 +103,21 @@ class ReclamationController extends Controller
             $reclamations->setDate(new \DateTime('now'));
 
             $reclamations->setEtat(0);
-            $reclamations->setId(1);
             $em->persist($reclamations);
             $em->flush();
 
             $this->addFlash('info', 'Envoyer réclamation avec succés !');
 
 
-            return $this->redirectToRoute("read_reclamation");
+            return $this->redirectToRoute("envoyer_reclamation");
         }
 
-        return $this->render("@ServiceApresVente/Reclamation/createReclamation.html.twig", array("form" => $form->createView()));
+        return $this->render("@ServiceApresVente/Reclamation/createReclamation.html.twig", array(
+            "username"=>$currentUserName,
+            "email"=>$currentUserEmail,
+            "id"=>$idd,
+            "user"=>$currentUser,
+            "form" => $form->createView()));
     }
 
     //--------------------------------------------------------
@@ -150,9 +172,28 @@ class ReclamationController extends Controller
             'objet' => $f->getObjet(),
             'descripion' => $f->getDescription(),
             'categorie' => $f->getIdc(),
+
             'id' => $f->getIdRec()
         ));
     }
+
+
+    /*
+public function mainSearchAutocompleteAction()
+{
+    $request = $this->get('request');
+    if ($request->getMethod() == 'POST') {
+        $key = $request->request->get('searchText');
+        $annonces = $this->getDoctrine()->getRepository('AppBundle:Annonce')->findProductBySearchKey($key);
+        $annonceWithImage = array();
+        foreach((array)$annonces as $annonce){
+            $annonceWithImage[] = array('photo'=> (string)$annonce->getNormalProductImage(), 'titre' => $annonce->getName(), 'description' => $annonce->getRealPrice() );
+        }
+        return new JsonResponse($annonceWithImage);
+    }else{
+        return new JsonResponse(array('success' => false));
+    }
+}*/
 
     public function searchAction(Request $request)
     {
@@ -174,10 +215,45 @@ class ReclamationController extends Controller
     public function getRealEntities($entities){
 
         foreach ($entities as $entity){
-            $realEntities[$entity->getIdRec()] = [$entity->getImage(),$entity->getObjet(),$entity->getDate()];
+            $realEntities[$entity->getIdRec()] = [$entity->getImage(),$entity->getObjet()];
         }
 
         return $realEntities;
     }
+
+
+    public function envoyerReclamationAction() {
+        $user = $this->getUser()->getUsername();
+
+        return $this->render('@ServiceApresVente/Reclamation/SuccessReclamation.html.twig', array("user" => $user));
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

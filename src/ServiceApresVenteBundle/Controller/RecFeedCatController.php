@@ -120,7 +120,6 @@ class RecFeedCatController extends Controller
         'method' => 'PUT',
     ));
 
-    $form->add('submit', SubmitType::class, array('label' => 'Edit Categorie'));
 
     return $form;
 }

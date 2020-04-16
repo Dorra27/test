@@ -1962,7 +1962,7 @@ span.review-count, span.review-edit {
 }
 /* CSS for Footer-Top CMS start */
 .footer-top-cms {
-    background: rgba(0, 0, 0, 0) url("../image/news-Bg.jpg") no-repeat fixed center center;
+    background: rgba(0, 0, 0, 0)  no-repeat fixed center center;
 	color: #fff;
 	margin-top: 90px;
 	padding: 50px;
@@ -2166,7 +2166,7 @@ span.review-count, span.review-edit {
 	padding: 0 15px;
 }
 .content .blog-image img {
-	width: 100%;
+	width: 50%;
 	height: auto;
 }
 .content .blog-wrapper .owl-buttons > div {

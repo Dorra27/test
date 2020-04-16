@@ -3,7 +3,7 @@
 {% block content %}
     <div id="center">
     <div class="container">
-    <h2>Search A Post !!</h2>
+    <h2>Search A Produit !!</h2>
 
     <div class="sidebar-search">
 
@@ -39,7 +39,7 @@
                         searchRequest.abort();
                     searchRequest = $.ajax({
                         type: "GET",
-                        url: "{{ path('ajax_search') }}",
+                        url: "{{ path('ajax_search12') }}",
                         data: {
                             'q' : value
                         },

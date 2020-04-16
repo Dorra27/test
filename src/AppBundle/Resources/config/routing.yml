@@ -4,3 +4,6 @@ homepage:
 redirection:
     path:     /home
     defaults: { _controller: AppBundle:Security:redirect }
+redirection1:
+    path:     /home1
+    defaults: { _controller: comment-bundle:Thread:newThreads }

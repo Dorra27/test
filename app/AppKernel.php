@@ -5,8 +5,6 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 
-
-
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -33,8 +31,10 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Endroid\QrCode\Bundle\QrCodeBundle\EndroidQrCodeBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new FOS\CommentBundle\FOSCommentBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
+
+
+
 
         ];
 

@@ -1,6 +1,10 @@
-{%  extends 'backend/basee.html.twig' %}
+{%  extends 'backend/base.html.twig' %}
 
 {% block content %}
+<div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+        <div class="container-fluid">
     <!-- Start content -->
                 <div class="row">
                     <div class="col-12">
@@ -51,6 +55,9 @@
                         {{ knp_pagination_render(v) }}
                     </div>
                 </div> <!-- end row -->
+        </div>
+    </div>
+</div>
 
         <footer class="footer text-right">
             2016 - 2018 © Adminto. Coderthemes.com

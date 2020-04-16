@@ -1,6 +1,9 @@
-{%  extends 'backend/basee.html.twig' %}
+{%  extends 'backend/base.html.twig' %}
 {% block content %}
-
+    <div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+    <div class="container-fluid">
    <div class="bg-picture card-box">
         <div class="profile-info-name">
             <img src="{{ asset('imgvehiculess/'~v.photo ) }}" class="img-thumbnail" alt="profile-image">
@@ -56,4 +59,8 @@
         </div>
     </div>
 
+   </div>
+    </div>
+    </div>
+    </div>
 {% endblock %}

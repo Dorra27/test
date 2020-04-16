@@ -1,9 +1,6 @@
 ajouter:
     path:     /ajouter/{id}
     defaults: { _controller: VenteBundle:Produit:Ajouter }
-notif:
-    path:     /noti
-    defaults: { _controller: VenteBundle:Default:controllerFunction }
 affiche:
     path:     /afficher
     defaults: { _controller: VenteBundle:Produit:afficher1 }
@@ -40,9 +37,12 @@ supprimercat:
 modifiercat:
     path:     /modifier/{id}
     defaults: { _controller: VenteBundle:Categorie:mod}
-ajax_search:
+ajax_search12:
     path:     /rechercher
     defaults: { _controller: VenteBundle:Produit:search}
+ajax_search1:
+    path:     /commm
+    defaults: { _controller: VenteBundle:Produit:newThreads}
 showByP:
     path:     /showByP
     defaults: { _controller: VenteBundle:Produit:showByP }

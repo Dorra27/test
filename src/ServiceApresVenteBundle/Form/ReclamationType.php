@@ -26,7 +26,7 @@ class ReclamationType extends AbstractType
             //  ->add('id')
             ->add('image', FileType::class, array('data_class' => null,'required' => false))
             //->add('idCat');
-            ->add('Ajouter',SubmitType::class);
+            ->add('Valider',SubmitType::class);
 
     }/**
  * {@inheritdoc}

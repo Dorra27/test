@@ -140,21 +140,128 @@
             line-height: 1.5;
             margin-bottom: 1.25rem;
         }
+        .breadcrumb_area {
+            background-image: -moz-linear-gradient(180deg, #5e2ced 0%, #a485fd 100%);
+            background-image: -webkit-linear-gradient(180deg, #5e2ced 0%, #a485fd 100%);
+            background-image: -ms-linear-gradient(180deg, #5e2ced 0%, #a485fd 100%);
+            position: relative;
+            z-index: 1;
+            padding: 235px 0px 125px;
+            overflow: hidden;
+        }
+
+        .breadcrumb_area .breadcrumb_shap {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+        }
+
+        /*================= End breadcrumb_area css =================*/
+        /*================= Start breadcrumb_area_two css =================*/
+        .breadcrumb_area_two {
+            background: #f8f6fe;
+            position: relative;
+            padding: 235px 0px 125px;
+            z-index: 1;
+        }
+
+        .breadcrumb_area_two .breadcrumb_shap {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+        }
+
+        .breadcrumb_area_two .bubble li {
+            background: #5e2ced;
+            opacity: 0.1;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .breadcrumb_area_two .bubble li:nth-child(1) {
+            left: 220px;
+            bottom: 50px;
+            -webkit-animation: spin3 2s infinite alternate;
+            animation: spin3 2s infinite alternate;
+        }
+
+        .breadcrumb_area_two .bubble li:nth-child(2) {
+            left: 35%;
+            top: 100px;
+            -webkit-animation: spin 2s infinite alternate;
+            animation: spin 2s infinite alternate;
+        }
+
+        .breadcrumb_area_two .bubble li:nth-child(3) {
+            left: 40%;
+            width: 51px;
+            height: 51px;
+            bottom: 50px;
+            -webkit-animation: spin1 3s infinite alternate;
+            animation: spin1 3s infinite alternate;
+        }
+
+        .breadcrumb_area_two .bubble li:nth-child(4) {
+            left: 42%;
+            bottom: 50px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .breadcrumb_area_two .bubble li:nth-child(5) {
+            left: 76%;
+            width: 51px;
+            height: 51px;
+            top: 160px;
+            -webkit-animation: spin1 3s infinite alternate;
+            animation: spin1 3s infinite alternate;
+        }
+
+        .breadcrumb_area_two .bubble li:nth-child(6) {
+            left: 75%;
+            width: 30px;
+            height: 30px;
+            top: 186px;
+        }
+
+        .breadcrumb_area_two .bubble li:nth-child(7) {
+            left: 52%;
+            top: 150px;
+            width: 20px;
+            height: 20px;
+            -webkit-animation: spin2 2s infinite alternate;
+            animation: spin2 2s infinite alternate;
+        }
+
+        .breadcrumb_area_two .bubble li:nth-child(8) {
+            left: 90%;
+            top: 250px;
+            width: 20px;
+            height: 20px;
+            -webkit-animation: spin2 2s infinite alternate;
+            animation: spin2 2s infinite alternate;
+        }
 
 
     </style>
 
-    <div class="breadcrumb parallax" style=" background: linear-gradient(35deg, #1EAE98, #D8B5FF);">
+    <div class="breadcrumb parallax" style=  " background: #5e2ced;
+     background-position:  center center; background-repeat: no-repeat; background-size: cover;">
+
         <h1 style="color: #0b0b0b;
             text-align:center;font-family:'Baskerville Old Face';font-weight:900;font-size:4em;color:#fff;text-shadow:0em 0.05em 0 rgba(0,0,0,0.25)}
     " class="control-label" >Les catégories de {{ type }}
 
         </h1>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-    </div>s
+
+    </div>
     <div class="container">
 
         <div class="zero-clipboard">
@@ -184,9 +291,10 @@
                                                             </div>
                                                             <div class="card__content">
                                                                 <center><div class="card__title"> {{ categories.nom }}
-                                                                </div></center>
-{#                                                                <p class="card__text">This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1 auto. </p>#}
-                                                                <button class="btn btn--block card__btn" style="color: #000;border-color: #0da357;">
+                                                                    </div></center>
+                                                                {#                                                                <p class="card__text">This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1 auto. </p>#}
+                                                                <button class="btn btn--block card__btn" class="breadcrumb_area">
+
                                                                     <a href="{{ path('add_feedback', {'id_cat':categories.idCat}) }}">
                                                                         Aller au {{ type }}</a>
                                                                 </button>
