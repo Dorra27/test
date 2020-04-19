@@ -24,7 +24,9 @@ class MaintenaceVehiculeType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('cout')
             //->add('vehicule')
-        ->add('valider', SubmitType::class);
+        ->add('valider', SubmitType::class,
+                ['attr'=>['formnovalidate'=>'formnovalidate']]
+            );
     }/**
      * {@inheritdoc}
      */

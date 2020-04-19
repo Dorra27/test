@@ -40,3 +40,6 @@ Vehicules_Client_mesVehicule:
 Vehicules_Client_maVehicule:
     path:   /MaVehicule/{matricule}
     defaults: {_controller: VehiculeBundle:Vehicule:maVehicule}
+Contacter_nous_mail:
+    path:   /contacter
+    defaults: {_controller: VehiculeBundle:Default:index}

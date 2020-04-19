@@ -35,8 +35,9 @@
         <div class="container">
             <div class="header-inner">
                 <div class="col-sm-3 col-xs-3 header-left">
+
                     <div id="logo"> <a href="index.html"><img src="{{ asset('image/s4s.png') }}" title="Stock For Speed" alt="Stock For Speed" class="img-responsive" width=50px height=50px /></a> </div>
-                        <label >Stock For Speed</label>
+                    <label >Stock For Speed</label>
                 </div>
                 <div class="col-sm-9 col-xs-9 header-right">
                     <nav id="menu" class="navbar">
@@ -47,33 +48,31 @@
                             <div class="navbar-collapse pull-left">
                                 <ul class="main-navigation">
                                     <li><a href="index.html"   class="parent"  >Accuiel</a> </li>
-                                   {# <li><a href="category.html"   class="parent"  >Auto</a> </li>#}
+                                    {# <li><a href="category.html"   class="parent"  >Auto</a> </li>#}
                                     <li><a href="#" class="active parent">Nos services</a>
                                         <ul>
-                                            <li><a href="category.html">Service depots</a></li>
-                                            <li><a href="cart.html">Vendre produit</a></li>
+                                            <li><a href="#">Service depots</a></li>
+                                            <li><a href="{{ path('affichercateAdm') }}">Vendre produit</a></li>
                                             <li><a href="single-blog.html" >Acheter produit</a></li>
-<
 
                                             <li><a href="{{ path('livraison_afficher')}}">Service livraison</a></li>
-                                            <li><a href="" >Reserver véhicules</a></li>
+                                            <li><a href="{{ path('vehicules_Client_affiche') }}" >Reserver véhicules</a></li>
 
-                                            <li><a href="register.html">Service aprés vente</a></li>
-
+                                            <li><a href="{{ path('service_apres_vente_homepage') }}">Service aprés vente</a></li>
                                             {#  <li><a href="contact.html">Contact Page</a></li>
                                             <li><a href="affiliate.html">Affiliate</a></li>
                                             <li><a href="forgetpassword.html">Forget Password</a></li>#}
                                         </ul>
                                     </li>
-                                  {#  <li><a href="blog.html" class="parent"  >Blog</a></li>#}
+                                    {#  <li><a href="blog.html" class="parent"  >Blog</a></li>#}
                                     <li><a href="about-us.html" >Mon compte</a>
                                         <ul>
-                                            <li><a href="category.html">Mes depots</a></li>
-
+                                            <li><a href="">Mes depots</a></li>
                                             <li><a href="{{ path('Vehicules_Client_mesVehicule')}}">Mes véhicules</a></li>
-
-                                            
-
+                                            <li><a href="{{ path('affiche')}}">Mes Produit</a></li>
+                                            <li><a href="{{ path('read_reclamation')}}">Historique Réclamation</a></li>
+                                            <li><a href="{{ path('read_feedback')}}">Historique Feedback</a></li>
+                                            <li><a href="{{ path('fos_user_security_logout')}}">Deconnexion</a></li>
                                         </ul>
                                     </li>
 
@@ -164,7 +163,6 @@
 
 {% block content %}
 {% endblock %}
-
 {% block footer %}
     <div class="footer-top-cms">
         <div class="row">

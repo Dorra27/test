@@ -1,5 +1,10 @@
-{%  extends 'backend/basee.html.twig' %}
+{%  extends 'backend/base.html.twig' %}
+
 {% block content %}
+    <div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+    <div class="container-fluid">
 
    <div class="bg-picture card-box">
         <div class="profile-info-name">
@@ -10,22 +15,29 @@
                 <p class="text-muted m-b-20"><i>{{ v.matricule }}</i></p>
 
 <div class="horizontal" >
-                <div>         Vehicule de type {{ v.type }}  </div>
+                <div>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <i class="mdi mdi-van-utility"></i>  {{ v.type }}
+                    </div>
+                     </div>
 
-              <div> <svg class="bi bi-info-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
-                      <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
-                      <circle cx="8" cy="4.5" r="1"/>
-                  </svg>avec une puissance de {{ v.puissance }}</div>
+              <div>
+                  <div class="col-sm-6 col-md-4 col-lg-3">
+                      <i class="mdi mdi-speedometer"></i>   {{ v.puissance }}</div>
+                  </div>
+
                    <div class="">
-                       <svg class="bi bi-person-plus-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                           <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 100-6 3 3 0 000 6zm7.5-3a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13V5.5a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
-                           <path fill-rule="evenodd" d="M13 7.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z" clip-rule="evenodd"/>
-                       </svg> {{ v.nbPlace }} Places,
+                       <div class="col-sm-6 col-md-4 col-lg-3">
+                           <i class="mdi mdi-account-multiple-plus"></i> {{ v.nbPlace }} Portes
+                       </div>
+
                    </div>
 
     <div>
-        Kilometrage parcoru {{ v.kilometrage }}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <i class="mdi mdi-shuffle-variant"></i>  {{ v.kilometrage }} Km parcoru(s)
+        </div>
+
     </div>
 </div>
            <a href="{{ path('vehicules_Admin_update',{'matricule':v.matricule}) }}">
@@ -34,15 +46,41 @@
                         <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 00-.708 0l-2 2a.5.5 0 10.708.708L2.5 8.207l1.646 1.647a.5.5 0 00.708-.708l-2-2zm13-1a.5.5 0 00-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 00-.708.708l2 2a.5.5 0 00.708 0l2-2a.5.5 0 000-.708z" clip-rule="evenodd"/>
                         <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 00-4.192 2.273.5.5 0 01-.837-.546A6 6 0 0114 8a.5.5 0 01-1.001 0 5 5 0 00-5-5zM2.5 7.5A.5.5 0 013 8a5 5 0 009.192 2.727.5.5 0 11.837.546A6 6 0 012 8a.5.5 0 01.501-.5z" clip-rule="evenodd"/>
                     </svg>
+
               </button>
            </a>
-                <a href="{{ path('vehicules_Admin_delete',{'matricule':v.matricule}) }}">
                 <button type="button" class="btn btn-danger">
-                    <svg class="bi bi-trash-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1 1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z" clip-rule="evenodd"/>
-                    </svg>
-                    </button>
-                </a>
+            {#                <a href="{{ path('vehicules_Admin_delete',{'matricule':v.matricule}) }}">#}
+        <i class="fa fa-trash" style="font-size: 20px; color: white; "data-toggle="modal" data-target="#deleteModal{{ v.matricule }}">
+                    </i>
+                </button>
+     <div id="deleteModal{{ v.matricule }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Alèrte !</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <h4>Vous etes en train de supprimer cette vehicule deffinitivement</h4>
+                                    <hr>
+                                    <p>Voullez vous confirmer la suppression?</p>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">non</button>
+                                    <a href="{{ path('vehicules_Admin_delete',{'matricule':v.matricule}) }}" data-toggle="myModal" class="btn btn-danger waves-effect waves-light"  id="lien" >oui</a>
+
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+
+
+
+
                 <a href="{{ path('vehicules_Admin_maintenir',{'matricule':v.matricule}) }}">
                     <button type="button" class="btn btn-primary">
                     <svg class="bi bi-tools" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -56,4 +94,7 @@
         </div>
     </div>
 
+   </div>
+    </div>
+    </div>
 {% endblock %}

@@ -82,7 +82,6 @@ class RecFeedCatController extends Controller
         return $this->render("@ServiceApresVente/Admin/createCategorie.html.twig", array("form" => $form->createView() ,"entity"=>$entity));
     }
 
-
     public function readCategorieAction() {
         $categories=$this->getDoctrine()->getManager()->getRepository(RecFeedCat::class)->findAll();
         return $this->render("@ServiceApresVente/Admin/readCategorie.html.twig",array("categories"=>$categories));

@@ -60,8 +60,7 @@
                                 <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev">prev</div><div class="owl-next">next</div></div></div></div>
                         </div>
                     </div>
-                    {{ form_start(f) }}
-                    {{ form_widget(f.etat) }}
+
                     <div class="col-sm-7 prodetail">
                         <h1 class="productpage-title" name="matricule">{{ v.marque | upper }} </h1>
                         <ul class="list-unstyled productinfo-details-top">
@@ -98,14 +97,17 @@
                                         <label>DÉBUT DE LOCATION</label>
                                        {# <input id="dated" class="datepicker form-control" type="date">#}
                                         {{ form_widget(cf.dateDebut,{'attr':{'type':'date','class':'datepicker form-control' }} ) }}
-
+                                        <div class="form-error"style="color:Red;">
+                                            {{ form_errors(cf.dateDebut,{'attr': {class:'form-control'}}) }}
+                                        </div>
                                     </div>
                                     <div class="Color col-md-6">
                                         <label>FIN DE LOCATION</label>
                                        {# <input id="datef" class="datepicker form-control" type="date">#}
                                     {{ form_widget(cf.dateFin ,{'attr':{'type':'date','class':'datepicker form-control' }} ) }}
-
-
+                                        <div class="form-error"style="color:Red;">
+                                            {{ form_errors(cf.dateFin,{'attr': {class:'form-control'}}) }}
+                                        </div>
                                     </div>
                                 </div>
 
@@ -125,10 +127,9 @@
 
                             </ul>
                         </div>
-                        </form>
+
                     </div>
                     {{ form_end(cf) }}
-                    {{ form_end(f) }}
                 </div>
                 <div class="productinfo-tab">
                     <ul class="nav nav-tabs">
@@ -147,7 +148,6 @@
                             </div>
                             <!-- cpt_container_end --></div>
                         <div class="tab-pane" id="tab-review">
-                            <form class="form-horizontal">
                                 <div id="review"></div>
                                 <h2>Write a review</h2>
                                 <div class="form-group required">

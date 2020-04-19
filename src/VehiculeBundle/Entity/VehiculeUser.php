@@ -39,19 +39,17 @@ class VehiculeUser
 
 
     /**
+     *
      *  @Assert\Date
      * @Assert\GreaterThanOrEqual("today")
-     * @var \DateTime
-     *
+     *  @Assert\NotBlank(message="Veuillez svp remplir la date debut location")
      * @ORM\Column(name="date_debut", type="date", nullable=true)
      */
     private $dateDebut;
 
     /**
      *  @Assert\Date
-     * @Assert\GreaterThanOrEqual(propertyPath="dateDebut", message="date fin doit etre > a date debut")
-     * @var \DateTime
-     *
+     * @Assert\GreaterThanOrEqual(propertyPath="dateDebut", message="Veuillez verifiez vos dates")
      * @ORM\Column(name="date_fin", type="date", nullable=true)
      */
     private $dateFin;

@@ -3,7 +3,7 @@
 namespace VehiculeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * MaintenaceVehicule
  *
@@ -23,28 +23,33 @@ class MaintenaceVehicule
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Le Champs matricule est obligatoire")
+     * @Assert\Length(min=5,max=50)
      * @ORM\Column(name="nature", type="string", length=255, nullable=true)
      */
     private $nature;
 
     /**
      * @var \DateTime
-     *
+     *  @Assert\Date
+     * @Assert\GreaterThanOrEqual("today")
+     *  @Assert\NotBlank(message="Veuillez svp remplir la date de l'entretien")
      * @ORM\Column(name="date", type="date", nullable=true)
      */
     private $date;
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank(message="Le Champs description est obligatoire")
+     * @Assert\Length(min=5,max=50)
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
     private $description;
 
     /**
      * @var integer
-     *
+   * @Assert\NotBlank(message="Veuiller tapez le cout")
+     * @Assert\Length(min=2,max=50)
      * @ORM\Column(name="cout", type="integer", nullable=true)
      */
     private $cout;

@@ -56,7 +56,7 @@ class VehiculeController extends Controller
             $Vehicule->UploadProfilePicture();
             $em->persist($Vehicule);
             $em->flush();
-            $this->addFlash('success', 'something went <a href="/" class="alert-link">well!</a>');
+            $this->addFlash('info', 'Ajout avec succés !');
             return $this->redirectToRoute('vehicules_Admin_affiche');
 
         }
@@ -71,11 +71,11 @@ class VehiculeController extends Controller
         $Vehicule = $em->getRepository(Vehicule::class)->find($matricule);
         $form = $this->createForm(VehiculeType::class, $Vehicule);
         $form = $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() and $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $Vehicule->UploadProfilePicture();
             $em->flush();
-         //   $this->addFlash('info', 'update avec succce !');
+           $this->addFlash('info', 'update avec succce !');
             return $this->redirectToRoute('vehicules_Admin_affiche');
 
         }
@@ -90,7 +90,7 @@ class VehiculeController extends Controller
         $Vehicule = $em->getRepository(Vehicule::class)->find($matricule);
         $em->remove($Vehicule);
         $em->flush();
-
+        $this->addFlash('info', 'Suppression avec succées !');
         return $this->redirectToRoute("vehicules_Admin_affiche");
     }
 
@@ -121,25 +121,27 @@ class VehiculeController extends Controller
     public function afficheCAction(Request $request, $matricule)
     {    $em = $this->getDoctrine()->getManager();
         $Vehicule = $em->getRepository(Vehicule::class)->find($matricule);
-        $form = $this->createForm(updateType::class, $Vehicule);
-        $form = $form->handleRequest($request);
+     //  $form = $this->createForm(updateType::class, $Vehicule);
+      // $form = $form->handleRequest($request);
 
         $VehiculeUser= new VehiculeUser();
         $contrat_form = $this->createForm(VehiculeUserType::class, $VehiculeUser);
         $contrat_form = $contrat_form->handleRequest($request);
 
-        if ($form->isSubmitted() ) {
-            $user=$this->getUser()->getId();
-            $userr=$this->getUser();
+        if ($contrat_form->isSubmitted() and $contrat_form->isValid() ) {
+        //    $user=$this->getUser()->getId();
+
             $em = $this->getDoctrine()->getManager();
+            $Vehicule->setEtat('indisponible');
 
-
+            $userr=$this->getUser();
 
             $Vehicule->setUser($userr);
             $VehiculeUser->setIdUser($userr);
             $VehiculeUser->setMatricule($matricule);
 
             $em->persist($VehiculeUser);
+            $this->addFlash('warning', 'Vous avez passer une demande de location veuillez svp consulter votre mail pour la confirmé');
             $em->flush();
             return $this->redirectToRoute('vehicules_Client_affiche');
 
@@ -147,7 +149,7 @@ class VehiculeController extends Controller
         $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->find($matricule);
 
         return ($this->render("@Vehicule/frontend/location.html.twig",
-            array('v' => $Vehicule, 'f' => $form->createView(), 'cf' => $contrat_form->createView()  ) ));
+            array('v' => $Vehicule, 'cf' => $contrat_form->createView()  ) ));
     }
 
     // Mes vehicules

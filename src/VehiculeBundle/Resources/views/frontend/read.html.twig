@@ -173,7 +173,11 @@
 
                 <br>
 
-
+                {%  for message in app.flashes('warning') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
                 {% for i in v  %}
                     <hr align="center" width="50%" color="midnightblue" size="3">
 

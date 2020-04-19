@@ -25,24 +25,24 @@ class Vehicule
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=false)
      */
     public $photo;
     /**
+     * @Assert\NotBlank(message="vous devez ajouter une photo")
      *@Assert\File(maxSize="500K")
      */
     public $file;
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message=" Veuillez choisissez un type ")
      * @ORM\Column(name="type", type="string", length=50, nullable=true)
      */
     private $type;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message=" Veuillez choisissez une puissance")
      * @ORM\Column(name="puissance", type="string", length=50, nullable=true)
      */
     private $puissance;
@@ -56,21 +56,21 @@ class Vehicule
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message=" champs obligatoire")
      * @ORM\Column(name="marque", type="string", length=50, nullable=true)
      */
     private $marque;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message=" champs obligatoire")
      * @ORM\Column(name="kilometrage", type="string", length=50, nullable=true)
      */
     private $kilometrage;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message=" champs obligatoire")
      * @ORM\Column(name="nbPlace", type="string", length=11, nullable=true)
      */
     private $nbplace;
@@ -84,7 +84,7 @@ class Vehicule
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message=" champs obligatoire")
      * @ORM\Column(name="prix", type="string", length=255, nullable=false)
      */
     private $prix;

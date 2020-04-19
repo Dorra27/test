@@ -1,14 +1,17 @@
-{%  extends 'backend/basee.html.twig' %}
+{%  extends 'backend/base.html.twig' %}
 
 {% block content %}
+<div class="content-page">
     <!-- Start content -->
+    <div class="content">
+        <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box table-responsive">
                             <h4 class="m-t-0 header-title">Toutes les vehicules en stock</h4>
                             <table id="selection-datatable" class="table table-bordered">
                                 <thead>
-                                <tr>
+                                <tr class="table-active">
                                     <th> Numéro d'immatriculation</th>
                                     <th>Type</th>
                                     <th>Marque</th>
@@ -51,7 +54,9 @@
                         {{ knp_pagination_render(v) }}
                     </div>
                 </div> <!-- end row -->
-
+        </div>
+    </div>
+</div>
         <footer class="footer text-right">
             2016 - 2018 © Adminto. Coderthemes.com
         </footer>
