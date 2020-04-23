@@ -9,6 +9,7 @@ use VehiculeBundle\Entity\MaintenaceVehicule;
 use VehiculeBundle\Entity\Vehicule;
 use VehiculeBundle\Entity\VehiculeUser;
 use VehiculeBundle\Form\updateType;
+use VehiculeBundle\Form\VehiculeRechercheType;
 use VehiculeBundle\Form\VehiculeType;
 use Symfony\Component\HttpFoundation\Request;
 use VehiculeBundle\Form\VehiculeUserType;
@@ -23,7 +24,29 @@ class VehiculeController extends Controller
 
     // Admin
     public function afficheAction(Request $request)
-    {
+
+    {   $vehicule = new Vehicule();
+        $form = $this->createForm(VehiculeRechercheType::class, $vehicule);
+        $form = $form->handleRequest($request);
+        if ($form->isSubmitted() ) {
+            $vehicule = $this->getDoctrine()->getRepository(Vehicule::class)
+                ->findBy(array('matricule' => $vehicule->getMatricule())
+
+                );
+            /**
+             * @var  $paginator \Knp\Component\Pager\Paginator
+             */
+            $paginator = $this->get('knp_paginator');
+            $result= $paginator->paginate(
+                $vehicule,
+                $request->query->getInt('page',1),
+                $request->query->getInt('limit',5 )
+
+            );
+            }
+
+        else{
+
         $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->findAll();
         /**
          * @var  $paginator \Knp\Component\Pager\Paginator
@@ -35,7 +58,10 @@ class VehiculeController extends Controller
             $request->query->getInt('limit',5 )
 
         );
-        return $this->render('@Vehicule/backend/AffichageVehicule.html.twig', array('v' => $result));
+        }
+        return $this->render('@Vehicule/backend/AffichageVehicule.html.twig', array('v' => $result,
+            'f'=>$form->createView()
+            ));
     }
 
     // affichage d'une vehicule par son matricule pour l'admin

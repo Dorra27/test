@@ -18,9 +18,23 @@
                 </p>
 
                 <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                    <div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="datatable_length">
-                            </div></div><div class="col-sm-12 col-md-6"><div id="datatable_filter" class="dataTables_filter">
-                                <label>Tapez la matricule:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable"></label></div></div></div><div class="row"><div class="col-sm-12">
+                    {{ form_start(f) }}
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6"><div class="dataTables_length" id="datatable_length">
+                            </div></div>
+                        <div class="col-sm-12 col-md-6"><div id="datatable_filter" class="dataTables_filter">
+
+
+
+                                <label>Tapez la nature de l'entretien à rechercher:
+
+{#                                    <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable">#}
+                                    {{ form_widget(f.nature,{'attr':{'type':'text','class':'form-control form-control-sm','placeholder':'','aria-controls':'datatable'}}) }}
+                                </label>
+                            </div></div>
+                    {{ form_end(f) }}
+                    </div>
+                    <div class="row"><div class="col-sm-12">
                             <table id="datatable" class="table table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
                                 <thead class="thead-dark">
 
@@ -30,7 +44,7 @@
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 102px;">Montant en dt</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 100px;">Date de l'entretien</th>
                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 93px;">Plus de details</th>
-{#              <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 79px;">Salary</th></tr>#}                                </thead>
+{#    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 79px;">Salary</th></tr>#}                                </thead>
 
 
                                 <tbody>
