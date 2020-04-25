@@ -1,3 +1,23 @@
 achat_homepage:
-    path:     /achat
+    path:     /vitrine
     defaults: { _controller: AchatBundle:Default:index }
+
+vitrine_read_produit:
+    path:     /catalogue
+    defaults: { _controller: AchatBundle:Vitrine:readProduit }
+
+cart_add:
+    path:    /panier/add/{id}
+    defaults: {_controller: AchatBundle:Cart:createCart}
+
+cart_remove:
+    path:    /panier/remove/{id}
+    defaults: {_controller: AchatBundle:Cart:removeCart}
+
+index:
+    path:     /panier
+    defaults: { _controller: AchatBundle:Cart:index }
+
+detail_produit:
+    path:     /detaillProduit/{id}
+    defaults: { _controller: AchatBundle:Vitrine:showdetailed }

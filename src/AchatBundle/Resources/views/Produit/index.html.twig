@@ -1,0 +1,237 @@
+
+{% extends 'frontend/base.html.twig' %}
+
+{% block content %}
+
+
+    <div class="breadcrumb parallax">
+        <h1>Shopping Panier</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div id="column-left" class="col-sm-3 hidden-xs column-left">
+                <div class="Categories left-sidebar-widget">
+                    <div class="columnblock-title">Top Categories</div>
+                    <div class="category_block">
+                        <ul class="box-category treeview-list treeview collapsable">
+                            <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="#" class="activSub">Desktops</a>
+                                <ul class="collapsable" style="display: none;">
+                                    <li><a href="#">PC</a></li>
+                                    <li class="last"><a href="#">MAC</a></li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="#" class="activSub">Laptops &amp; Notebooks</a>
+                                <ul class="collapsable" style="display: none;">
+                                    <li><a href="#">Macs</a></li>
+                                    <li class="last"><a href="#">Windows</a></li>
+                                </ul>
+
+                            </li>
+                            <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="#" class="activSub">Components</a>
+                                <ul class="collapsable" style="display: none;">
+                                    <li><a href="#">Mice and Trackballs</a></li>
+                                    <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="#" class="activSub">Monitors</a>
+                                        <ul class="collapsable" style="display: none;">
+                                            <li><a href="#">test 1</a></li>
+                                            <li class="last"><a href="#">test 2</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="last"><a href="#">Windows</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Tablets</a></li>
+                            <li><a href="#">Software</a></li>
+                            <li><a href="#">Phones &amp; PDAs</a></li>
+                            <li><a href="#">Cameras</a></li>
+                            <li class="last"><a href="#">MP3 Players</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="special left-sidebar-widget">
+                    <div class="columnblock-title">Special Product</div>
+                    <ul class="row ">
+                        <li class="product-layout">
+                            <div class="product-list col-xs-4">
+                                <div class="product-thumb">
+                                    <div class="image product-imageblock"> <a href="product.html">
+                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="image/product/Pro-01.jpg">
+                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="image/product/Pro-01-1.jpg">
+                                        </a> </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="caption product-detail">
+                                    <h4 class="product-name"><a title="Casual Shirt With Ruffle Hem" href="#">Casual Shirt With Ruffle Hem</a></h4>
+                                    <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-old">$272.00</span> </p>
+                                    <div class="addto-cart"><a href="#">Add to Cart</a></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="product-layout">
+                            <div class="product-list col-xs-4">
+                                <div class="product-thumb">
+                                    <div class="image product-imageblock"> <a href="product.html">
+                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="image/product/Pro-03.jpg">
+                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="image/product/Pro-03-1.jpg">
+                                        </a> </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="caption product-detail">
+                                    <h4 class="product-name"><a title="Casual Shirt With Ruffle Hem" href="#">Casual Shirt With Ruffle Hem</a></h4>
+                                    <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-old">$272.00</span> </p>
+                                    <div class="addto-cart"><a href="#">Add to Cart</a></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="product-layout">
+                            <div class="product-list col-xs-4">
+                                <div class="product-thumb">
+                                    <div class="image product-imageblock"> <a href="product.html">
+                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="image/product/Pro-05.jpg">
+                                            <img class="img-responsive" title="iPod Classic" alt="iPod Classic" src="image/product/Pro-05-1.jpg">
+                                        </a> </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="caption product-detail">
+                                    <h4 class="product-name"><a title="Casual Shirt With Ruffle Hem" href="#">Casual Shirt With Ruffle Hem</a></h4>
+                                    <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-old">$272.00</span> </p>
+                                    <div class="addto-cart"><a href="#">Add to Cart</a></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-9" id="content">
+                <form enctype="multipart/form-data" method="post" action="#">
+                    <div class="table-responsive">
+                        {% if items | length >0 %}
+
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <td class="text-center">Image</td>
+                                    <td class="text-left">Produit</td>
+                                    <td class="text-left">Prix</td>
+                                    <td class="text-left">Quantite</td>
+                                    <td class="text-right">Total</td>
+                                    <td class="text-right">Action</td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {%  for item in items %}
+                                    <tr>
+                                        <td class="text-center"><a href="product.html">
+
+                                                <img class="img-thumbnail" style="width: 50px;height: 55px;"  src="{{ asset('uploadsProduit/produit_image/' ~ item.produit.photo) }}"   />
+
+                                        <td class="text-left"><a href="product.html">{{ item.produit.libelle }}</a></td>
+                                        <td class="text-left">{{item.produit.prix }}</td>
+                                        <td class="product-quantity text-center">
+                                            <div class="quantity">
+                                                <input type="number" step="1" min="0" name="_qunatity"  value="{{ item.quantite }}" title="Qty" class="input-text qty text" size="4"/>
+                                            </div>
+                                        </td>
+
+
+
+                    </div>
+                                        </td>
+                                        {#                <td>{{ item.produit.prix * item.quantite }}</td>#}
+                                        <td class="text-right">{{    item.quantite  *item.produit.prix}}</td>
+                                        <td>
+                                            <a href="{{ path('cart_remove',{'id':item.produit.id}) }}">
+                                                <i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="4" class="text-right">Total :</td>
+                                    <td>{{ total }}</td>
+                                    <td></td>
+                                </tr>
+
+                                </tfoot>
+                            </table>
+                        {% else %}
+                            <h1>
+                                Votre panier est vide :(
+                            </h1>
+                        {% endif %}
+                    </div>
+                </form>
+
+                <div class="buttons">
+                    <div class="pull-left"><a class="btn btn-default" href="index.html">Finaliser votre commande</a></div>
+                    <div class="pull-right"><a class="btn btn-primary" href="checkout.html">Checkout</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {#<h1>Votre panier</h1>#}
+
+    {#{% if items |length >0 %}#}
+    {#    <table class="table">#}
+    {#        <thead>#}
+    {#        <tr>#}
+    {#            <th>Produit</th>#}
+    {#            <th>Prix</th>#}
+    {#            <th>Quantite</th>#}
+    {#            <th>Total</th>#}
+    {#            <th></th>#}
+    {#        </tr>#}
+    {#        <tbody>#}
+    {#            {% for item in items %}#}
+    {#            <tr>#}
+    {#                <td>{{ item.produit.libelle  }}</td>#}
+    {#                <td>{{ item.produit.prix }}</td>#}
+    {#                <td>{{ item.quantite }}</td>#}
+    {#                <td>{{ item.produit.prix * item.quantite }}</td>#}
+    {#                <td>#}
+    {#                    <a href="#" class="btn btn-danger btn-sm">#}
+    {#                        <i class="fa fa-trash"></i>#}
+    {#                    </a>#}
+    {#                </td>#}
+    {#            </tr>#}
+    {#        {% endfor %}#}
+    {#        </tbody>#}
+    {#        <tfoot>#}
+    {#        <tr>#}
+    {#            <td colspan="3" class="text-right">Total :</td>#}
+    {#            <td>{{ total }}</td>#}
+    {#            <td></td>#}
+    {#        </tr>#}
+    {#        </tfoot>#}
+    {#        </thead>#}
+    {#    </table>#}
+
+    {#{% else %}#}
+    {#    <h2>Panier vide</h2>#}
+    {#    {% endif %}#}
+
+{% endblock %}

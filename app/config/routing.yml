@@ -12,7 +12,7 @@ employe:
 
 achat:
     resource: "@AchatBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /achat
 
 livraison:
     resource: "@LivraisonBundle/Resources/config/routing.yml"
