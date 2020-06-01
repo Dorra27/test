@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use VehiculeBundle\Entity\MaintenaceVehicule;
 use VehiculeBundle\Entity\Vehicule;
 use VehiculeBundle\Entity\VehiculeUser;
+use VehiculeBundle\Form\EnvoyercontratType;
+use VehiculeBundle\Form\EnvoyermailType;
 use VehiculeBundle\Form\updateType;
 use VehiculeBundle\Form\VehiculeRechercheType;
 use VehiculeBundle\Form\VehiculeType;
@@ -147,12 +149,14 @@ class VehiculeController extends Controller
     public function afficheCAction(Request $request, $matricule)
     {    $em = $this->getDoctrine()->getManager();
         $Vehicule = $em->getRepository(Vehicule::class)->find($matricule);
-     //  $form = $this->createForm(updateType::class, $Vehicule);
-      // $form = $form->handleRequest($request);
+        //
+       $form = $this->createForm(EnvoyercontratType::class);
+       $form = $form->handleRequest($request);
 
         $VehiculeUser= new VehiculeUser();
         $contrat_form = $this->createForm(VehiculeUserType::class, $VehiculeUser);
         $contrat_form = $contrat_form->handleRequest($request);
+
 
         if ($contrat_form->isSubmitted() and $contrat_form->isValid() ) {
         //    $user=$this->getUser()->getId();
@@ -166,16 +170,39 @@ class VehiculeController extends Controller
             $VehiculeUser->setIdUser($userr);
             $VehiculeUser->setMatricule($matricule);
 
+
             $em->persist($VehiculeUser);
             $this->addFlash('warning', 'Vous avez passer une demande de location veuillez svp consulter votre mail pour la confirmé');
             $em->flush();
+            // mail
+            $c='MESSAGE FROM';
+            $n='POSSEDANT L"ADRESSE MAIL: ';
+            $O='ABOUT';
+            $userr=$this->getUser();
+            // $user = new User ();
+            $mail= $userr->getEmail();
+            $contenu='DEMANDE DE LOCATION VEHICULE';
+            $message = (new \Swift_Message($form->getData()['subject']))
+                ->setSubject($contenu)
+                ->setFrom('s4sb.tobeornottobe@gmail.com')
+                ->setTo($mail)
+                ->setBody(
+                   // $form->getData()['message'],
+                    $this->renderView('@Vehicule/frontend/contrat.html.twig', array('v' => $Vehicule, 'u' => $userr)),
+                    'text/html'
+                )
+            ;
+            //$form->getData()['from']
+
+            $this->get('mailer')->send($message);
+
             return $this->redirectToRoute('vehicules_Client_affiche');
 
         }
         $Vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->find($matricule);
 
         return ($this->render("@Vehicule/frontend/location.html.twig",
-            array('v' => $Vehicule, 'cf' => $contrat_form->createView()  ) ));
+            array('v' => $Vehicule, 'cf' => $contrat_form->createView())));
     }
 
     // Mes vehicules
@@ -195,4 +222,6 @@ class VehiculeController extends Controller
         return $this->render('@Vehicule/frontend/Mavehicule.html.twig',
             array('v'=>$Vehicule) );
     }
+
+
 }

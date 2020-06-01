@@ -1,0 +1,12 @@
+<h1>Contrat de location Vehicule de la part de la société S4S</h1> <br>
+ Bonjour<h2> M.{{ u.username }}  vous avez passer une demande de livraison voici votre contrat </h2>
+CONTRAT DE LOCATION DE VOITURE Entre les soussignés : M./Mme-/Société : M.{{ u.username }}
+: ayant son siège social/ titulaire de la carte d’identité/passeport n°/id: {{ u.getId()}}
+Ci-après désignée « Le locataire », d'une part ET/ L’Agence <strong> Stock For Speed </strong>
+ayant son siège XXXX BP 9040 Tel :<Strong> 41405314 </Strong>.
+Ci-après désignée « Le propriétaire », d'autre part IL A ETE CONVENU ET ARRETE CE QUI SUIT.
+.Le véhicule loué est de type <strong>{{v.type}}</strong> de la marque <strong>{{ v.marque }}</strong>
+de  <strong> {{ v.nbPlace }}</strong> immatriculé<strong class="btn-danger">{{ v.matricule }}</strong>
+<img src="{{ asset('imgvehiculess/'~v.photo) }}" title="{{v.marque}}" alt="{{v.marque}}">
+Il est conclu pour une durée de------------------ allant du ------------------- au ----------------------- 200-.
+Cette période peut être prolongée à la demande du locataire en fonction de la nécessité de service Art 2.

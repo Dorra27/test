@@ -107,6 +107,15 @@ class User
         $this->roles = $roles;
     }
 
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+
 
 
 

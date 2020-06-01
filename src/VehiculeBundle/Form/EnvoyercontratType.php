@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class EnvoyermailType extends AbstractType
+class EnvoyercontratType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -19,7 +19,7 @@ class EnvoyermailType extends AbstractType
             ->add('subject')
        ->add('from')
         ->add('message', TextareaType::class)
-        ->add('send', SubmitType::class,
-            ['attr'=>['formnovalidate'=>'formnovalidate']]);
+
+        ;
     }
 }

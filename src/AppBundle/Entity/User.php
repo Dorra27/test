@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
  */
-class User extends BaseUser
+class User extends \FOS\UserBundle\Model\User
 {
     /**
      * @ORM\Id
@@ -102,12 +102,31 @@ class User extends BaseUser
      * @ORM\Column(name="disponible", type="string", length=50, nullable=true)
      */
     private $disponible;
+
+    /**
+     * @return string
+     */
+    public function getGovernat()
+    {
+        return $this->governat;
+    }
+
+    /**
+     * @param string $governat
+     */
+    public function setGovernat($governat)
+    {
+        $this->governat = $governat;
+    }
+
+
+
     /**
      * @return mixed
      */
     public function getwebPath()
     {
-        return null===$this->photo ? null : $this->getUploadDir.'/' .$this->photo;
+        return null===$this->photo ? null : $this->getUploadDir().'/' .$this->photo;
     }
     protected function getUploadRootDir(){
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
@@ -116,6 +135,11 @@ class User extends BaseUser
     protected function getUploadDir(){
         return 'photo';
     }
+
+
+
+
+
     public function UploadProfilePicture(){
         $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
         $this->photo=$this->file->getClientOriginalName();
@@ -146,4 +170,5 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
+
 }

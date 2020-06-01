@@ -43,3 +43,40 @@ Vehicules_Client_maVehicule:
 Contacter_nous_mail:
     path:   /contacter
     defaults: {_controller: VehiculeBundle:Default:index}
+api_allVehicules:
+    path:   /all
+    defaults: {_controller: VehiculeBundle:Api:all}
+api_allVehiculesUser:
+    path:   /allC
+    defaults: {_controller: VehiculeBundle:Api:allC}
+api_allnew:
+    path:   /new
+    defaults: {_controller: VehiculeBundle:Api:new}
+api_delete:
+    path:   /supp/{matricule}
+    defaults: {_controller: VehiculeBundle:Api:delete}
+api_update:
+    path:   /up/{matricule}
+    defaults: {_controller: VehiculeBundle:Api:up}
+api_ajout:
+    path:   /ajout
+    defaults: {_controller: VehiculeBundle:Api:newv}
+api_updateEtatV:
+    path:   /upetatV/{matricule}
+    defaults: {_controller: VehiculeBundle:Api:upetatV}
+api_updateEtatVv:
+    path:   /upetatVv/{matricule}
+    defaults: {_controller: VehiculeBundle:Api:upetatVv}
+api_login:
+    path:   /login
+    defaults: {_controller: VehiculeBundle:Api:login}
+api_allUsers:
+    path:   /allUsers
+    defaults: {_controller: VehiculeBundle:Api:AllUsers}
+api_register:
+    path:   /register
+    defaults: {_controller: VehiculeBundle:Api:register}
+api_findUser:
+    path:   /getuser
+    defaults: {_controller: VehiculeBundle:Api:GetUserbyId}
+

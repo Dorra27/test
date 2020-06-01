@@ -120,7 +120,7 @@ class Vehicule
 
     public function getwebPath()
     {
-        return null===$this->photo ? null : $this->getUploadDir.'/' .$this->photo;
+        return null===$this->photo ? null : $this->getUploadDir().'/' .$this->photo;
     }
     protected function getUploadRootDir(){
         return __DIR__.'/../../../../../ProjetSymfony/test/web/'.$this->getUploadDir();
